@@ -40,7 +40,8 @@ class _CarouselState extends State<Carousel>
     animation = Tween<double>(begin: 0, end: Carousel.slideCount.toDouble())
         .animate(animationController)
           ..addListener(() {
-            if (animation.value.floor() != currentSlide) {
+            if (animation.value.floor() != currentSlide &&
+                animation.value.floor() < Carousel.slideCount) {
               currentSlide = animation.value.floor();
               setState(() {});
             }
