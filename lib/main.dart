@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
               BeautifulUI(),
               NativePerformance(),
               LearnFromDevelopers(),
+              WhoUsesFlutter(),
               InstallFlutter(),
             ],
           ),

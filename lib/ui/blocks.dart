@@ -769,6 +769,65 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
   }
 }
 
+class WhoUsesFlutter extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: border)),
+      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Flexible(
+            flex: 5,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 32),
+                    child:
+                        Text("Who's using Flutter?", style: headlineTextStyle),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: bodyTextStyle,
+                      children: [
+                        TextSpan(
+                            text:
+                                "Organizations around the world are building apps with Flutter."),
+                        TextSpan(text: "\n\n"),
+                        TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                openUrl("https://flutter.dev/showcase");
+                              },
+                            text: "See what’s being created",
+                            style: bodyLinkTextStyle),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Flexible(
+              flex: 7,
+              child: Image.asset("assets/images/companies_using_flutter.png",
+                  fit: BoxFit.contain)),
+        ],
+      ),
+    );
+  }
+}
+
 class InstallFlutter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
