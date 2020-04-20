@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
                   child: Carousel()),
               GetStarted(),
               Features(),
+              FastDevelopment(),
             ],
           ),
         ),

@@ -12,6 +12,7 @@ dependencies:
   responsive_framework: ^0.0.4
   animations: ^1.0.0+5
   url_launcher: ^5.4.2
+  video_player: ^0.10.8+1
 
 dev_dependencies:
   flutter_test:
@@ -21,14 +22,19 @@ flutter:
   uses-material-design: true
   assets:
    - assets/images/
+   - assets/videos/
   fonts:
     - family: Google Sans
       fonts:
         - asset: assets/fonts/product_sans_regular.ttf
         - asset: assets/fonts/product_sans_bold.ttf
           weight: 700
+        - asset: assets/fonts/product_sans_italic.ttf
+          style: italic
     - family: Roboto
       fonts:
           - asset: assets/fonts/roboto_regular.ttf
           - asset: assets/fonts/roboto_bold.ttf
             weight: 700
+          - asset: assets/fonts/roboto_italic.ttf
+            style: italic
