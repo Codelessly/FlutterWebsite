@@ -684,7 +684,9 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
   @override
   void initState() {
     super.initState();
+    webViewKey = UniqueKey();
     // TODO: Breaks mobile builds. Official Flutter WebView plugin is working on Web support.
+    // TODO: Resets iframe on scroll. Wait for official Flutter fix.
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
         webViewKey.toString(),
@@ -692,7 +694,7 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
           ..width = "1080"
           ..height = "606"
           ..src = videoUrl
-          ..style.border = 'none');
+          ..style.border = "none");
   }
 
   @override
@@ -745,21 +747,23 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
           ),
           Flexible(
             flex: 2,
-            child: Container(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25),
-                child: AspectRatio(
-                  aspectRatio: videoAspectRatio,
-                  child: (kIsWeb)
-                      ? HtmlElementView(
-                          key: webViewKey,
-                          viewType: webViewKey.toString(),
-                        )
-                      : WebView(
-                          key: webViewKey,
-                          initialUrl: videoUrl,
-                        ),
-                ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: AspectRatio(
+                aspectRatio: videoAspectRatio,
+                child: (kIsWeb)
+                    ? Image.asset(
+                        "assets/images/video_thumbnail_learn_from_developers.png",
+                        fit: BoxFit.contain)
+                    // TODO: Multiple embedded iframes flicker.
+//                HtmlElementView(
+//                        key: webViewKey,
+//                        viewType: webViewKey.toString(),
+//                      )
+                    : WebView(
+                        key: webViewKey,
+                        initialUrl: videoUrl,
+                      ),
               ),
             ),
           ),
@@ -823,6 +827,135 @@ class WhoUsesFlutter extends StatelessWidget {
               child: Image.asset("assets/images/companies_using_flutter.png",
                   fit: BoxFit.contain)),
         ],
+      ),
+    );
+  }
+}
+
+class FlutterCodelab extends StatefulWidget {
+  @override
+  _FlutterCodelabState createState() => _FlutterCodelabState();
+}
+
+class _FlutterCodelabState extends State<FlutterCodelab> {
+  final String viewType = "iframe_codelab";
+  final String codeUrl =
+      "https://dartpad.dev/embed-flutter.html?id=c0450ca427127acfb710a31c99761f1a";
+  final double videoAspectRatio = 1.75;
+  UniqueKey webViewKey = UniqueKey();
+
+  @override
+  void initState() {
+    super.initState();
+    // TODO: Breaks mobile builds. Official Flutter WebView plugin is working on Web support.
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+        viewType,
+        (viewId) => html.IFrameElement()
+          ..width = "894"
+          ..height = "510"
+          ..src = codeUrl
+          ..style.border = "none");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: border)),
+      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      padding: EdgeInsets.all(80),
+      child: Align(
+        alignment: Alignment.center,
+        child: Container(
+          constraints: BoxConstraints.loose(Size(1000, double.infinity)),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Text("Try Flutter in your browser",
+                    style: headlineTextStyle),
+              ),
+// TODO: Dropdown overlay's hit area covered by iframe. Unable to select item.
+//              Container(
+//                decoration: BoxDecoration(
+//                  border: Border.all(color: Color(0xFFA9A9A9), width: 1),
+//                  borderRadius: BorderRadius.all(Radius.circular(0)),
+//                ),
+//                margin: EdgeInsets.only(bottom: 8),
+//                child: DropdownButton<String>(
+//                  value: "Spinning Flutter",
+//                  icon: Icon(Icons.arrow_drop_down, color: Color(0xFFA9A9A9)),
+//                  iconSize: 24,
+//                  elevation: 16,
+//                  style: bodyTextStyle,
+//                  underline: null,
+//                  onChanged: (String newValue) {
+//                    setState(() {});
+//                  },
+//                  items: <String>[
+//                    "Spinning Flutter",
+//                    "Fibonacci",
+//                    "Counter",
+//                  ].map<DropdownMenuItem<String>>((String value) {
+//                    return DropdownMenuItem<String>(
+//                      value: value,
+//                      child: Text(
+//                        value,
+//                        style: bodyTextStyle,
+//                      ),
+//                    );
+//                  }).toList(),
+//                ),
+//              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(25, 0, 25, 16),
+                child: AspectRatio(
+                  aspectRatio: videoAspectRatio,
+                  child: (kIsWeb)
+                      ? Container(
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Color(0xFFD3D3D3), width: 1),
+                            borderRadius: BorderRadius.all(Radius.circular(0)),
+                          ),
+                          child: HtmlElementView(
+                            key: webViewKey,
+                            viewType: viewType,
+                          ),
+                        )
+                      : WebView(
+                          key: webViewKey,
+                          initialUrl: codeUrl,
+                        ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 16, bottom: 16),
+                child: RichText(
+                  text: TextSpan(
+                    style: headlineSecondaryTextStyle,
+                    children: [
+                      TextSpan(text: "Want more practice? "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () async {
+                              openUrl("https://flutter.dev/codelabs");
+                            },
+                          text: "Try a codelab",
+                          style: headlineSecondaryTextStyle.copyWith(
+                              color: primary)),
+                      TextSpan(text: ".")
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
