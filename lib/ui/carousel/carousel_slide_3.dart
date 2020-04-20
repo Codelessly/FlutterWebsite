@@ -132,15 +132,15 @@ class _CarouselSlide3State extends State<CarouselSlide3>
             left: 0,
             right: 0,
             top: 0,
-            child: WidgetSlideUpDownFadeAnimation(
-              duration:
-                  getSlideItemAnimationDuration("slide_3-text", slideItems),
-              direction:
-                  getSlideItemAnimationVisibility("slide_3-text", slideItems),
-              offset: slideItemOffset,
-              child: Container(
-                height: 640,
-                alignment: Alignment.center,
+            child: Container(
+              height: 640,
+              alignment: Alignment.center,
+              child: WidgetSlideUpDownFadeAnimation(
+                duration:
+                    getSlideItemAnimationDuration("slide_3-text", slideItems),
+                direction:
+                    getSlideItemAnimationVisibility("slide_3-text", slideItems),
+                offset: slideItemOffset,
                 child: slide3Text,
               ),
             ),
