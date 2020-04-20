@@ -412,7 +412,119 @@ class _FastDevelopmentState extends State<FastDevelopment> {
                 ],
               ),
             ),
-          )
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BeautifulUI extends StatefulWidget {
+  @override
+  _BeautifulUIState createState() => _BeautifulUIState();
+}
+
+class _BeautifulUIState extends State<BeautifulUI> {
+  VideoPlayerController videoController;
+  Future<void> initializeVideoPlayerFuture;
+
+  @override
+  void initState() {
+    videoController =
+        VideoPlayerController.asset("assets/videos/BeautifulUI.mp4");
+    videoController.setVolume(0);
+    videoController.setLooping(true);
+    initializeVideoPlayerFuture = videoController.initialize().then((_) {
+      // Display the first frame of the video before playback.
+      setState(() {});
+      videoPlay();
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    videoController.dispose();
+    super.dispose();
+  }
+
+  void videoPlay() {
+    videoController.play();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: border)),
+      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      padding: EdgeInsets.all(80),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: getMaterialIcon("assets/images/icon_ui.png", 68),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 32),
+                    child: Text("Expressive, beautiful UIs",
+                        style: headlineTextStyle),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: bodyTextStyle,
+                      children: [
+                        TextSpan(
+                            text:
+                                "Delight your users with Flutter's built-in beautiful Material Design and Cupertino (iOS-flavor) widgets, rich motion APIs, smooth natural scrolling, and platform awareness."),
+                        TextSpan(text: "\n\n"),
+                        TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                openUrl(
+                                    "https://flutter.dev/docs/development/ui/widgets/catalog");
+                              },
+                            text: "Browse the widget catalog",
+                            style: bodyTextStyle.copyWith(color: primary)),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 2,
+            child: FutureBuilder(
+              future: initializeVideoPlayerFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  // If the VideoPlayerController has finished initialization, use
+                  // the data it provides to limit the aspect ratio of the VideoPlayer.
+                  return AspectRatio(
+                    aspectRatio: videoController.value.aspectRatio,
+                    child: VideoPlayer(videoController),
+                  );
+                } else {
+                  // If the VideoPlayerController is still initializing, show a
+                  // loading spinner.
+                  return Container();
+                }
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -547,8 +659,57 @@ class _NativePerformanceState extends State<NativePerformance> {
                 ],
               ),
             ),
-          )
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class InstallFlutter extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: border)),
+      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      padding: EdgeInsets.all(80),
+      child: Align(
+        alignment: Alignment.center,
+        child: Container(
+          constraints: BoxConstraints.loose(Size(800, double.infinity)),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Text("Install Flutter today.", style: headlineTextStyle),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Text("It’s free and open source.",
+                    style: bodyTextStyle.copyWith(fontSize: 24)),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 32),
+                child: FlatButton(
+                  onPressed: () =>
+                      openUrl("https://flutter.dev/docs/get-started/install"),
+                  color: primary,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(0))),
+                  padding: EdgeInsets.symmetric(vertical: 22, horizontal: 80),
+                  child: Text(
+                    "Get started",
+                    style: buttonTextStyle,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
