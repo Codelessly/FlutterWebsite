@@ -5,6 +5,7 @@ import 'package:flutter_website/utils/utils.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'components/components.dart';
+import 'ui/blocks/features.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           defaultScale: true,
           breakpoints: [
             ResponsiveBreakpoint(breakpoint: 450, name: MOBILE),
-            ResponsiveBreakpoint(breakpoint: 1200, name: DESKTOP),
+            ResponsiveBreakpoint(breakpoint: 800, name: DESKTOP),
           ],
           background: Container(color: background)),
       home: Scaffold(
@@ -225,119 +226,13 @@ class MyApp extends StatelessWidget {
                             ]),
                             textAlign: TextAlign.center,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-              Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(color: border)),
-                  margin: EdgeInsets.symmetric(horizontal: 1),
-                  padding: EdgeInsets.all(40),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25),
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 32),
-                                child: getMaterialIcon(
-                                    "assets/images/icon_development.png", 68),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 16),
-                                child: Text("Fast Development",
-                                    style: headlineSecondaryTextStyle),
-                              ),
-                              Text(
-                                  "Paint your app to life in milliseconds with Stateful Hot Reload. Use a rich set of fully-customizable widgets to build native interfaces in minutes.",
-                                  style: bodyTextStyle,
-                                  textAlign: TextAlign.center),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25),
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 32),
-                                child: getMaterialIcon(
-                                    "assets/images/icon_ui.png", 68),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 16),
-                                child: Text("Expressive and Flexible UI",
-                                    style: headlineSecondaryTextStyle),
-                              ),
-                              Text(
-                                  "Quickly ship features with a focus on native end-user experiences. Layered architecture allows for full customization, which results in incredibly fast rendering and expressive and flexible designs.",
-                                  style: bodyTextStyle,
-                                  textAlign: TextAlign.center),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25),
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 32),
-                                child: getMaterialIcon(
-                                    "assets/images/icon_performance.png", 68),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 16),
-                                child: Text("Native Performance",
-                                    style: headlineSecondaryTextStyle),
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                  style: bodyTextStyle,
-                                  children: [
-                                    TextSpan(
-                                        text:
-                                            "Flutter’s widgets incorporate all critical platform differences such as scrolling, navigation, icons and fonts, and your Flutter code is compiled to native ARM machine code using "),
-                                    TextSpan(
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () async {
-                                            openUrl(
-                                                "https://dart.dev/platforms");
-                                          },
-                                        text: "Dart's native compilers",
-                                        style: bodyTextStyle.copyWith(
-                                            color: primary)),
-                                    TextSpan(
-                                        text:
-                                            ". Thus Flutter gives you full native performance on both iOS and Android."),
-                                  ],
-                                ),
-                                textAlign: TextAlign.center,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
+              Features(),
             ],
           ),
         ),
