@@ -1,11 +1,16 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_website/components/components.dart';
 import 'package:flutter_website/utils/responsive.dart';
 import 'package:flutter_website/utils/utils.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class GetStarted extends StatelessWidget {
   @override
@@ -146,7 +151,7 @@ class GetStarted extends StatelessWidget {
                                 "https://flutter.dev/docs/get-started/flutter-for/ios-devs");
                           },
                         text: "iOS",
-                        style: bodyTextStyle.copyWith(color: primary)),
+                        style: bodyLinkTextStyle),
                     TextSpan(text: ", ", style: bodyTextStyle),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
@@ -155,7 +160,7 @@ class GetStarted extends StatelessWidget {
                                 "https://flutter.dev/docs/get-started/flutter-for/android-devs");
                           },
                         text: "Android",
-                        style: bodyTextStyle.copyWith(color: primary)),
+                        style: bodyLinkTextStyle),
                     TextSpan(text: ", ", style: bodyTextStyle),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
@@ -164,7 +169,7 @@ class GetStarted extends StatelessWidget {
                                 "https://flutter.dev/docs/get-started/flutter-for/web-devs");
                           },
                         text: "Web",
-                        style: bodyTextStyle.copyWith(color: primary)),
+                        style: bodyLinkTextStyle),
                     TextSpan(text: ", ", style: bodyTextStyle),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
@@ -173,7 +178,7 @@ class GetStarted extends StatelessWidget {
                                 "https://flutter.dev/docs/get-started/flutter-for/react-native-devs");
                           },
                         text: "React Native",
-                        style: bodyTextStyle.copyWith(color: primary)),
+                        style: bodyLinkTextStyle),
                     TextSpan(text: ", ", style: bodyTextStyle),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
@@ -182,7 +187,7 @@ class GetStarted extends StatelessWidget {
                                 "https://flutter.dev/docs/get-started/flutter-for/xamarin-forms-devs");
                           },
                         text: "Xamarin",
-                        style: bodyTextStyle.copyWith(color: primary)),
+                        style: bodyLinkTextStyle),
                     TextSpan(text: ".", style: bodyTextStyle),
                   ]),
                   textAlign: TextAlign.center,
@@ -286,7 +291,7 @@ class Features extends StatelessWidget {
                               openUrl("https://dart.dev/platforms");
                             },
                           text: "Dart's native compilers",
-                          style: bodyTextStyle.copyWith(color: primary)),
+                          style: bodyLinkTextStyle),
                       TextSpan(
                           text:
                               ". Thus Flutter gives you full native performance on both iOS and Android."),
@@ -344,7 +349,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
       margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.all(80),
+      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -405,7 +410,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
                                     "https://flutter.dev/docs/development/tools/hot-reload");
                               },
                             text: "Learn more",
-                            style: bodyTextStyle.copyWith(color: primary))
+                            style: bodyLinkTextStyle)
                       ],
                     ),
                   )
@@ -461,7 +466,7 @@ class _BeautifulUIState extends State<BeautifulUI> {
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
       margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.all(80),
+      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -497,7 +502,7 @@ class _BeautifulUIState extends State<BeautifulUI> {
                                     "https://flutter.dev/docs/development/ui/widgets/catalog");
                               },
                             text: "Browse the widget catalog",
-                            style: bodyTextStyle.copyWith(color: primary)),
+                            style: bodyLinkTextStyle),
                       ],
                     ),
                   )
@@ -573,7 +578,7 @@ class _NativePerformanceState extends State<NativePerformance> {
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
       margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.all(80),
+      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -628,7 +633,7 @@ class _NativePerformanceState extends State<NativePerformance> {
                                 openUrl("https://flutter.dev/showcase");
                               },
                             text: "Examples of apps built with Flutter",
-                            style: bodyTextStyle.copyWith(color: primary)),
+                            style: bodyLinkTextStyle),
                         TextSpan(text: "\n\n"),
                         TextSpan(
                             text: "Demo design inspired by ",
@@ -657,6 +662,104 @@ class _NativePerformanceState extends State<NativePerformance> {
                     ),
                   )
                 ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LearnFromDevelopers extends StatefulWidget {
+  @override
+  _LearnFromDevelopersState createState() => _LearnFromDevelopersState();
+}
+
+class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
+  final String videoUrl = "https://www.youtube.com/embed/W1pNjxmNHNQ";
+  final double videoAspectRatio = 1.78;
+  UniqueKey webViewKey = UniqueKey();
+
+  @override
+  void initState() {
+    super.initState();
+    // TODO: Breaks mobile builds. Official Flutter WebView plugin is working on Web support.
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+        webViewKey.toString(),
+        (viewId) => html.IFrameElement()
+          ..width = "1080"
+          ..height = "606"
+          ..src = videoUrl
+          ..style.border = 'none');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: border)),
+      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 32),
+                    child:
+                        Text("Learn from developers", style: headlineTextStyle),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: bodyTextStyle,
+                      children: [
+                        TextSpan(
+                            text:
+                                "Watch these videos to learn from Google and developers as you build with Flutter."),
+                        TextSpan(text: "\n\n"),
+                        TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                openUrl("https://www.youtube.com/flutterdev");
+                              },
+                            text: "Visit our YouTube playlist",
+                            style: bodyLinkTextStyle),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 2,
+            child: Container(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                child: AspectRatio(
+                  aspectRatio: videoAspectRatio,
+                  child: (kIsWeb)
+                      ? HtmlElementView(
+                          key: webViewKey,
+                          viewType: webViewKey.toString(),
+                        )
+                      : WebView(
+                          key: webViewKey,
+                          initialUrl: videoUrl,
+                        ),
+                ),
               ),
             ),
           ),

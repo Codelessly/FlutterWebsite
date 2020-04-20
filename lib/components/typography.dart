@@ -15,6 +15,8 @@ const TextStyle headlineSecondaryTextStyle = TextStyle(
 const TextStyle bodyTextStyle = TextStyle(
     fontSize: 16, color: textPrimary, height: 1.5, fontFamily: "Roboto");
 
+TextStyle bodyLinkTextStyle = bodyTextStyle.copyWith(color: primary);
+
 const TextStyle buttonTextStyle = TextStyle(
     fontSize: 18, color: Colors.white, height: 1, fontFamily: fontFamily);
 

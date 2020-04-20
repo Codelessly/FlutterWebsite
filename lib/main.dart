@@ -38,12 +38,12 @@ class MyApp extends StatelessWidget {
               FastDevelopment(),
               BeautifulUI(),
               NativePerformance(),
+              LearnFromDevelopers(),
               InstallFlutter(),
             ],
           ),
         ),
       ),
-      theme: Theme.of(context).copyWith(platform: TargetPlatform.android),
       debugShowCheckedModeBanner: false,
     );
   }
