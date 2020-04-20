@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 class ResponsiveRowColumn extends StatelessWidget {
@@ -18,6 +19,7 @@ class ResponsiveRowColumn extends StatelessWidget {
   final TextBaseline columnTextBaseline;
   final EdgeInsets rowSpacing;
   final EdgeInsets columnSpacing;
+  final bool fillRow;
 
   const ResponsiveRowColumn(
       {Key key,
@@ -37,7 +39,8 @@ class ResponsiveRowColumn extends StatelessWidget {
       this.columnVerticalDirection = VerticalDirection.down,
       this.columnTextBaseline,
       this.rowSpacing,
-      this.columnSpacing})
+      this.columnSpacing,
+      this.fillRow = false})
       : super(key: key);
 
   @override
@@ -85,7 +88,10 @@ class ResponsiveRowColumn extends StatelessWidget {
     List<Widget> childrenList = [];
     for (int i = 0; i < children.length; i++) {
       childrenList.add(
-        Flexible(flex: 1, fit: FlexFit.tight, child: children[i]),
+        Flexible(
+            flex: 1,
+            fit: fillRow ? FlexFit.tight : FlexFit.loose,
+            child: children[i]),
       );
       if (rowSpacing != null && i != children.length - 1)
         childrenList.add(Padding(padding: rowSpacing));
