@@ -48,7 +48,7 @@ class GetStarted extends StatelessWidget {
                           style: headlineSecondaryTextStyle),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () async {
+                            ..onTap = () {
                               openUrl("https://flutter.dev/docs");
                             },
                           text: "mobile",
@@ -316,6 +316,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
   void initState() {
     videoController = VideoPlayerController.asset("assets/videos/FastDev.mp4");
     videoController.setVolume(0);
+    videoController.setLooping(true);
     initializeVideoPlayerFuture = videoController.initialize().then((_) {
       // Display the first frame of the video before playback.
       setState(() {});
@@ -342,7 +343,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.symmetric(horizontal: 1),
+      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
       padding: EdgeInsets.all(80),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -405,6 +406,141 @@ class _FastDevelopmentState extends State<FastDevelopment> {
                               },
                             text: "Learn more",
                             style: bodyTextStyle.copyWith(color: primary))
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class NativePerformance extends StatefulWidget {
+  @override
+  _NativePerformanceState createState() => _NativePerformanceState();
+}
+
+class _NativePerformanceState extends State<NativePerformance> {
+  VideoPlayerController videoController;
+  Future<void> initializeVideoPlayerFuture;
+
+  @override
+  void initState() {
+    videoController =
+        VideoPlayerController.asset("assets/videos/NativePerformance.mp4");
+    videoController.setVolume(0);
+    videoController.setLooping(true);
+    initializeVideoPlayerFuture = videoController.initialize().then((_) {
+      // Display the first frame of the video before playback.
+      setState(() {});
+      videoPlay();
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    videoController.dispose();
+    super.dispose();
+  }
+
+  void videoPlay() {
+    videoController.play();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: border)),
+      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      padding: EdgeInsets.all(80),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Flexible(
+            flex: 2,
+            child: FutureBuilder(
+              future: initializeVideoPlayerFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  // If the VideoPlayerController has finished initialization, use
+                  // the data it provides to limit the aspect ratio of the VideoPlayer.
+                  return AspectRatio(
+                    aspectRatio: videoController.value.aspectRatio,
+                    child: VideoPlayer(videoController),
+                  );
+                } else {
+                  // If the VideoPlayerController is still initializing, show a
+                  // loading spinner.
+                  return Container();
+                }
+              },
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: getMaterialIcon(
+                        "assets/images/icon_performance.png", 68),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 32),
+                    child: Text("Native Performance", style: headlineTextStyle),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: bodyTextStyle,
+                      children: [
+                        TextSpan(
+                            text:
+                                "Flutter’s widgets incorporate all critical platform differences such as scrolling, navigation, icons and fonts to provide full native performance on both iOS and Android."),
+                        TextSpan(text: "\n\n"),
+                        TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                openUrl("https://flutter.dev/showcase");
+                              },
+                            text: "Examples of apps built with Flutter",
+                            style: bodyTextStyle.copyWith(color: primary)),
+                        TextSpan(text: "\n\n"),
+                        TextSpan(
+                            text: "Demo design inspired by ",
+                            style: bodyTextStyle.copyWith(fontSize: 12)),
+                        TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                openUrl("https://dribbble.com/aureliensalomon");
+                              },
+                            text: "Aurélien Salomon",
+                            style: bodyTextStyle.copyWith(
+                                fontSize: 12, color: primary)),
+                        TextSpan(
+                            text: "'s ",
+                            style: bodyTextStyle.copyWith(fontSize: 12)),
+                        TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                openUrl(
+                                    "https://dribbble.com/shots/2940231-Google-Newsstand-Navigation-Pattern");
+                              },
+                            text: "Google Newsstand Navigation Pattern",
+                            style: bodyTextStyle.copyWith(
+                                fontSize: 12, color: primary)),
                       ],
                     ),
                   )

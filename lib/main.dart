@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
               GetStarted(),
               Features(),
               FastDevelopment(),
+              NativePerformance(),
             ],
           ),
         ),
