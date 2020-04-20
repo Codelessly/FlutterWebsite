@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_website/ui/carousel/carousel.dart';
+import 'package:flutter_website/utils/utils.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'components/components.dart';
@@ -74,6 +76,10 @@ class MyApp extends StatelessWidget {
                                         "Flutter is Google’s UI toolkit for building beautiful, natively compiled applications for ",
                                     style: headlineSecondaryTextStyle),
                                 TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () async {
+                                        openUrl("https://flutter.dev/docs");
+                                      },
                                     text: "mobile",
                                     style: headlineSecondaryTextStyle.copyWith(
                                         color: primary)),
@@ -81,6 +87,10 @@ class MyApp extends StatelessWidget {
                                     text: ", ",
                                     style: headlineSecondaryTextStyle),
                                 TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        openUrl("https://flutter.dev/web");
+                                      },
                                     text: "web",
                                     style: headlineSecondaryTextStyle.copyWith(
                                         color: primary)),
@@ -88,6 +98,10 @@ class MyApp extends StatelessWidget {
                                     text: ", and ",
                                     style: headlineSecondaryTextStyle),
                                 TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        openUrl("https://flutter.dev/desktop");
+                                      },
                                     text: "desktop",
                                     style: headlineSecondaryTextStyle.copyWith(
                                         color: primary)),
@@ -106,7 +120,8 @@ class MyApp extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               FlatButton(
-                                onPressed: () => {},
+                                onPressed: () => openUrl(
+                                    "https://flutter.dev/docs/get-started/install"),
                                 color: primary,
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
@@ -125,7 +140,8 @@ class MyApp extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(0))),
-                                  padding: EdgeInsets.all(16),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 20, horizontal: 16),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -157,26 +173,51 @@ class MyApp extends StatelessWidget {
                                   text: "Coming from another platform? Docs: ",
                                   style: bodyTextStyle),
                               TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      openUrl(
+                                          "https://flutter.dev/docs/get-started/flutter-for/ios-devs");
+                                    },
                                   text: "iOS",
                                   style:
                                       bodyTextStyle.copyWith(color: primary)),
                               TextSpan(text: ", ", style: bodyTextStyle),
                               TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      openUrl(
+                                          "https://flutter.dev/docs/get-started/flutter-for/android-devs");
+                                    },
                                   text: "Android",
                                   style:
                                       bodyTextStyle.copyWith(color: primary)),
                               TextSpan(text: ", ", style: bodyTextStyle),
                               TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      openUrl(
+                                          "https://flutter.dev/docs/get-started/flutter-for/web-devs");
+                                    },
                                   text: "Web",
                                   style:
                                       bodyTextStyle.copyWith(color: primary)),
                               TextSpan(text: ", ", style: bodyTextStyle),
                               TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      openUrl(
+                                          "https://flutter.dev/docs/get-started/flutter-for/react-native-devs");
+                                    },
                                   text: "React Native",
                                   style:
                                       bodyTextStyle.copyWith(color: primary)),
                               TextSpan(text: ", ", style: bodyTextStyle),
                               TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      openUrl(
+                                          "https://flutter.dev/docs/get-started/flutter-for/xamarin-forms-devs");
+                                    },
                                   text: "Xamarin",
                                   style:
                                       bodyTextStyle.copyWith(color: primary)),
