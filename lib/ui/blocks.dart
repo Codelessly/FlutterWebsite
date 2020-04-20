@@ -838,24 +838,30 @@ class FlutterCodelab extends StatefulWidget {
 }
 
 class _FlutterCodelabState extends State<FlutterCodelab> {
-  final String viewType = "iframe_codelab";
-  final String codeUrl =
-      "https://dartpad.dev/embed-flutter.html?id=c0450ca427127acfb710a31c99761f1a";
+  static List<String> codelabIds = ["Spinning Flutter", "Fibonacci", "Counter"];
+  static List<String> codelabUrls = [
+    "https://dartpad.dev/embed-flutter.html?id=c0450ca427127acfb710a31c99761f1a",
+    "https://dartpad.dev/embed-flutter.html?id=38311b87e4b3c76329812077c82323b4",
+    "https://dartpad.dev/embed-flutter.html?id=7b5710b344431457753253625a596158"
+  ];
+  String codelabSelected = codelabIds[0];
+  String codelabUrlSelected = codelabUrls[0];
   final double videoAspectRatio = 1.75;
+
+  Map<String, Widget> codelabExamples;
+  // TODO: Breaks mobile builds. Official Flutter WebView plugin is working on Web support.
+  HtmlElementView codelabHtmlElementView;
   UniqueKey webViewKey = UniqueKey();
 
   @override
   void initState() {
     super.initState();
-    // TODO: Breaks mobile builds. Official Flutter WebView plugin is working on Web support.
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
-        viewType,
-        (viewId) => html.IFrameElement()
-          ..width = "894"
-          ..height = "510"
-          ..src = codeUrl
-          ..style.border = "none");
+    codelabExamples = <String, Widget>{
+      codelabIds[0]: getCupertinoSelectionWidget(codelabIds[0]),
+      codelabIds[1]: getCupertinoSelectionWidget(codelabIds[1]),
+      codelabIds[2]: getCupertinoSelectionWidget(codelabIds[2]),
+    };
+    setCodelabHtmlElementView();
   }
 
   @override
@@ -878,6 +884,11 @@ class _FlutterCodelabState extends State<FlutterCodelab> {
                 padding: EdgeInsets.only(bottom: 16),
                 child: Text("Try Flutter in your browser",
                     style: headlineTextStyle),
+              ),
+              CupertinoSlidingSegmentedControl(
+                groupValue: codelabSelected,
+                onValueChanged: (value) => setCodelabSelected(value),
+                children: codelabExamples,
               ),
 // TODO: Dropdown overlay's hit area covered by iframe. Unable to select item.
 //              Container(
@@ -912,7 +923,7 @@ class _FlutterCodelabState extends State<FlutterCodelab> {
 //                ),
 //              ),
               Padding(
-                padding: EdgeInsets.fromLTRB(25, 0, 25, 16),
+                padding: EdgeInsets.fromLTRB(25, 16, 25, 16),
                 child: AspectRatio(
                   aspectRatio: videoAspectRatio,
                   child: (kIsWeb)
@@ -924,12 +935,12 @@ class _FlutterCodelabState extends State<FlutterCodelab> {
                           ),
                           child: HtmlElementView(
                             key: webViewKey,
-                            viewType: viewType,
+                            viewType: codelabSelected,
                           ),
                         )
                       : WebView(
                           key: webViewKey,
-                          initialUrl: codeUrl,
+                          initialUrl: codelabUrlSelected,
                         ),
                 ),
               ),
@@ -957,6 +968,31 @@ class _FlutterCodelabState extends State<FlutterCodelab> {
           ),
         ),
       ),
+    );
+  }
+
+  void setCodelabSelected(String codelab) {
+    codelabSelected = codelab;
+    codelabUrlSelected = codelabUrls[codelabIds.indexOf(codelab)];
+    setCodelabHtmlElementView();
+    setState(() {});
+  }
+
+  void setCodelabHtmlElementView() {
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+        codelabSelected,
+        (viewId) => html.IFrameElement()
+          ..width = "1080"
+          ..height = "617"
+          ..src = codelabUrlSelected
+          ..style.border = "none");
+  }
+
+  Widget getCupertinoSelectionWidget(String text) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 24),
+      child: Text(text, style: bodyTextStyle),
     );
   }
 }
