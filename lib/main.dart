@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
               NativePerformance(),
               LearnFromDevelopers(),
               WhoUsesFlutter(),
+              FlutterNewsRow(),
               FlutterCodelab(),
               InstallFlutter(),
             ],

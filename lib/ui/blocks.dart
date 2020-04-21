@@ -287,7 +287,7 @@ class Features extends StatelessWidget {
                               "Flutter’s widgets incorporate all critical platform differences such as scrolling, navigation, icons and fonts, and your Flutter code is compiled to native ARM machine code using "),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () async {
+                            ..onTap = () {
                               openUrl("https://dart.dev/platforms");
                             },
                           text: "Dart's native compilers",
@@ -405,7 +405,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
                         TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
+                              ..onTap = () {
                                 openUrl(
                                     "https://flutter.dev/docs/development/tools/hot-reload");
                               },
@@ -497,7 +497,7 @@ class _BeautifulUIState extends State<BeautifulUI> {
                         TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
+                              ..onTap = () {
                                 openUrl(
                                     "https://flutter.dev/docs/development/ui/widgets/catalog");
                               },
@@ -629,7 +629,7 @@ class _NativePerformanceState extends State<NativePerformance> {
                         TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
+                              ..onTap = () {
                                 openUrl("https://flutter.dev/showcase");
                               },
                             text: "Examples of apps built with Flutter",
@@ -640,7 +640,7 @@ class _NativePerformanceState extends State<NativePerformance> {
                             style: bodyTextStyle.copyWith(fontSize: 12)),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
+                              ..onTap = () {
                                 openUrl("https://dribbble.com/aureliensalomon");
                               },
                             text: "Aurélien Salomon",
@@ -651,7 +651,7 @@ class _NativePerformanceState extends State<NativePerformance> {
                             style: bodyTextStyle.copyWith(fontSize: 12)),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
+                              ..onTap = () {
                                 openUrl(
                                     "https://dribbble.com/shots/2940231-Google-Newsstand-Navigation-Pattern");
                               },
@@ -733,7 +733,7 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
                         TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
+                              ..onTap = () {
                                 openUrl("https://www.youtube.com/flutterdev");
                               },
                             text: "Visit our YouTube playlist",
@@ -810,7 +810,7 @@ class WhoUsesFlutter extends StatelessWidget {
                         TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
+                              ..onTap = () {
                                 openUrl("https://flutter.dev/showcase");
                               },
                             text: "See what’s being created",
@@ -826,6 +826,102 @@ class WhoUsesFlutter extends StatelessWidget {
               flex: 7,
               child: Image.asset("assets/images/companies_using_flutter.png",
                   fit: BoxFit.contain)),
+        ],
+      ),
+    );
+  }
+}
+
+class FlutterNewsRow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 32),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Flexible(
+            flex: 1,
+            fit: FlexFit.tight,
+            child: FlutterNews(
+              title: "Announcing Flutter 1.12",
+              imagePath: "assets/images/news_flutter_1.12.png",
+              linkUrl:
+                  "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
+            ),
+          ),
+          Container(width: 25),
+          Flexible(
+            flex: 1,
+            fit: FlexFit.tight,
+            child: FlutterNews(
+              title: "Flutter’s iOS Application Bundle",
+              imagePath:
+                  "assets/images/news_flutter_ios_application_bundle.png",
+              linkUrl:
+                  "https://medium.com/flutter/flutters-ios-application-bundle-6f56d4e88cf8",
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FlutterNews extends StatelessWidget {
+  final String title;
+  final String imagePath;
+  final String linkUrl;
+
+  const FlutterNews(
+      {Key key,
+      @required this.title,
+      @required this.imagePath,
+      @required this.linkUrl})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints:
+          BoxConstraints.tightForFinite(width: double.infinity, height: 530),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: border)),
+      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            constraints: BoxConstraints.loose(Size(
+              double.infinity,
+              340,
+            )),
+            child: Image.asset(imagePath, fit: BoxFit.fitWidth),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: 16),
+                  child: Text("News",
+                      style: bodyTextStyle.copyWith(
+                          fontSize: 12, color: Color(0xFF6C757D))),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 16),
+                  child: Text(title, style: headlineSecondaryTextStyle),
+                ),
+                GestureDetector(
+                  onTap: () => openUrl(linkUrl),
+                  child: Text("Read More", style: bodyLinkTextStyle),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -953,7 +1049,7 @@ class _FlutterCodelabState extends State<FlutterCodelab> {
                       TextSpan(text: "Want more practice? "),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () async {
+                            ..onTap = () {
                               openUrl("https://flutter.dev/codelabs");
                             },
                           text: "Try a codelab",
