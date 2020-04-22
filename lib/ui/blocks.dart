@@ -5,12 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_website/components/components.dart';
-import 'package:flutter_website/utils/responsive.dart';
+import 'package:flutter_website/responsive_framework/responsive_framework.dart';
 import 'package:flutter_website/utils/utils.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import 'file:///F:/Development/FlutterDevWebsite/lib/responsive_framework/responsive_row_column.dart';
 
 class GetStarted extends StatelessWidget {
   @override
