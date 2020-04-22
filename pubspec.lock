@@ -230,7 +230,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.2"
+    version: "5.4.5"
   url_launcher_macos:
     dependency: transitive
     description:
@@ -265,7 +265,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.8+1"
+    version: "0.10.9"
   video_player_platform_interface:
     dependency: transitive
     description:
@@ -286,7 +286,7 @@ packages:
       name: webview_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.20"
+    version: "0.3.20+2"
   xml:
     dependency: transitive
     description:
