@@ -127,12 +127,14 @@ class _ResponsiveWrapperState extends State<ResponsiveWrapper>
 
   double windowWidth = 1;
   double getWindowWidth() {
+    print("Screen Width: ${MediaQuery.of(context).size.width}");
     return widget.mediaQueryData?.size?.width ??
         MediaQuery.of(context).size.width;
   }
 
   double windowHeight = 1;
   double getWindowHeight() {
+    print("Screen Width: ${MediaQuery.of(context).size.height}");
     return widget.mediaQueryData?.size?.height ??
         MediaQuery.of(context).size.height;
   }
@@ -285,10 +287,9 @@ class _ResponsiveWrapperState extends State<ResponsiveWrapper>
   /// or equal to the [screenWidth].
   ResponsiveBreakpoint getActiveBreakpoint(double screenWidth) {
     return widget.breakpoints
-        .firstWhere((element) => screenWidth >= element.breakpoint, orElse: () {
-      // No breakpoint found.
-      return null;
-    });
+        .firstWhere((element) => screenWidth >= element.breakpoint,
+            orElse: // No breakpoint found.
+                () => null);
   }
 
   @override
@@ -441,25 +442,25 @@ class ResponsiveWrapperData {
   @override
   String toString() =>
       "ResponsiveWrapperData(" +
-      "Screen Width: " +
+      "screenWidth: " +
       screenWidth?.toString() +
-      ", Screen Height: " +
+      ", screenHeight: " +
       screenHeight?.toString() +
-      ", Scaled Width: " +
+      ", scaledWidth: " +
       scaledWidth?.toString() +
-      ", Scaled Height: " +
+      ", scaledHeight: " +
       scaledHeight?.toString() +
-      ", Breakpoints: " +
+      ", breakpoints: " +
       breakpoints?.asMap().toString() +
-      ", Active Breakpoint: " +
+      ", activeBreakpoint: " +
       activeBreakpoint.toString() +
-      ", Is Mobile: " +
+      ", isMobile: " +
       isMobile?.toString() +
-      ", Is Phone: " +
+      ", isPhone: " +
       isPhone?.toString() +
-      ", Is Tablet: " +
+      ", isTablet: " +
       isTablet?.toString() +
-      ", Is Desktop: " +
+      ", isDesktop: " +
       isDesktop?.toString() +
       ")";
 
@@ -534,13 +535,13 @@ class ResponsiveBreakpoint {
   @override
   String toString() =>
       "ResponsiveBreakpoint(" +
-      "Breakpoint: " +
+      "breakpoint: " +
       breakpoint.toString() +
-      ", AutoScale: " +
+      ", autoScale: " +
       autoScale.toString() +
-      ", Scale Factor: " +
+      ", scaleFactor: " +
       scaleFactor.toString() +
-      ", Name: " +
+      ", name: " +
       name?.toString() +
       ")";
 }
