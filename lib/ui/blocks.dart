@@ -25,7 +25,7 @@ class GetStarted extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: Container(
-          constraints: BoxConstraints.loose(Size(800, double.infinity)),
+          constraints: BoxConstraints(maxWidth: 800),
           child: Column(
             children: [
               Row(
@@ -882,8 +882,7 @@ class FlutterNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints:
-          BoxConstraints.tightForFinite(width: double.infinity, height: 530),
+      constraints: BoxConstraints(maxHeight: 530),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
@@ -893,10 +892,7 @@ class FlutterNews extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            constraints: BoxConstraints.loose(Size(
-              double.infinity,
-              340,
-            )),
+            constraints: BoxConstraints(maxHeight: 340),
             child: Image.asset(imagePath, fit: BoxFit.fitWidth),
           ),
           Padding(
@@ -978,7 +974,7 @@ class _FlutterCodelabState extends State<FlutterCodelab> {
         child: Align(
           alignment: Alignment.center,
           child: Container(
-            constraints: BoxConstraints.loose(Size(1000, double.infinity)),
+            constraints: BoxConstraints(maxWidth: 1000),
             child: Column(
               children: [
                 Padding(
@@ -1114,7 +1110,7 @@ class InstallFlutter extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: Container(
-          constraints: BoxConstraints.loose(Size(800, double.infinity)),
+          constraints: BoxConstraints(maxWidth: 800),
           child: Column(
             children: [
               Padding(
