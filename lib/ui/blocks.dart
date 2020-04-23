@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_website/components/components.dart';
 import 'package:flutter_website/responsive_framework/responsive_framework.dart';
 import 'package:flutter_website/utils/utils.dart';
@@ -834,35 +835,34 @@ class WhoUsesFlutter extends StatelessWidget {
 class FlutterNewsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 32),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Flexible(
-            flex: 1,
-            fit: FlexFit.tight,
-            child: FlutterNews(
-              title: "Announcing Flutter 1.12",
-              imagePath: "assets/images/news_flutter_1.12.png",
-              linkUrl:
-                  "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-            ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Flexible(
+          flex: 1,
+          fit: FlexFit.tight,
+          child: FlutterNews(
+            title: "Announcing Flutter 1.12",
+            imagePath: "assets/images/news_flutter_1.12.png",
+            linkUrl:
+                "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
           ),
-          Container(width: 25),
-          Flexible(
-            flex: 1,
-            fit: FlexFit.tight,
-            child: FlutterNews(
-              title: "Flutter’s iOS Application Bundle",
-              imagePath:
-                  "assets/images/news_flutter_ios_application_bundle.png",
-              linkUrl:
-                  "https://medium.com/flutter/flutters-ios-application-bundle-6f56d4e88cf8",
-            ),
+        ),
+        Flexible(
+          flex: 0,
+          child: Container(width: 25),
+        ),
+        Flexible(
+          flex: 1,
+          fit: FlexFit.tight,
+          child: FlutterNews(
+            title: "Flutter’s iOS Application Bundle",
+            imagePath: "assets/images/news_flutter_ios_application_bundle.png",
+            linkUrl:
+                "https://medium.com/flutter/flutters-ios-application-bundle-6f56d4e88cf8",
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -928,7 +928,8 @@ class FlutterCodelab extends StatefulWidget {
   _FlutterCodelabState createState() => _FlutterCodelabState();
 }
 
-class _FlutterCodelabState extends State<FlutterCodelab> {
+class _FlutterCodelabState extends State<FlutterCodelab>
+    with SingleTickerProviderStateMixin {
   static List<String> codelabIds = ["Spinning Flutter", "Fibonacci", "Counter"];
   static List<String> codelabUrls = [
     "https://dartpad.dev/embed-flutter.html?id=c0450ca427127acfb710a31c99761f1a",
@@ -958,11 +959,7 @@ class _FlutterCodelabState extends State<FlutterCodelab> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveVisibility(
-      visible: true,
-      hiddenWhen: [
-        Condition.equals(MOBILE),
-        Condition.smallerThan(name: MOBILE),
-      ],
+      hiddenWhen: [Condition.smallerThan(breakpoint: 1000)],
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(

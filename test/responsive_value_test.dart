@@ -64,9 +64,9 @@ void main() {
     });
   });
 
-  group("ResponsiveVisibility", () {
-    group("Named", () {
-      testWidgets('Named Single', (WidgetTester tester) async {
+  group('ResponsiveVisibility', () {
+    group('Named', () {
+      testWidgets('Single', (WidgetTester tester) async {
         tester.binding.window.physicalSizeTestValue = Size(600, 1200);
         tester.binding.window.devicePixelRatioTestValue = 1;
         final testKey = Key('TestKey');
@@ -92,8 +92,41 @@ void main() {
         await tester.pumpWidget(widget);
         await tester.pump();
         dynamic responsiveVisibilityState = tester.state(find.byKey(testKey));
-        print("Active Condition: ${responsiveVisibilityState.activeCondition}");
+        print('Active Condition: ${responsiveVisibilityState.activeCondition}');
         addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+      });
+    });
+
+    group('Breakpoint', () {
+      testWidgets('Smaller Than Single', (WidgetTester tester) async {
+        tester.binding.window.physicalSizeTestValue = Size(600, 1200);
+        tester.binding.window.devicePixelRatioTestValue = 1;
+        final testKey = Key('TestKey');
+        Widget widget = MaterialApp(
+          home: ResponsiveVisibility(
+            key: testKey,
+            hiddenWhen: [
+              Condition.smallerThan(breakpoint: 800),
+            ],
+            child: Container(),
+          ),
+        );
+        // Build our app and trigger a frame.
+        await tester.pumpWidget(widget);
+        await tester.pump();
+        Visibility visibility = tester.widget(find
+            .descendant(
+                of: find.byKey(testKey), matching: find.byType(Visibility))
+            .first);
+        print("Visible: " + visibility.visible.toString());
+        addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+        tester.binding.window.physicalSizeTestValue = Size(1000, 1200);
+        await tester.pumpAndSettle();
+        visibility = tester.widget(find
+            .descendant(
+                of: find.byKey(testKey), matching: find.byType(Visibility))
+            .first);
+        print("Visible: " + visibility.visible.toString());
       });
     });
   });
