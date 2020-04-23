@@ -11,8 +11,6 @@ import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'file:///F:/Development/FlutterDevWebsite/lib/responsive_framework/responsive_row_column.dart';
-
 class GetStarted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
