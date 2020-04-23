@@ -13,8 +13,8 @@ class ResponsiveValue<T> {
 class ResponsiveVisibility extends StatefulWidget {
   final Widget child;
   final bool visible;
-  final List<ResponsiveCondition> conditionVisible;
-  final List<ResponsiveCondition> conditionHidden;
+  final List<Condition> visibleWhen;
+  final List<Condition> hiddenWhen;
   final Widget replacement;
   final bool maintainState;
   final bool maintainAnimation;
@@ -26,8 +26,8 @@ class ResponsiveVisibility extends StatefulWidget {
     Key key,
     @required this.child,
     this.visible = true,
-    this.conditionVisible,
-    this.conditionHidden,
+    this.visibleWhen,
+    this.hiddenWhen,
     this.replacement = const SizedBox.shrink(),
     this.maintainState = false,
     this.maintainAnimation = false,
@@ -42,8 +42,8 @@ class ResponsiveVisibility extends StatefulWidget {
 
 class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
     with WidgetsBindingObserver {
-  List<ResponsiveCondition> conditions = [];
-  ResponsiveCondition activeCondition;
+  List<Condition> conditions = [];
+  Condition activeCondition;
   bool visibleValue;
 
   void setDimensions() {
@@ -83,8 +83,8 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
   ///   a. Named breakpoints.
   ///   b. Unnamed breakpoints.
   /// Returns null if no Active Condition is found.
-  ResponsiveCondition getActiveCondition() {
-    ResponsiveCondition equalsCondition = conditions.firstWhere((element) {
+  Condition getActiveCondition() {
+    Condition equalsCondition = conditions.firstWhere((element) {
       if (element.condition == InternalResponsiveCondition.EQUAL) {
         return ResponsiveWrapper.of(context).activeBreakpoint.name ==
             element.name;
@@ -96,7 +96,7 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
       return equalsCondition;
     }
 
-    ResponsiveCondition smallerThanCondition = conditions.firstWhere((element) {
+    Condition smallerThanCondition = conditions.firstWhere((element) {
       if (element.condition == InternalResponsiveCondition.SMALLER_THAN) {
         if (element.name != null) {
           return ResponsiveWrapper.of(context).isSmallerThan(element.name);
@@ -110,8 +110,7 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
       return smallerThanCondition;
     }
 
-    ResponsiveCondition largerThanCondition =
-        conditions.reversed.firstWhere((element) {
+    Condition largerThanCondition = conditions.reversed.firstWhere((element) {
       if (element.condition == InternalResponsiveCondition.LARGER_THAN) {
         if (element.name != null) {
           return ResponsiveWrapper.of(context).isLargerThan(element.name);
@@ -134,10 +133,8 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
     // Initialize value.
     visibleValue = widget.visible;
     // Combine [ResponsiveCondition]s.
-    conditions
-        .addAll(widget.conditionVisible.map((e) => e.copyWith(value: true)));
-    conditions
-        .addAll(widget.conditionHidden.map((e) => e.copyWith(value: false)));
+    conditions.addAll(widget.visibleWhen.map((e) => e.copyWith(value: true)));
+    conditions.addAll(widget.hiddenWhen.map((e) => e.copyWith(value: false)));
     // Sort by breakpoint value.
     conditions.sort((a, b) => a.breakpoint.compareTo(b.breakpoint));
 
@@ -191,52 +188,51 @@ enum InternalResponsiveCondition {
   SMALLER_THAN,
 }
 
-class ResponsiveCondition {
+class Condition {
   final int breakpoint;
   final String name;
   final InternalResponsiveCondition condition;
   final bool value;
 
-  ResponsiveCondition._(
-      {this.breakpoint, this.name, this.condition, this.value})
+  Condition._({this.breakpoint, this.name, this.condition, this.value})
       : assert(breakpoint != null || name != null),
         assert(breakpoint == null || name == null),
         assert((condition == InternalResponsiveCondition.EQUAL)
             ? name != null
             : true);
 
-  ResponsiveCondition.equals({String name, bool value})
+  Condition.equals(String name, {bool value})
       : this.breakpoint = null,
         this.name = name,
         this.condition = InternalResponsiveCondition.LARGER_THAN,
         this.value = value;
 
-  ResponsiveCondition.largerThan({int breakpoint, String name, bool value})
+  Condition.largerThan({int breakpoint, String name, bool value})
       : this.breakpoint = breakpoint ?? double.infinity,
         this.name = name,
         this.condition = InternalResponsiveCondition.LARGER_THAN,
         this.value = value;
 
-  ResponsiveCondition.smallerThan({int breakpoint, String name, bool value})
+  Condition.smallerThan({int breakpoint, String name, bool value})
       : this.breakpoint = breakpoint ?? double.negativeInfinity,
         this.name = name,
         this.condition = InternalResponsiveCondition.SMALLER_THAN,
         this.value = value;
 
-  ResponsiveCondition copyWith({
+  Condition copyWith({
     int breakpoint,
     String name,
     InternalResponsiveCondition condition,
     bool value,
   }) =>
-      ResponsiveCondition._(
+      Condition._(
         breakpoint: breakpoint ?? this.breakpoint,
         name: name ?? this.name,
         condition: condition ?? this.condition,
         value: value ?? this.value,
       );
 
-  int sort(ResponsiveCondition a, ResponsiveCondition b) {
+  int sort(Condition a, Condition b) {
     if (a.breakpoint == b.breakpoint) return 0;
 
     return (a.breakpoint < b.breakpoint) ? -1 : 1;

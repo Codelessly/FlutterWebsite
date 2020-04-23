@@ -39,11 +39,11 @@ void main() {
       Widget widget = MaterialApp(
         home: ResponsiveVisibility(
           key: testKey,
-          conditionVisible: [
-            ResponsiveCondition.smallerThan(breakpoint: 600),
+          visibleWhen: [
+            Condition.smallerThan(breakpoint: 600),
           ],
-          conditionHidden: [
-            ResponsiveCondition.smallerThan(breakpoint: 1000),
+          hiddenWhen: [
+            Condition.smallerThan(breakpoint: 1000),
           ],
           child: Container(),
         ),
