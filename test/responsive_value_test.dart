@@ -63,4 +63,38 @@ void main() {
       print("Widget Test");
     });
   });
+
+  group("ResponsiveVisibility", () {
+    group("Named", () {
+      testWidgets('Named Single', (WidgetTester tester) async {
+        tester.binding.window.physicalSizeTestValue = Size(600, 1200);
+        tester.binding.window.devicePixelRatioTestValue = 1;
+        final testKey = Key('TestKey');
+        Widget widget = MaterialApp(
+          builder: (context, widget) => ResponsiveWrapper.builder(widget,
+              maxWidth: 1200,
+              minWidth: 450,
+              defaultScale: true,
+              breakpoints: [
+                ResponsiveBreakpoint(breakpoint: 450, name: MOBILE),
+                ResponsiveBreakpoint(breakpoint: 800, name: DESKTOP),
+              ],
+              background: Container(color: background)),
+          home: ResponsiveVisibility(
+            key: testKey,
+            hiddenWhen: [
+              Condition.equals(MOBILE),
+            ],
+            child: Container(),
+          ),
+        );
+        // Build our app and trigger a frame.
+        await tester.pumpWidget(widget);
+        await tester.pump();
+        dynamic responsiveVisibilityState = tester.state(find.byKey(testKey));
+        print("Active Condition: ${responsiveVisibilityState.activeCondition}");
+        addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+      });
+    });
+  });
 }
