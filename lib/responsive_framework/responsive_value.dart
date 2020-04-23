@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter_website/responsive_framework/responsive_framework.dart';
 
@@ -46,24 +44,7 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
     with WidgetsBindingObserver {
   List<ResponsiveCondition> conditions = [];
   ResponsiveCondition activeCondition;
-  bool visiblePlaceholder;
-
-  @override
-  void initState() {
-    super.initState();
-    visiblePlaceholder = widget.visible;
-    conditions
-        .addAll(widget.conditionVisible.map((e) => e.copyWith(value: true)));
-    conditions
-        .addAll(widget.conditionHidden.map((e) => e.copyWith(value: false)));
-    conditions.sort((a, b) => a.breakpoint.compareTo(b.breakpoint));
-
-    WidgetsBinding.instance.addObserver(this);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setDimensions();
-      setState(() {});
-    });
-  }
+  bool visibleValue;
 
   void setDimensions() {
     // Breakpoint reference check. Verify a parent
@@ -84,10 +65,24 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
       }
     }
 
+    // Find the active condition.
     activeCondition = getActiveCondition();
-    visiblePlaceholder = activeCondition?.value ?? widget.visible;
+    // Set value to active condition value or default value if null.
+    visibleValue = activeCondition?.value ?? widget.visible;
   }
 
+  /// Set [activeCondition].
+  /// The active condition is found by matching the
+  /// search criteria in order of precedence:
+  /// 1. [InternalResponsiveCondition.EQUAL]
+  /// Named breakpoints from a parent [ResponsiveWrapper].
+  /// 2. [InternalResponsiveCondition.SMALLER_THAN]
+  ///   a. Named breakpoints.
+  ///   b. Unnamed breakpoints.
+  /// 3. [InternalResponsiveCondition.LARGER_THAN]
+  ///   a. Named breakpoints.
+  ///   b. Unnamed breakpoints.
+  /// Returns null if no Active Condition is found.
   ResponsiveCondition getActiveCondition() {
     ResponsiveCondition equalsCondition = conditions.firstWhere((element) {
       if (element.condition == InternalResponsiveCondition.EQUAL) {
@@ -133,28 +128,24 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
     return null;
   }
 
-  ResponsiveCondition getActiveConditionIf() {
-    for (ResponsiveCondition visibilityCondition in conditions) {
-      switch (visibilityCondition.condition) {
-        case InternalResponsiveCondition.EQUAL:
-          break;
-        case InternalResponsiveCondition.SMALLER_THAN:
-          if (visibilityCondition.name != null) {
-            if (ResponsiveWrapper.of(context)
-                .isSmallerThan(visibilityCondition.name)) {
-              return visibilityCondition;
-            }
-          } else {
-            if (MediaQuery.of(context).size.width <
-                visibilityCondition.breakpoint) {
-              return visibilityCondition;
-            }
-          }
-          break;
-        case InternalResponsiveCondition.LARGER_THAN:
-          break;
-      }
-    }
+  @override
+  void initState() {
+    super.initState();
+    // Initialize value.
+    visibleValue = widget.visible;
+    // Combine [ResponsiveCondition]s.
+    conditions
+        .addAll(widget.conditionVisible.map((e) => e.copyWith(value: true)));
+    conditions
+        .addAll(widget.conditionHidden.map((e) => e.copyWith(value: false)));
+    // Sort by breakpoint value.
+    conditions.sort((a, b) => a.breakpoint.compareTo(b.breakpoint));
+
+    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setDimensions();
+      setState(() {});
+    });
   }
 
   @override
@@ -164,21 +155,33 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
   }
 
   @override
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setDimensions();
+      setState(() {});
+    });
+  }
+
+  @override
+  void didUpdateWidget(ResponsiveVisibility oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    setDimensions();
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Visibility(
       child: widget.child,
       replacement: widget.replacement,
-      visible: visiblePlaceholder,
+      visible: visibleValue,
       maintainState: widget.maintainState,
       maintainAnimation: widget.maintainAnimation,
       maintainSize: widget.maintainSize,
       maintainSemantics: widget.maintainSemantics,
       maintainInteractivity: widget.maintainInteractivity,
     );
-  }
-
-  bool between(double number, double a, double b) {
-    return math.min(a, b) <= number && number < math.max(a, b);
   }
 }
 
@@ -208,14 +211,14 @@ class ResponsiveCondition {
         this.condition = InternalResponsiveCondition.LARGER_THAN,
         this.value = value;
 
-  ResponsiveCondition.isLargerThan({int breakpoint, String name, bool value})
-      : this.breakpoint = breakpoint,
+  ResponsiveCondition.largerThan({int breakpoint, String name, bool value})
+      : this.breakpoint = breakpoint ?? double.infinity,
         this.name = name,
         this.condition = InternalResponsiveCondition.LARGER_THAN,
         this.value = value;
 
-  ResponsiveCondition.isSmallerThan({int breakpoint, String name, bool value})
-      : this.breakpoint = breakpoint,
+  ResponsiveCondition.smallerThan({int breakpoint, String name, bool value})
+      : this.breakpoint = breakpoint ?? double.negativeInfinity,
         this.name = name,
         this.condition = InternalResponsiveCondition.SMALLER_THAN,
         this.value = value;

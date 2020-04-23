@@ -40,10 +40,10 @@ void main() {
         home: ResponsiveVisibility(
           key: testKey,
           conditionVisible: [
-            ResponsiveCondition.isSmallerThan(breakpoint: 600),
+            ResponsiveCondition.smallerThan(breakpoint: 600),
           ],
           conditionHidden: [
-            ResponsiveCondition.isSmallerThan(breakpoint: 1000),
+            ResponsiveCondition.smallerThan(breakpoint: 1000),
           ],
           child: Container(),
         ),
