@@ -74,18 +74,18 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
   /// Set [activeCondition].
   /// The active condition is found by matching the
   /// search criteria in order of precedence:
-  /// 1. [InternalResponsiveCondition.EQUALS]
+  /// 1. [Conditional.EQUALS]
   /// Named breakpoints from a parent [ResponsiveWrapper].
-  /// 2. [InternalResponsiveCondition.SMALLER_THAN]
+  /// 2. [Conditional.SMALLER_THAN]
   ///   a. Named breakpoints.
   ///   b. Unnamed breakpoints.
-  /// 3. [InternalResponsiveCondition.LARGER_THAN]
+  /// 3. [Conditional.LARGER_THAN]
   ///   a. Named breakpoints.
   ///   b. Unnamed breakpoints.
   /// Returns null if no Active Condition is found.
   Condition getActiveCondition() {
     Condition equalsCondition = conditions.firstWhere((element) {
-      if (element.condition == InternalResponsiveCondition.EQUALS) {
+      if (element.condition == Conditional.EQUALS) {
         return ResponsiveWrapper.of(context).activeBreakpoint?.name ==
             element.name;
       }
@@ -97,7 +97,7 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
     }
 
     Condition smallerThanCondition = conditions.firstWhere((element) {
-      if (element.condition == InternalResponsiveCondition.SMALLER_THAN) {
+      if (element.condition == Conditional.SMALLER_THAN) {
         if (element.name != null) {
           return ResponsiveWrapper.of(context).isSmallerThan(element.name);
         }
@@ -111,7 +111,7 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
     }
 
     Condition largerThanCondition = conditions.reversed.firstWhere((element) {
-      if (element.condition == InternalResponsiveCondition.LARGER_THAN) {
+      if (element.condition == Conditional.LARGER_THAN) {
         if (element.name != null) {
           return ResponsiveWrapper.of(context).isLargerThan(element.name);
         }
@@ -184,7 +184,7 @@ class _ResponsiveVisibilityState extends State<ResponsiveVisibility>
   }
 }
 
-enum InternalResponsiveCondition {
+enum Conditional {
   LARGER_THAN,
   EQUALS,
   SMALLER_THAN,
@@ -193,38 +193,36 @@ enum InternalResponsiveCondition {
 class Condition {
   final int breakpoint;
   final String name;
-  final InternalResponsiveCondition condition;
+  final Conditional condition;
   final bool value;
 
   Condition._({this.breakpoint, this.name, this.condition, this.value})
       : assert(breakpoint != null || name != null),
         assert(breakpoint == null || name == null),
-        assert((condition == InternalResponsiveCondition.EQUALS)
-            ? name != null
-            : true);
+        assert((condition == Conditional.EQUALS) ? name != null : true);
 
   Condition.equals(String name, {bool value})
       : this.breakpoint = null,
         this.name = name,
-        this.condition = InternalResponsiveCondition.EQUALS,
+        this.condition = Conditional.EQUALS,
         this.value = value;
 
   Condition.largerThan({int breakpoint, String name, bool value})
       : this.breakpoint = breakpoint ?? double.infinity,
         this.name = name,
-        this.condition = InternalResponsiveCondition.LARGER_THAN,
+        this.condition = Conditional.LARGER_THAN,
         this.value = value;
 
   Condition.smallerThan({int breakpoint, String name, bool value})
       : this.breakpoint = breakpoint ?? double.negativeInfinity,
         this.name = name,
-        this.condition = InternalResponsiveCondition.SMALLER_THAN,
+        this.condition = Conditional.SMALLER_THAN,
         this.value = value;
 
   Condition copyWith({
     int breakpoint,
     String name,
-    InternalResponsiveCondition condition,
+    Conditional condition,
     bool value,
   }) =>
       Condition._(
