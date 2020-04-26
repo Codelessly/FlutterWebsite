@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_website/components/components.dart';
-import 'package:flutter_website/responsive_framework/responsive_framework.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
   group('ResponsiveValue', () {

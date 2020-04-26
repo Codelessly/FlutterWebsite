@@ -149,6 +149,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  responsive_framework:
+    dependency: "direct main"
+    description:
+      path: responsive_framework
+      relative: true
+    source: path
+    version: "0.0.5"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -258,7 +265,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.9"
+    version: "0.10.9+1"
   video_player_platform_interface:
     dependency: transitive
     description:

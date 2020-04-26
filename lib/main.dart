@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_website/ui/carousel/carousel.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'components/components.dart';
-import 'responsive_framework/responsive_framework.dart';
 import 'ui/blocks.dart';
 
 void main() {
