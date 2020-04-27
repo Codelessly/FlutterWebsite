@@ -16,7 +16,6 @@ class GetStarted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
@@ -958,32 +957,30 @@ class _FlutterCodelabState extends State<FlutterCodelab>
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveVisibility(
-      hiddenWhen: [Condition.smallerThan(breakpoint: 1000)],
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: border)),
-        margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-        padding: EdgeInsets.all(80),
-        child: Align(
-          alignment: Alignment.center,
-          child: Container(
-            constraints: BoxConstraints(maxWidth: 1000),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 16),
-                  child: Text("Try Flutter in your browser",
-                      style: headlineTextStyle),
-                ),
-                CupertinoSlidingSegmentedControl(
-                  groupValue: codelabSelected,
-                  onValueChanged: (value) => setCodelabSelected(value),
-                  children: codelabExamples,
-                ),
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: border)),
+      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      padding: EdgeInsets.all(80),
+      child: Align(
+        alignment: Alignment.center,
+        child: Container(
+          constraints: BoxConstraints(maxWidth: 1000),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Text("Try Flutter in your browser",
+                    style: headlineTextStyle),
+              ),
+              CupertinoSlidingSegmentedControl(
+                groupValue: codelabSelected,
+                onValueChanged: (value) => setCodelabSelected(value),
+                children: codelabExamples,
+              ),
 // TODO: Dropdown overlay's hit area covered by iframe. Unable to select item.
 //              Container(
 //                decoration: BoxDecoration(
@@ -1016,51 +1013,49 @@ class _FlutterCodelabState extends State<FlutterCodelab>
 //                  }).toList(),
 //                ),
 //              ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(25, 16, 25, 16),
-                  child: AspectRatio(
-                    aspectRatio: videoAspectRatio,
-                    child: (kIsWeb)
-                        ? Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Color(0xFFD3D3D3), width: 1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(0)),
-                            ),
-                            child: HtmlElementView(
-                              key: webViewKey,
-                              viewType: codelabSelected,
-                            ),
-                          )
-                        : WebView(
-                            key: webViewKey,
-                            initialUrl: codelabUrlSelected,
+              Padding(
+                padding: EdgeInsets.fromLTRB(25, 16, 25, 16),
+                child: AspectRatio(
+                  aspectRatio: videoAspectRatio,
+                  child: (kIsWeb)
+                      ? Container(
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Color(0xFFD3D3D3), width: 1),
+                            borderRadius: BorderRadius.all(Radius.circular(0)),
                           ),
+                          child: HtmlElementView(
+                            key: webViewKey,
+                            viewType: codelabSelected,
+                          ),
+                        )
+                      : WebView(
+                          key: webViewKey,
+                          initialUrl: codelabUrlSelected,
+                        ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 16, bottom: 16),
+                child: RichText(
+                  text: TextSpan(
+                    style: headlineSecondaryTextStyle,
+                    children: [
+                      TextSpan(text: "Want more practice? "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl("https://flutter.dev/codelabs");
+                            },
+                          text: "Try a codelab",
+                          style: headlineSecondaryTextStyle.copyWith(
+                              color: primary)),
+                      TextSpan(text: ".")
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 16, bottom: 16),
-                  child: RichText(
-                    text: TextSpan(
-                      style: headlineSecondaryTextStyle,
-                      children: [
-                        TextSpan(text: "Want more practice? "),
-                        TextSpan(
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                openUrl("https://flutter.dev/codelabs");
-                              },
-                            text: "Try a codelab",
-                            style: headlineSecondaryTextStyle.copyWith(
-                                color: primary)),
-                        TextSpan(text: ".")
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),
