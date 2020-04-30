@@ -378,18 +378,15 @@ class Features extends StatelessWidget {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               openUrl("https://dart.dev/platforms");
-                            },
-                          text: "Dart's native compilers",
-                          style: bodyLinkTextStyle),
-                      TextSpan(
-                          text:
-                              ". Thus Flutter gives you full native performance on both iOS and Android."),
-                    ],
-                  ),
-                  textAlign: TextAlign.center,
-                )
-              ],
-            ),
+                          },
+                        text: "Dart's native compilers",
+                        style: bodyLinkTextStyle),
+                    TextSpan(text: "."),
+                  ],
+                ),
+                textAlign: TextAlign.center,
+              )
+            ],
           ),
         ],
       ),
@@ -1240,10 +1237,11 @@ class Footer extends StatelessWidget {
             child: Image.asset("assets/images/flutter_logo_mono.png",
                 height: 100, fit: BoxFit.contain),
           ),
-          Column(
-            children: <Widget>[
-              RichText(
-                text: TextSpan(
+          Flexible(
+            child: Column(
+              children: <Widget>[
+                RichText(
+                  text: TextSpan(
                   style: bodyTextStyle.copyWith(
                       fontSize: 14, color: Colors.white, height: 2),
                   children: [
@@ -1297,9 +1295,10 @@ class Footer extends StatelessWidget {
                         style: bodyTextStyle.copyWith(
                             fontSize: 10, color: Colors.white)),
                   ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ],
       ),

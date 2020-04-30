@@ -28,8 +28,8 @@ const TextStyle carouselBlueTextStyle = TextStyle(
     shadows: [
       Shadow(
         color: Color(0x40000000),
-        offset: Offset(3, 3),
-        blurRadius: 3,
+        offset: Offset(1, 1),
+        blurRadius: 2,
       )
     ]);
 
@@ -40,7 +40,7 @@ const TextStyle carouselWhiteTextStyle = TextStyle(
     shadows: [
       Shadow(
         color: Color(0x40000000),
-        offset: Offset(3, 3),
-        blurRadius: 3,
+        offset: Offset(1, 1),
+        blurRadius: 2,
       )
     ]);
