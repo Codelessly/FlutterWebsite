@@ -1136,3 +1136,83 @@ class InstallFlutter extends StatelessWidget {
     );
   }
 }
+
+class Footer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: backgroundDark,
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Row(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+            child: Image.asset("assets/images/flutter_logo_mono.png",
+                height: 100, fit: BoxFit.contain),
+          ),
+          Column(
+            children: <Widget>[
+              RichText(
+                text: TextSpan(
+                  style: bodyTextStyle.copyWith(
+                      fontSize: 14, color: Colors.white, height: 2),
+                  children: [
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            openUrl(
+                                "https://groups.google.com/forum/#!forum/flutter-dev");
+                          },
+                        text: "flutter-dev@"),
+                    TextSpan(text: "  •  "),
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            openUrl("https://flutter.dev/tos");
+                          },
+                        text: "terms"),
+                    TextSpan(text: "  •  "),
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            openUrl("https://flutter.dev/security");
+                          },
+                        text: "security"),
+                    TextSpan(text: "  •  "),
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            openUrl(
+                                "https://www.google.com/intl/en/policies/privacy");
+                          },
+                        text: "privacy"),
+                    TextSpan(text: "  •  "),
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            openUrl("https://flutter-es.io/");
+                          },
+                        text: "español"),
+                    TextSpan(text: "  •  "),
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            openUrl("https://flutter.cn/");
+                          },
+                        text: "社区中文资源"),
+                    TextSpan(text: "\n"),
+                    TextSpan(
+                        text:
+                            "Except as otherwise noted, this work is licensed under a Creative Commons Attribution 4.0 International License, and code samples are licensed under the BSD License.",
+                        style: bodyTextStyle.copyWith(
+                            fontSize: 10, color: Colors.white)),
+                  ],
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}

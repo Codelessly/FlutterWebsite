@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Column(
             children: <Widget>[
+              Footer(),
               ResponsiveWrapper(
                   maxWidth: 1200,
                   minWidth: 1200,
