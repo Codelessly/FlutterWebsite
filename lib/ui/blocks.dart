@@ -115,7 +115,7 @@ class GetStarted extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: Container(
-          constraints: BoxConstraints(maxWidth: 800),
+          constraints: BoxConstraints(maxWidth: 780),
           child: Column(
             children: [
               Row(
@@ -876,13 +876,13 @@ class WhoUsesFlutter extends StatelessWidget {
           Flexible(
             flex: 5,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
+              padding: EdgeInsets.fromLTRB(25, 24, 25, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(bottom: 32),
+                    padding: EdgeInsets.only(bottom: 16),
                     child:
                         Text("Who's using Flutter?", style: headlineTextStyle),
                   ),
@@ -942,10 +942,10 @@ class FlutterNewsRow extends StatelessWidget {
           flex: 1,
           fit: FlexFit.tight,
           child: FlutterNews(
-            title: "Flutter’s iOS Application Bundle",
-            imagePath: "assets/images/news_flutter_ios_application_bundle.png",
+            title: "CodePen now supports Flutter",
+            imagePath: "assets/images/news_flutter_codepen.png",
             linkUrl:
-                "https://medium.com/flutter/flutters-ios-application-bundle-6f56d4e88cf8",
+                "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
           ),
         ),
       ],

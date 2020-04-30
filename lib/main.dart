@@ -10,7 +10,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  double maxWidth = 1200;
+  double maxWidth = 1280;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
