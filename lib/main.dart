@@ -10,77 +10,64 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  double maxWidth = 1200;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       builder: (context, widget) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, widget),
-//          maxWidth: 1200,
           minWidth: 800,
           defaultScale: true,
           breakpoints: [
-            ResponsiveBreakpoint(breakpoint: 450, name: MOBILE),
-            ResponsiveBreakpoint(
-                breakpoint: 800, name: DESKTOP, autoScale: false),
+            ResponsiveBreakpoint.tag(450, name: MOBILE),
+            ResponsiveBreakpoint.resize(800, name: DESKTOP),
           ],
-          background: Container(color: background)),
+          background: Container(color: background),
+          debugLog: true),
       home: Scaffold(
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: <Widget>[
-              Visibility(
-                visible: false,
-                child: ResponsiveWrapper(
-                  child: Container(),
-                ),
-              ),
               ResponsiveWrapper(
                   maxWidth: 1200,
                   minWidth: 1200,
                   defaultScale: true,
                   mediaQueryData: MediaQueryData(size: Size(1200, 640)),
                   child: Carousel()),
-              ResponsiveWrapper(maxWidth: 1200, child: GetStarted()),
-              ResponsiveWrapper(
-                maxWidth: 1200,
-                child: Features(),
-              ),
-              ResponsiveWrapper(
-                maxWidth: 1200,
-                child: FastDevelopment(),
-              ),
-              ResponsiveWrapper(
-                maxWidth: 1200,
-                child: BeautifulUI(),
-              ),
-              ResponsiveWrapper(
-                maxWidth: 1200,
-                child: NativePerformance(),
-              ),
-              ResponsiveWrapper(
-                maxWidth: 1200,
-                child: LearnFromDevelopers(),
-              ),
-              ResponsiveWrapper(
-                maxWidth: 1200,
-                child: WhoUsesFlutter(),
-              ),
-              ResponsiveWrapper(
-                maxWidth: 1200,
-                child: FlutterNewsRow(),
-              ),
+              Container(
+                  constraints: BoxConstraints(maxWidth: maxWidth),
+                  child: GetStarted()),
+              Container(
+                  constraints: BoxConstraints(maxWidth: maxWidth),
+                  child: Features()),
+              Container(
+                  constraints: BoxConstraints(maxWidth: maxWidth),
+                  child: FastDevelopment()),
+              Container(
+                  constraints: BoxConstraints(maxWidth: maxWidth),
+                  child: BeautifulUI()),
+              Container(
+                  constraints: BoxConstraints(maxWidth: maxWidth),
+                  child: NativePerformance()),
+              Container(
+                  constraints: BoxConstraints(maxWidth: maxWidth),
+                  child: LearnFromDevelopers()),
+              Container(
+                  constraints: BoxConstraints(maxWidth: maxWidth),
+                  child: WhoUsesFlutter()),
+              Container(
+                  constraints: BoxConstraints(maxWidth: maxWidth),
+                  child: FlutterNewsRow()),
               ResponsiveVisibility(
                 hiddenWhen: [Condition.smallerThan(breakpoint: 1000)],
-                child: ResponsiveWrapper(
-                  maxWidth: 1200,
-                  child: FlutterCodelab(),
-                ),
+                child: Container(
+                    constraints: BoxConstraints(maxWidth: maxWidth),
+                    child: FlutterCodelab()),
               ),
-              ResponsiveWrapper(
-                maxWidth: 1200,
-                child: InstallFlutter(),
-              ),
+              Container(
+                  constraints: BoxConstraints(maxWidth: maxWidth),
+                  child: InstallFlutter()),
             ],
           ),
         ),
