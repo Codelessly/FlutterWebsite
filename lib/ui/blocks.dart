@@ -12,6 +12,96 @@ import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+class MenuBar extends StatelessWidget {
+  Color navLinkColor = Color(0xFF6E7274);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 66,
+      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(color: Color(0x1A000000), offset: Offset(0, 2), blurRadius: 4)
+      ]),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 5, 16, 5),
+            child: Image.asset("assets/images/flutter_logo_text.png",
+                height: 37, fit: BoxFit.contain),
+          ),
+          Spacer(),
+          GestureDetector(
+            onTap: () => openUrl("https://flutter.dev/docs"),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Text("Docs",
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: navLinkColor,
+                      fontFamily: fontFamily)),
+            ),
+          ),
+          GestureDetector(
+            onTap: () => openUrl("https://flutter.dev/showcase"),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Text("Showcase",
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: navLinkColor,
+                      fontFamily: fontFamily)),
+            ),
+          ),
+          GestureDetector(
+            onTap: () => openUrl("https://flutter.dev/community"),
+            child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text("Community",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: navLinkColor,
+                        fontFamily: fontFamily))),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18),
+            child: ImageIcon(AssetImage("assets/images/icon_search_64x.png"),
+                color: navLinkColor, size: 24),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: ImageIcon(AssetImage("assets/images/icon_twitter_64x.png"),
+                color: navLinkColor, size: 24),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: ImageIcon(AssetImage("assets/images/icon_youtube_64x.png"),
+                color: navLinkColor, size: 24),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: ImageIcon(AssetImage("assets/images/icon_github_64x.png"),
+                color: navLinkColor, size: 24),
+          ),
+          Container(width: 8),
+          FlatButton(
+            onPressed: () =>
+                openUrl("https://flutter.dev/docs/get-started/install"),
+            color: primary,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(0))),
+            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+            child: Text(
+              "Get started",
+              style: buttonTextStyle.copyWith(fontSize: 16),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class GetStarted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

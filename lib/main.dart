@@ -25,11 +25,12 @@ class MyApp extends StatelessWidget {
           background: Container(color: background),
           debugLog: true),
       home: Scaffold(
+        appBar: PreferredSize(
+            child: MenuBar(), preferredSize: Size(double.infinity, 66)),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: <Widget>[
-              Footer(),
               ResponsiveWrapper(
                   maxWidth: 1200,
                   minWidth: 1200,
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
               Container(
                   constraints: BoxConstraints(maxWidth: maxWidth),
                   child: InstallFlutter()),
+              Footer(),
             ],
           ),
         ),
