@@ -16,11 +16,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       builder: (context, widget) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, widget),
-          minWidth: 800,
           defaultScale: true,
+          minWidth: 480,
+          defaultName: MOBILE,
           breakpoints: [
-            ResponsiveBreakpoint.tag(450, name: MOBILE),
-            ResponsiveBreakpoint.resize(800, name: DESKTOP),
+            ResponsiveBreakpoint.autoScale(480, name: MOBILE),
+            ResponsiveBreakpoint.resize(600, name: "TABLET_MINI"),
+            ResponsiveBreakpoint.resize(800, name: TABLET),
+            ResponsiveBreakpoint.tag(1000, name: DESKTOP),
+            ResponsiveBreakpoint.autoScaleDown(1280, name: DESKTOP),
+            ResponsiveBreakpoint.resize(1280, name: DESKTOP),
           ],
           background: Container(color: background),
           debugLog: true),
@@ -62,7 +67,7 @@ class MyApp extends StatelessWidget {
                   constraints: BoxConstraints(maxWidth: maxWidth),
                   child: FlutterNewsRow()),
               ResponsiveVisibility(
-                hiddenWhen: [Condition.smallerThan(breakpoint: 1000)],
+                hiddenWhen: [Condition.smallerThan(name: DESKTOP)],
                 child: Container(
                     constraints: BoxConstraints(maxWidth: maxWidth),
                     child: FlutterCodelab()),

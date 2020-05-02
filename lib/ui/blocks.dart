@@ -182,44 +182,49 @@ class GetStarted extends StatelessWidget {
                   rowMainAxisAlignment: MainAxisAlignment.center,
                   rowCrossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    FlatButton(
-                      onPressed: () => openUrl(
-                          "https://flutter.dev/docs/get-started/install"),
-                      color: primary,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(0))),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 22, horizontal: 80),
-                      child: Text(
-                        "Get started",
-                        style: buttonTextStyle,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
+                    ResponsiveRowColumnItem(
                       child: FlatButton(
-                        onPressed: () => {},
+                        onPressed: () => openUrl(
+                            "https://flutter.dev/docs/get-started/install"),
+                        color: primary,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(0))),
                         padding:
-                            EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(right: 8),
-                              child: Icon(
-                                Icons.play_circle_filled,
-                                size: 24,
-                                color: primary,
+                            EdgeInsets.symmetric(vertical: 22, horizontal: 80),
+                        child: Text(
+                          "Get started",
+                          style: buttonTextStyle,
+                        ),
+                      ),
+                    ),
+                    ResponsiveRowColumnItem(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: FlatButton(
+                          onPressed: () => {},
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0))),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 16),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(right: 8),
+                                child: Icon(
+                                  Icons.play_circle_filled,
+                                  size: 24,
+                                  color: primary,
+                                ),
                               ),
-                            ),
-                            Text(
-                              "Watch video",
-                              style: buttonTextStyle.copyWith(
-                                  fontSize: 16, color: primary),
-                            ),
-                          ],
+                              Text(
+                                "Watch video",
+                                style: buttonTextStyle.copyWith(
+                                    fontSize: 16, color: primary),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     )
@@ -293,6 +298,7 @@ class GetStarted extends StatelessWidget {
 class Features extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool isMobile = ResponsiveWrapper.of(context).isMobile;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -300,17 +306,21 @@ class Features extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
       margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.all(40),
       child: ResponsiveRowColumn(
-        isColumn: ResponsiveWrapper.of(context).isMobile,
+        isColumn: isMobile,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         columnCrossAxisAlignment: CrossAxisAlignment.center,
         columnMainAxisSize: MainAxisSize.min,
-        columnSpacing: EdgeInsets.only(bottom: 48),
+        rowPadding: EdgeInsets.symmetric(horizontal: 80, vertical: 80),
+        columnPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+        columnSpacing: 50,
+        rowSpacing: 50,
         fillRow: true,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
+        children: [
+          ResponsiveRowColumnItem(
+            isFlexible: !isMobile,
+            flex: 1,
+            flexFit: FlexFit.tight,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -331,8 +341,10 @@ class Features extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
+          ResponsiveRowColumnItem(
+            isFlexible: !isMobile,
+            flex: 1,
+            flexFit: FlexFit.tight,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -352,8 +364,10 @@ class Features extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
+          ResponsiveRowColumnItem(
+            isFlexible: !isMobile,
+            flex: 1,
+            flexFit: FlexFit.tight,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -378,15 +392,16 @@ class Features extends StatelessWidget {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               openUrl("https://dart.dev/platforms");
-                          },
-                        text: "Dart's native compilers",
-                        style: bodyLinkTextStyle),
-                    TextSpan(text: "."),
-                  ],
-                ),
-                textAlign: TextAlign.center,
-              )
-            ],
+                            },
+                          text: "Dart's native compilers",
+                          style: bodyLinkTextStyle),
+                      TextSpan(text: "."),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
           ),
         ],
       ),
@@ -1242,59 +1257,59 @@ class Footer extends StatelessWidget {
               children: <Widget>[
                 RichText(
                   text: TextSpan(
-                  style: bodyTextStyle.copyWith(
-                      fontSize: 14, color: Colors.white, height: 2),
-                  children: [
-                    TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            openUrl(
-                                "https://groups.google.com/forum/#!forum/flutter-dev");
-                          },
-                        text: "flutter-dev@"),
-                    TextSpan(text: "  •  "),
-                    TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            openUrl("https://flutter.dev/tos");
-                          },
-                        text: "terms"),
-                    TextSpan(text: "  •  "),
-                    TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            openUrl("https://flutter.dev/security");
-                          },
-                        text: "security"),
-                    TextSpan(text: "  •  "),
-                    TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            openUrl(
-                                "https://www.google.com/intl/en/policies/privacy");
-                          },
-                        text: "privacy"),
-                    TextSpan(text: "  •  "),
-                    TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            openUrl("https://flutter-es.io/");
-                          },
-                        text: "español"),
-                    TextSpan(text: "  •  "),
-                    TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            openUrl("https://flutter.cn/");
-                          },
-                        text: "社区中文资源"),
-                    TextSpan(text: "\n"),
-                    TextSpan(
-                        text:
-                            "Except as otherwise noted, this work is licensed under a Creative Commons Attribution 4.0 International License, and code samples are licensed under the BSD License.",
-                        style: bodyTextStyle.copyWith(
-                            fontSize: 10, color: Colors.white)),
-                  ],
+                    style: bodyTextStyle.copyWith(
+                        fontSize: 14, color: Colors.white, height: 2),
+                    children: [
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl(
+                                  "https://groups.google.com/forum/#!forum/flutter-dev");
+                            },
+                          text: "flutter-dev@"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl("https://flutter.dev/tos");
+                            },
+                          text: "terms"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl("https://flutter.dev/security");
+                            },
+                          text: "security"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl(
+                                  "https://www.google.com/intl/en/policies/privacy");
+                            },
+                          text: "privacy"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl("https://flutter-es.io/");
+                            },
+                          text: "español"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl("https://flutter.cn/");
+                            },
+                          text: "社区中文资源"),
+                      TextSpan(text: "\n"),
+                      TextSpan(
+                          text:
+                              "Except as otherwise noted, this work is licensed under a Creative Commons Attribution 4.0 International License, and code samples are licensed under the BSD License.",
+                          style: bodyTextStyle.copyWith(
+                              fontSize: 10, color: Colors.white)),
+                    ],
                   ),
                 ),
               ],
