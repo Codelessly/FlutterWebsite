@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_website/ui/carousel/carousel.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'components/components.dart';
 import 'ui/blocks.dart';
-import 'ui/carousel/carousel.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  double maxWidth = 1280;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,11 +20,9 @@ class MyApp extends StatelessWidget {
           defaultName: MOBILE,
           breakpoints: [
             ResponsiveBreakpoint.autoScale(480, name: MOBILE),
-            ResponsiveBreakpoint.resize(600, name: "TABLET_MINI"),
-            ResponsiveBreakpoint.resize(800, name: TABLET),
-            ResponsiveBreakpoint.tag(1000, name: DESKTOP),
-            ResponsiveBreakpoint.autoScaleDown(1280, name: DESKTOP),
-            ResponsiveBreakpoint.resize(1280, name: DESKTOP),
+            ResponsiveBreakpoint.resize(600, name: MOBILE),
+            ResponsiveBreakpoint.resize(850, name: TABLET),
+            ResponsiveBreakpoint.resize(1080, name: DESKTOP),
           ],
           background: Container(color: background),
           debugLog: true),
@@ -42,38 +39,35 @@ class MyApp extends StatelessWidget {
                   defaultScale: true,
                   mediaQueryData: MediaQueryData(size: Size(1200, 640)),
                   child: Carousel()),
-              Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
-                  child: GetStarted()),
-              Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
-                  child: Features()),
-              Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
+              ResponsiveConstraints(
+                  constraintsWhen: blockWidthConstraints, child: GetStarted()),
+              ResponsiveConstraints(
+                  constraintsWhen: blockWidthConstraints, child: Features()),
+              ResponsiveConstraints(
+                  constraintsWhen: blockWidthConstraints,
                   child: FastDevelopment()),
-              Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
-                  child: BeautifulUI()),
-              Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
+              ResponsiveConstraints(
+                  constraintsWhen: blockWidthConstraints, child: BeautifulUI()),
+              ResponsiveConstraints(
+                  constraintsWhen: blockWidthConstraints,
                   child: NativePerformance()),
-              Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
+              ResponsiveConstraints(
+                  constraintsWhen: blockWidthConstraints,
                   child: LearnFromDevelopers()),
-              Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
+              ResponsiveConstraints(
+                  constraintsWhen: blockWidthConstraints,
                   child: WhoUsesFlutter()),
-              Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
+              ResponsiveConstraints(
+                  constraintsWhen: blockWidthConstraints,
                   child: FlutterNewsRow()),
               ResponsiveVisibility(
                 hiddenWhen: [Condition.smallerThan(name: DESKTOP)],
-                child: Container(
-                    constraints: BoxConstraints(maxWidth: maxWidth),
+                child: ResponsiveConstraints(
+                    constraintsWhen: blockWidthConstraints,
                     child: FlutterCodelab()),
               ),
-              Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
+              ResponsiveConstraints(
+                  constraintsWhen: blockWidthConstraints,
                   child: InstallFlutter()),
               Footer(),
             ],

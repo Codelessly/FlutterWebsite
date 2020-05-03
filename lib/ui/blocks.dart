@@ -26,47 +26,66 @@ class MenuBar extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Padding(
+              padding: EdgeInsets.only(right: 16),
+              child: Icon(Icons.menu, color: textPrimary, size: 28)),
+          Padding(
             padding: EdgeInsets.fromLTRB(0, 5, 16, 5),
             child: Image.asset("assets/images/flutter_logo_text.png",
                 height: 37, fit: BoxFit.contain),
           ),
           Spacer(),
-          GestureDetector(
-            onTap: () => openUrl("https://flutter.dev/docs"),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text("Docs",
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: navLinkColor,
-                      fontFamily: fontFamily)),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => openUrl("https://flutter.dev/showcase"),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text("Showcase",
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: navLinkColor,
-                      fontFamily: fontFamily)),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => openUrl("https://flutter.dev/community"),
-            child: Padding(
+          ResponsiveVisibility(
+            visible: false,
+            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            child: GestureDetector(
+              onTap: () => openUrl("https://flutter.dev/docs"),
+              child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text("Community",
+                child: Text("Docs",
                     style: TextStyle(
                         fontSize: 16,
                         color: navLinkColor,
-                        fontFamily: fontFamily))),
+                        fontFamily: fontFamily)),
+              ),
+            ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 18),
-            child: ImageIcon(AssetImage("assets/images/icon_search_64x.png"),
-                color: navLinkColor, size: 24),
+          ResponsiveVisibility(
+            visible: false,
+            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            child: GestureDetector(
+              onTap: () => openUrl("https://flutter.dev/showcase"),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text("Showcase",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: navLinkColor,
+                        fontFamily: fontFamily)),
+              ),
+            ),
+          ),
+          ResponsiveVisibility(
+            visible: false,
+            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            child: GestureDetector(
+              onTap: () => openUrl("https://flutter.dev/community"),
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text("Community",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: navLinkColor,
+                          fontFamily: fontFamily))),
+            ),
+          ),
+          ResponsiveVisibility(
+            visible: false,
+            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 18),
+              child: ImageIcon(AssetImage("assets/images/icon_search_64x.png"),
+                  color: navLinkColor, size: 24),
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
@@ -83,17 +102,23 @@ class MenuBar extends StatelessWidget {
             child: ImageIcon(AssetImage("assets/images/icon_github_64x.png"),
                 color: navLinkColor, size: 24),
           ),
-          Container(width: 8),
-          FlatButton(
-            onPressed: () =>
-                openUrl("https://flutter.dev/docs/get-started/install"),
-            color: primary,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(0))),
-            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 18),
-            child: Text(
-              "Get started",
-              style: buttonTextStyle.copyWith(fontSize: 16),
+          ResponsiveVisibility(
+            visible: false,
+            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            child: Padding(
+              padding: EdgeInsets.only(left: 8, right: 16),
+              child: FlatButton(
+                onPressed: () =>
+                    openUrl("https://flutter.dev/docs/get-started/install"),
+                color: primary,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(0))),
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                child: Text(
+                  "Get started",
+                  style: buttonTextStyle.copyWith(fontSize: 16),
+                ),
+              ),
             ),
           ),
         ],
@@ -110,7 +135,7 @@ class GetStarted extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      margin: blockMargin,
       padding: EdgeInsets.all(40),
       child: Align(
         alignment: Alignment.center,
@@ -178,7 +203,8 @@ class GetStarted extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: 32),
                 child: ResponsiveRowColumn(
-                  isColumn: ResponsiveWrapper.of(context).isMobile,
+                  rowColumn:
+                      !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
                   rowMainAxisAlignment: MainAxisAlignment.center,
                   rowCrossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -298,16 +324,15 @@ class GetStarted extends StatelessWidget {
 class Features extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool isMobile = ResponsiveWrapper.of(context).isMobile;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
+      margin: blockMargin,
       child: ResponsiveRowColumn(
-        isColumn: isMobile,
+        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         columnCrossAxisAlignment: CrossAxisAlignment.center,
         columnMainAxisSize: MainAxisSize.min,
@@ -318,9 +343,8 @@ class Features extends StatelessWidget {
         fillRow: true,
         children: [
           ResponsiveRowColumnItem(
-            isFlexible: !isMobile,
-            flex: 1,
-            flexFit: FlexFit.tight,
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -342,9 +366,8 @@ class Features extends StatelessWidget {
             ),
           ),
           ResponsiveRowColumnItem(
-            isFlexible: !isMobile,
-            flex: 1,
-            flexFit: FlexFit.tight,
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -365,9 +388,8 @@ class Features extends StatelessWidget {
             ),
           ),
           ResponsiveRowColumnItem(
-            isFlexible: !isMobile,
-            flex: 1,
-            flexFit: FlexFit.tight,
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -449,13 +471,14 @@ class _FastDevelopmentState extends State<FastDevelopment> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Flexible(
-            flex: 2,
+      margin: blockMargin,
+      padding: blockPadding(context),
+      child: ResponsiveRowColumn(
+        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        rowCrossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ResponsiveRowColumnItem(
+            rowFlex: 2,
             child: FutureBuilder(
               future: initializeVideoPlayerFuture,
               builder: (context, snapshot) {
@@ -474,8 +497,8 @@ class _FastDevelopmentState extends State<FastDevelopment> {
               },
             ),
           ),
-          Flexible(
-            flex: 1,
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
             child: Padding(
               padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
               child: Column(
@@ -566,13 +589,15 @@ class _BeautifulUIState extends State<BeautifulUI> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Flexible(
-            flex: 1,
+      margin: blockMargin,
+      padding: blockPadding(context),
+      child: ResponsiveRowColumn(
+        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        rowCrossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            columnOrder: 2,
             child: Padding(
               padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
               child: Column(
@@ -611,8 +636,9 @@ class _BeautifulUIState extends State<BeautifulUI> {
               ),
             ),
           ),
-          Flexible(
-            flex: 2,
+          ResponsiveRowColumnItem(
+            rowFlex: 2,
+            columnOrder: 1,
             child: FutureBuilder(
               future: initializeVideoPlayerFuture,
               builder: (context, snapshot) {
@@ -678,13 +704,14 @@ class _NativePerformanceState extends State<NativePerformance> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Flexible(
-            flex: 2,
+      margin: blockMargin,
+      padding: blockPadding(context),
+      child: ResponsiveRowColumn(
+        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        rowCrossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ResponsiveRowColumnItem(
+            rowFlex: 2,
             child: FutureBuilder(
               future: initializeVideoPlayerFuture,
               builder: (context, snapshot) {
@@ -703,8 +730,8 @@ class _NativePerformanceState extends State<NativePerformance> {
               },
             ),
           ),
-          Flexible(
-            flex: 1,
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
             child: Padding(
               padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
               child: Column(
@@ -806,13 +833,15 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Flexible(
-            flex: 1,
+      margin: blockMargin,
+      padding: blockPadding(context),
+      child: ResponsiveRowColumn(
+        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        rowCrossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            columnOrder: 2,
             child: Padding(
               padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
               child: Column(
@@ -846,8 +875,9 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
               ),
             ),
           ),
-          Flexible(
-            flex: 2,
+          ResponsiveRowColumnItem(
+            rowFlex: 2,
+            columnOrder: 1,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25),
               child: AspectRatio(
@@ -883,13 +913,15 @@ class WhoUsesFlutter extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Flexible(
-            flex: 5,
+      margin: blockMargin,
+      padding: blockPadding(context),
+      child: ResponsiveRowColumn(
+        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        rowCrossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ResponsiveRowColumnItem(
+            rowFlex: 5,
+            columnOrder: 2,
             child: Padding(
               padding: EdgeInsets.fromLTRB(25, 24, 25, 0),
               child: Column(
@@ -923,8 +955,9 @@ class WhoUsesFlutter extends StatelessWidget {
               ),
             ),
           ),
-          Flexible(
-              flex: 7,
+          ResponsiveRowColumnItem(
+              rowFlex: 7,
+              columnOrder: 1,
               child: Image.asset("assets/images/companies_using_flutter.png",
                   fit: BoxFit.contain)),
         ],
@@ -936,44 +969,46 @@ class WhoUsesFlutter extends StatelessWidget {
 class FlutterNewsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Flexible(
-          flex: 1,
-          fit: FlexFit.tight,
-          child: FlutterNews(
-            title: "Announcing Flutter 1.12",
-            imagePath: "assets/images/news_flutter_1.12.png",
-            linkUrl:
-                "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
+    return Container(
+      margin: blockMargin,
+      child: ResponsiveRowColumn(
+        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        rowCrossAxisAlignment: CrossAxisAlignment.start,
+        rowSpacing: 25,
+        columnSpacing: 32,
+        children: [
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
+            child: FlutterNewsCard(
+              title: "Announcing Flutter 1.12",
+              imagePath: "assets/images/news_flutter_1.12.png",
+              linkUrl:
+                  "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
+            ),
           ),
-        ),
-        Flexible(
-          flex: 0,
-          child: Container(width: 25),
-        ),
-        Flexible(
-          flex: 1,
-          fit: FlexFit.tight,
-          child: FlutterNews(
-            title: "CodePen now supports Flutter",
-            imagePath: "assets/images/news_flutter_codepen.png",
-            linkUrl:
-                "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
+            child: FlutterNewsCard(
+              title: "CodePen now supports Flutter",
+              imagePath: "assets/images/news_flutter_codepen.png",
+              linkUrl:
+                  "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
 
-class FlutterNews extends StatelessWidget {
+class FlutterNewsCard extends StatelessWidget {
   final String title;
   final String imagePath;
   final String linkUrl;
 
-  const FlutterNews(
+  const FlutterNewsCard(
       {Key key,
       @required this.title,
       @required this.imagePath,
@@ -983,21 +1018,19 @@ class FlutterNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxHeight: 530),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            constraints: BoxConstraints(maxHeight: 340),
+            constraints: BoxConstraints(maxHeight: 400),
             child: Image.asset(imagePath, fit: BoxFit.fitWidth),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
+            padding: EdgeInsets.fromLTRB(40, 40, 40, 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -1065,8 +1098,8 @@ class _FlutterCodelabState extends State<FlutterCodelab>
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.all(80),
+      margin: blockMargin,
+      padding: blockPadding(context),
       child: Align(
         alignment: Alignment.center,
         child: Container(
@@ -1199,8 +1232,8 @@ class InstallFlutter extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
-      margin: EdgeInsets.fromLTRB(1, 0, 1, 32),
-      padding: EdgeInsets.all(80),
+      margin: blockMargin,
+      padding: blockPadding(context),
       child: Align(
         alignment: Alignment.center,
         child: Container(
@@ -1245,17 +1278,22 @@ class Footer extends StatelessWidget {
     return Container(
       color: backgroundDark,
       padding: EdgeInsets.symmetric(horizontal: 25),
-      child: Row(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
-            child: Image.asset("assets/images/flutter_logo_mono.png",
-                height: 100, fit: BoxFit.contain),
+      child: ResponsiveRowColumn(
+        rowColumn: !ResponsiveWrapper.of(context).isMobile,
+        children: [
+          ResponsiveRowColumnItem(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+              child: Image.asset("assets/images/flutter_logo_mono.png",
+                  height: 100, fit: BoxFit.contain),
+            ),
           ),
-          Flexible(
+          ResponsiveRowColumnItem(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 RichText(
+                  textAlign: TextAlign.left,
                   text: TextSpan(
                     style: bodyTextStyle.copyWith(
                         fontSize: 14, color: Colors.white, height: 2),
@@ -1303,15 +1341,26 @@ class Footer extends StatelessWidget {
                               openUrl("https://flutter.cn/");
                             },
                           text: "社区中文资源"),
-                      TextSpan(text: "\n"),
-                      TextSpan(
-                          text:
-                              "Except as otherwise noted, this work is licensed under a Creative Commons Attribution 4.0 International License, and code samples are licensed under the BSD License.",
-                          style: bodyTextStyle.copyWith(
-                              fontSize: 10, color: Colors.white)),
                     ],
                   ),
                 ),
+                RichText(
+                  textAlign: TextAlign.left,
+                  text: TextSpan(
+                      style: bodyTextStyle.copyWith(
+                          fontSize: 14, color: Colors.white, height: 1),
+                      children: [
+                        TextSpan(text: '\n'),
+                        TextSpan(
+                            text:
+                                "Except as otherwise noted, this work is licensed under a Creative Commons Attribution 4.0 International License, and code samples are licensed under the BSD License.",
+                            style: bodyTextStyle.copyWith(
+                                fontSize: 10, color: Colors.white)),
+                        TextSpan(text: '\n'),
+                        TextSpan(text: '\n'),
+                        TextSpan(text: '\n'),
+                      ]),
+                )
               ],
             ),
           )
