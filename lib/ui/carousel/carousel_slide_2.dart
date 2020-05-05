@@ -21,25 +21,25 @@ class _CarouselSlide2State extends State<CarouselSlide2>
 
   List<SlideItemAnimationModel> slideItems = [
     SlideItemAnimationModel(
-        id: "slide_2-bg",
+        id: 'slide_2-bg',
         entryDuration: 800,
         exitDuration: 500,
         entry: 0,
         exit: 164),
     SlideItemAnimationModel(
-        id: "slide_2-layer_2",
+        id: 'slide_2-layer_2',
         entryDuration: 800,
         exitDuration: 500,
         entry: 13,
         exit: 172),
     SlideItemAnimationModel(
-        id: "slide_2-layer_1",
+        id: 'slide_2-layer_1',
         entryDuration: 800,
         exitDuration: 500,
         entry: 17,
         exit: 178),
     SlideItemAnimationModel(
-        id: "slide_2-text",
+        id: 'slide_2-text',
         entryDuration: 800,
         exitDuration: 500,
         entry: 33,
@@ -81,12 +81,12 @@ class _CarouselSlide2State extends State<CarouselSlide2>
             width: 574,
             height: 327,
             child: WidgetSlideUpDownFadeAnimation(
-              duration: getSlideItemAnimationDuration("slide_2-bg", slideItems),
+              duration: getSlideItemAnimationDuration('slide_2-bg', slideItems),
               direction:
-                  getSlideItemAnimationVisibility("slide_2-bg", slideItems),
+                  getSlideItemAnimationVisibility('slide_2-bg', slideItems),
               offset: slideItemOffset,
               child: Image.asset(
-                "assets/images/slide_2-bg.jpg",
+                'assets/images/slide_2-bg.jpg',
                 fit: BoxFit.fill,
               ),
             ),
@@ -98,12 +98,12 @@ class _CarouselSlide2State extends State<CarouselSlide2>
             height: 298,
             child: WidgetSlideUpDownFadeAnimation(
               duration:
-                  getSlideItemAnimationDuration("slide_2-layer_1", slideItems),
+                  getSlideItemAnimationDuration('slide_2-layer_1', slideItems),
               direction: getSlideItemAnimationVisibility(
-                  "slide_2-layer_1", slideItems),
+                  'slide_2-layer_1', slideItems),
               offset: slideItemOffset,
               child: Image.asset(
-                "assets/images/slide_2-layer_1.png",
+                'assets/images/slide_2-layer_1.png',
                 fit: BoxFit.fill,
               ),
             ),
@@ -115,12 +115,12 @@ class _CarouselSlide2State extends State<CarouselSlide2>
             height: 396,
             child: WidgetSlideUpDownFadeAnimation(
               duration:
-                  getSlideItemAnimationDuration("slide_2-layer_2", slideItems),
+                  getSlideItemAnimationDuration('slide_2-layer_2', slideItems),
               direction: getSlideItemAnimationVisibility(
-                  "slide_2-layer_2", slideItems),
+                  'slide_2-layer_2', slideItems),
               offset: slideItemOffset,
               child: Image.asset(
-                "assets/images/slide_2-layer_2.png",
+                'assets/images/slide_2-layer_2.png',
                 fit: BoxFit.fill,
               ),
             ),
@@ -131,7 +131,7 @@ class _CarouselSlide2State extends State<CarouselSlide2>
             width: 317,
             height: 565,
             child:
-                Image.asset("assets/images/device_frame.png", fit: BoxFit.fill),
+                Image.asset('assets/images/device_frame.png', fit: BoxFit.fill),
           ),
           Positioned(
             left: 0,
@@ -142,9 +142,9 @@ class _CarouselSlide2State extends State<CarouselSlide2>
               alignment: Alignment.center,
               child: WidgetSlideUpDownFadeAnimation(
                 duration:
-                    getSlideItemAnimationDuration("slide_2-text", slideItems),
+                    getSlideItemAnimationDuration('slide_2-text', slideItems),
                 direction:
-                    getSlideItemAnimationVisibility("slide_2-text", slideItems),
+                    getSlideItemAnimationVisibility('slide_2-text', slideItems),
                 offset: slideItemOffset,
                 child: slide2Text,
               ),
