@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components.dart';
 
-Widget getMaterialIcon(String imagePath, double size) {
+Widget buildMaterialIconCircle(String imagePath, double size) {
   return Container(
     width: size,
     height: size,

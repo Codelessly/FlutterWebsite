@@ -13,10 +13,9 @@ import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MenuBar extends StatelessWidget {
-  Color navLinkColor = Color(0xFF6E7274);
-
   @override
   Widget build(BuildContext context) {
+    const Color navLinkColor = Color(0xFF6E7274);
     return Container(
       height: 66,
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
@@ -349,8 +348,8 @@ class Features extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(bottom: 32),
-                  child:
-                      getMaterialIcon("assets/images/icon_development.png", 68),
+                  child: buildMaterialIconCircle(
+                      "assets/images/icon_development.png", 68),
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 16),
@@ -372,7 +371,8 @@ class Features extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(bottom: 32),
-                  child: getMaterialIcon("assets/images/icon_ui.png", 68),
+                  child:
+                      buildMaterialIconCircle("assets/images/icon_ui.png", 68),
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 16),
@@ -394,8 +394,8 @@ class Features extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(bottom: 32),
-                  child:
-                      getMaterialIcon("assets/images/icon_performance.png", 68),
+                  child: buildMaterialIconCircle(
+                      "assets/images/icon_performance.png", 68),
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 16),
@@ -507,7 +507,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(bottom: 16),
-                    child: getMaterialIcon(
+                    child: buildMaterialIconCircle(
                         "assets/images/icon_development.png", 68),
                   ),
                   Padding(
@@ -606,7 +606,8 @@ class _BeautifulUIState extends State<BeautifulUI> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(bottom: 16),
-                    child: getMaterialIcon("assets/images/icon_ui.png", 68),
+                    child: buildMaterialIconCircle(
+                        "assets/images/icon_ui.png", 68),
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: 32),
@@ -740,7 +741,7 @@ class _NativePerformanceState extends State<NativePerformance> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(bottom: 16),
-                    child: getMaterialIcon(
+                    child: buildMaterialIconCircle(
                         "assets/images/icon_performance.png", 68),
                   ),
                   Padding(
@@ -886,7 +887,7 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
                     ? Image.asset(
                         "assets/images/video_thumbnail_learn_from_developers.png",
                         fit: BoxFit.contain)
-                    // TODO: Multiple embedded iframes flicker.
+                    // TODO: Disable multiple embedded iframes to prevent flicker.
 //                HtmlElementView(
 //                        key: webViewKey,
 //                        viewType: webViewKey.toString(),
@@ -1116,38 +1117,6 @@ class _FlutterCodelabState extends State<FlutterCodelab>
                 onValueChanged: (value) => setCodelabSelected(value),
                 children: codelabExamples,
               ),
-// TODO: Dropdown overlay's hit area covered by iframe. Unable to select item.
-//              Container(
-//                decoration: BoxDecoration(
-//                  border: Border.all(color: Color(0xFFA9A9A9), width: 1),
-//                  borderRadius: BorderRadius.all(Radius.circular(0)),
-//                ),
-//                margin: EdgeInsets.only(bottom: 8),
-//                child: DropdownButton<String>(
-//                  value: "Spinning Flutter",
-//                  icon: Icon(Icons.arrow_drop_down, color: Color(0xFFA9A9A9)),
-//                  iconSize: 24,
-//                  elevation: 16,
-//                  style: bodyTextStyle,
-//                  underline: null,
-//                  onChanged: (String newValue) {
-//                    setState(() {});
-//                  },
-//                  items: <String>[
-//                    "Spinning Flutter",
-//                    "Fibonacci",
-//                    "Counter",
-//                  ].map<DropdownMenuItem<String>>((String value) {
-//                    return DropdownMenuItem<String>(
-//                      value: value,
-//                      child: Text(
-//                        value,
-//                        style: bodyTextStyle,
-//                      ),
-//                    );
-//                  }).toList(),
-//                ),
-//              ),
               Padding(
                 padding: EdgeInsets.fromLTRB(25, 16, 25, 16),
                 child: AspectRatio(

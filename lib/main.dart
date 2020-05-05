@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           debugLog: true),
       home: Scaffold(
         appBar: PreferredSize(
-            child: MenuBar(), preferredSize: Size(double.infinity, 66)),
+            preferredSize: Size(double.infinity, 66), child: MenuBar()),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(

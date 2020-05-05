@@ -10,7 +10,7 @@ const EdgeInsets marginBottom40 = EdgeInsets.only(bottom: 40);
 // Padding
 const EdgeInsets paddingBottom24 = EdgeInsets.only(bottom: 24);
 
-// Block
+// Block Spacing
 const List<Condition> blockWidthConstraints = [
   Condition.equals(name: MOBILE, value: BoxConstraints(maxWidth: 600)),
   Condition.equals(name: TABLET, value: BoxConstraints(maxWidth: 700)),
