@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
             ResponsiveBreakpoint.resize(850, name: TABLET),
             ResponsiveBreakpoint.resize(1080, name: DESKTOP),
           ],
-          background: Container(color: background),
-          debugLog: true),
+          background: Container(color: background)),
       home: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size(double.infinity, 66), child: MenuBar()),

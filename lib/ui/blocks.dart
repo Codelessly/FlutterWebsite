@@ -1064,7 +1064,7 @@ class FlutterCodelab extends StatefulWidget {
 }
 
 class _FlutterCodelabState extends State<FlutterCodelab>
-    with SingleTickerProviderStateMixin {
+    with AutomaticKeepAliveClientMixin<FlutterCodelab> {
   static List<String> codelabIds = ["Spinning Flutter", "Fibonacci", "Counter"];
   static List<String> codelabUrls = [
     "https://dartpad.dev/embed-flutter.html?id=c0450ca427127acfb710a31c99761f1a",
@@ -1165,6 +1165,9 @@ class _FlutterCodelabState extends State<FlutterCodelab>
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   void setCodelabSelected(String codelab) {
     codelabSelected = codelab;
