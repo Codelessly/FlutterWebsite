@@ -339,7 +339,6 @@ class Features extends StatelessWidget {
         columnPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 50),
         columnSpacing: 50,
         rowSpacing: 50,
-        fillRow: true,
         children: [
           ResponsiveRowColumnItem(
             rowFlex: 1,
