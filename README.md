@@ -1,10 +1,10 @@
 ![Screenshots](screenshots/Flutter%20Website%20Home.png)
-# [Flutter Website - Rebuilt in Flutter!](https://gallery.codelessly.com/flutterwebsites/flutterwebsite)
+# [Flutter.dev Website - Rebuilt in Flutter](https://gallery.codelessly.com/flutterwebsites/flutterwebsite)
 [![Flutter Responsive](https://img.shields.io/badge/flutter-responsive-brightgreen.svg?style=flat-square)](https://github.com/Codelessly/ResponsiveFramework) [![GitHub release](https://img.shields.io/github/release/Codelessly/FlutterWebsite.svg?style=flat-square)](https://github.com/Codelessly/FlutterWebsite/releases) [![GitHub Release Date](https://img.shields.io/github/release-date/Codelessly/FlutterWebsite.svg?style=flat-square)](https://github.com/Codelessly/FlutterWebsite/releases) [![GitHub issues](https://img.shields.io/github/issues/Codelessly/FlutterWebsite.svg?style=flat-square)](https://github.com/Codelessly/FlutterWebsite/issues) [![GitHub top language](https://img.shields.io/github/languages/top/Codelessly/FlutterWebsite.svg?style=flat-square)](https://github.com/Codelessly/FlutterWebsite) [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Codelessly/FlutterWebsite.svg?style=flat-square)](https://github.com/Codelessly/FlutterWebsite) [![Libraries.io for GitHub](https://img.shields.io/librariesio/github/Codelessly/FlutterWebsite.svg?style=flat-square)](https://libraries.io/github/Codelessly/FlutterWebsite) [![License](https://img.shields.io/badge/License-BSD%200--Clause-orange.svg?style=flat-square)](https://opensource.org/licenses/0BSD)
 
 <img src="web/icons/Icon-192.png" width="128">
 
-> ### The flutter.dev website, but now in Flutter!
+> ### The flutter.dev website, now in Flutter!
 
 [View Flutter Website](https://gallery.codelessly.com/flutterwebsites/flutterwebsite)
 
@@ -132,9 +132,9 @@ Amazing, FLutter inside of Flutter! It works.. sort of. Embedded iframes in Flut
 
 Flutter Web is phenomenal and it was really fun to solve some of the basic essential problems of responsiveness on the web. Despite all the years I've been doing web development, this template is the most "perfect" website I've ever created. Thanks to power of the underlying framework, I know precisely how the layout looks at every size.
 
-Flutter Web is revolutionary but there is still much work to do. In some areas, Flutter is already ahead but in others, the ecosystem is literally years behind. For the challenges ahead, let's tackle them head on together and solve core problems once and for all.
+Flutter Web is revolutionary but there is still much work to do. In some areas, Flutter is already ahead but in others, the ecosystem is literally years behind. For the challenges ahead, let's tackle them together head-on and solve the core problems.
 
-Building this template exposed quite a few pain points. Please let me know if you're working on or are interested in tackling one of the items below.
+Building this Flutter website also exposed a few pain points. Please let me know if you're working on or are interested in tackling one of the items below.
 
 - Animation editor.
 - RichText generator.
@@ -144,7 +144,7 @@ Building this template exposed quite a few pain points. Please let me know if yo
 
 **Inspiration:** 
 
-<a href="https://flutter-week.com">
+<a href="https://flutter-week.com/?utm_medium=logo&utm_campaign=responsive_framework">
   <img alt="Flutter"
        src="screenshots/Flutter%20Week%20Logo.png" />
 </a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://flutter.dev">
@@ -155,17 +155,17 @@ Building this template exposed quite a few pain points. Please let me know if yo
 **Development:** 
 * [Ray Li](https://github.com/searchy2)
 
-**Sponsor:** [Codelessly - No Code Automation Tools](https://codelessly.com)
+**Sponsor:** [Codelessly - No Code Automation Tools](https://codelessly.com/?utm_medium=link&utm_campaign=direct)
 
 <a href="mailto:ray@codelessly.com">
   <img alt="Codelessly Email"
        src="https://lh3.googleusercontent.com/yN_m90WN_HSCohXdgC2k91uSTk9dnYfoxTYwG_mv_l5_05dV2CzkQ1B6rEqH4uqdgjA=w96" />
 </a>
-<a href="https://codelessly.com">
+<a href="https://codelessly.com/?utm_medium=icon&utm_campaign=direct">
   <img alt="Codelessly Website"
        src="https://lh3.googleusercontent.com/YmMGcgeO7Km9-J9vFRByov5sb7OUKetnKs8pTi0JZMDj3GVJ61GMTcTlHB7u9uHDHag=w96" />
 </a>
-<a href="https://twitter.com/codelessly1">
+<a href="https://twitter.com/BuildCodelessly">
   <img alt="Codelessly Twitter"
        src="https://lh3.ggpht.com/lSLM0xhCA1RZOwaQcjhlwmsvaIQYaP3c5qbDKCgLALhydrgExnaSKZdGa8S3YtRuVA=w96" />
 </a>
