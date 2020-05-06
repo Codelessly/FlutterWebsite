@@ -1116,26 +1116,30 @@ class _FlutterCodelabState extends State<FlutterCodelab>
                 onValueChanged: (value) => setCodelabSelected(value),
                 children: codelabExamples,
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(25, 16, 25, 16),
-                child: AspectRatio(
-                  aspectRatio: videoAspectRatio,
-                  child: (kIsWeb)
-                      ? Container(
-                          decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Color(0xFFD3D3D3), width: 1),
-                            borderRadius: BorderRadius.all(Radius.circular(0)),
-                          ),
-                          child: HtmlElementView(
+              RepaintBoundary(
+                key: webViewKey,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(25, 16, 25, 16),
+                  child: AspectRatio(
+                    aspectRatio: videoAspectRatio,
+                    child: (kIsWeb)
+                        ? Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Color(0xFFD3D3D3), width: 1),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0)),
+                            ),
+                            child: HtmlElementView(
+                              key: webViewKey,
+                              viewType: codelabSelected,
+                            ),
+                          )
+                        : WebView(
                             key: webViewKey,
-                            viewType: codelabSelected,
+                            initialUrl: codelabUrlSelected,
                           ),
-                        )
-                      : WebView(
-                          key: webViewKey,
-                          initialUrl: codelabUrlSelected,
-                        ),
+                  ),
                 ),
               ),
               Padding(
