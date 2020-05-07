@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       builder: (context, widget) => ResponsiveWrapper.builder(
-          BouncingScrollWrapper.builder(context, widget),
+          ClampingScrollWrapper.builder(context, widget),
           defaultScale: true,
           minWidth: 480,
           defaultName: MOBILE,
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                   minWidth: 1200,
                   defaultScale: true,
                   mediaQueryData: MediaQueryData(size: Size(1200, 640)),
-                  child: Carousel()),
+                  child: RepaintBoundary(child: Carousel())),
               ResponsiveConstraints(
                   constraintsWhen: blockWidthConstraints, child: GetStarted()),
               ResponsiveConstraints(
