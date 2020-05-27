@@ -59,12 +59,12 @@ class MyApp extends StatelessWidget {
               ResponsiveConstraints(
                   constraintsWhen: blockWidthConstraints,
                   child: FlutterNewsRow()),
-              ResponsiveVisibility(
-                hiddenWhen: [Condition.smallerThan(name: DESKTOP)],
-                child: ResponsiveConstraints(
-                    constraintsWhen: blockWidthConstraints,
-                    child: FlutterCodelab()),
-              ),
+//              ResponsiveVisibility(
+//                hiddenWhen: [Condition.smallerThan(name: DESKTOP)],
+//                child: ResponsiveConstraints(
+//                    constraintsWhen: blockWidthConstraints,
+//                    child: FlutterCodelab()),
+//              ),
               ResponsiveConstraints(
                   constraintsWhen: blockWidthConstraints,
                   child: InstallFlutter()),
