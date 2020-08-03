@@ -1252,9 +1252,11 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: backgroundDark,
+      width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: ResponsiveRowColumn(
         rowColumn: !ResponsiveWrapper.of(context).isMobile,
+        columnMainAxisSize: MainAxisSize.min,
         children: [
           ResponsiveRowColumnItem(
             child: Padding(
@@ -1264,6 +1266,8 @@ class Footer extends StatelessWidget {
             ),
           ),
           ResponsiveRowColumnItem(
+            rowFit: FlexFit.loose,
+            columnFit: FlexFit.loose,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
