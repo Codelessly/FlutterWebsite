@@ -157,7 +157,7 @@ Building this Flutter website also exposed a few pain points. Please let me know
 **Development:** 
 * [Ray Li](https://github.com/searchy2)
 
-**Sponsor:** [Codelessly - No Code Automation Tools](https://codelessly.com/?utm_medium=link&utm_campaign=direct)
+**Sponsor:** [Codelessly - Flutter App UI and Website Builder](https://codelessly.com/?utm_medium=link&utm_campaign=direct)
 
 <a href="mailto:ray@codelessly.com">
   <img alt="Codelessly Email"
