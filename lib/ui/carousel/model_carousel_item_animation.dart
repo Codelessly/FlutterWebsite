@@ -18,7 +18,7 @@ class SlideItemAnimationModel {
 
   @override
   bool operator ==(other) {
-    if (this.id == (other as SlideItemAnimationModel).id) {
+    if (this.id == other.id) {
       return true;
     }
 
