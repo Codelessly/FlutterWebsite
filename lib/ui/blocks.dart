@@ -154,17 +154,47 @@ class MenuBar extends StatelessWidget {
               child: TextButton(
                 onPressed: () =>
                     openUrl("https://flutter.dev/docs/get-started/install"),
-                style: TextButton.styleFrom(
-                  primary: primary,
-                  backgroundColor: primary,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(0))),
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 26),
-                ),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(primary),
+                    overlayColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.hovered))
+                          return buttonPrimaryDark;
+                        if (states.contains(MaterialState.focused) ||
+                            states.contains(MaterialState.pressed))
+                          return buttonPrimaryDarkPressed;
+                        return primary;
+                      },
+                    ),
+                    // Shape sets the border radius from default 3 to 0.
+                    shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.focused) ||
+                            states.contains(MaterialState.pressed))
+                          return RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0)));
+                        return RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(0)));
+                      },
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                        EdgeInsets.symmetric(vertical: 22, horizontal: 28)),
+                    // Side adds pressed highlight outline.
+                    side: MaterialStateProperty.resolveWith<BorderSide>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.focused) ||
+                          states.contains(MaterialState.pressed))
+                        return BorderSide(
+                            width: 3, color: buttonPrimaryPressedOutline);
+                      // Transparent border placeholder as Flutter does not allow
+                      // negative margins.
+                      return BorderSide(width: 3, color: Colors.white);
+                    })),
                 child: Text(
                   "Get started",
                   style: buttonTextStyle.copyWith(
-                      fontSize: 16, fontWeight: ui.FontWeight.bold),
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -257,17 +287,57 @@ class GetStarted extends StatelessWidget {
                   rowCrossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ResponsiveRowColumnItem(
-                      child: FlatButton(
+                      child: TextButton(
                         onPressed: () => openUrl(
                             "https://flutter.dev/docs/get-started/install"),
-                        color: primary,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(0))),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 22, horizontal: 80),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(primary),
+                            overlayColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.hovered))
+                                  return buttonPrimaryDark;
+                                if (states.contains(MaterialState.focused) ||
+                                    states.contains(MaterialState.pressed))
+                                  return buttonPrimaryDarkPressed;
+                                return primary;
+                              },
+                            ),
+                            // Shape sets the border radius from default 3 to 0.
+                            shape: MaterialStateProperty.resolveWith<
+                                OutlinedBorder>(
+                              (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.focused) ||
+                                    states.contains(MaterialState.pressed))
+                                  return RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(0)));
+                                return RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(0)));
+                              },
+                            ),
+                            padding:
+                                MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                    EdgeInsets.symmetric(
+                                        vertical: 32, horizontal: 84)),
+                            // Side adds pressed highlight outline.
+                            side: MaterialStateProperty.resolveWith<BorderSide>(
+                                (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.focused) ||
+                                  states.contains(MaterialState.pressed))
+                                return BorderSide(
+                                    width: 3,
+                                    color: buttonPrimaryPressedOutline);
+                              // Transparent border placeholder as Flutter does not allow
+                              // negative margins.
+                              return BorderSide(width: 3, color: Colors.white);
+                            })),
                         child: Text(
                           "Get started",
-                          style: buttonTextStyle,
+                          style: buttonTextStyle.copyWith(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -280,7 +350,7 @@ class GetStarted extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(0))),
                           padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 16),
+                              vertical: 20, horizontal: 20),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
