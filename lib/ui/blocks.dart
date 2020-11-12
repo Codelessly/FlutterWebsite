@@ -441,15 +441,17 @@ class _FastDevelopmentState extends State<FastDevelopment> {
 
   @override
   void initState() {
+    super.initState();
     videoController = VideoPlayerController.asset("assets/videos/FastDev.mp4");
     videoController.setVolume(0);
     videoController.setLooping(true);
     initializeVideoPlayerFuture = videoController.initialize().then((_) {
-      // Display the first frame of the video before playback.
-      setState(() {});
-      videoPlay();
+      if (this.mounted) {
+        // Display the first frame of the video before playback.
+        setState(() {});
+        videoPlay();
+      }
     });
-    super.initState();
   }
 
   @override
@@ -558,16 +560,18 @@ class _BeautifulUIState extends State<BeautifulUI> {
 
   @override
   void initState() {
+    super.initState();
     videoController =
         VideoPlayerController.asset("assets/videos/BeautifulUI.mp4");
     videoController.setVolume(0);
     videoController.setLooping(true);
     initializeVideoPlayerFuture = videoController.initialize().then((_) {
-      // Display the first frame of the video before playback.
-      setState(() {});
-      videoPlay();
+      if (this.mounted) {
+        // Display the first frame of the video before playback.
+        setState(() {});
+        videoPlay();
+      }
     });
-    super.initState();
   }
 
   @override
@@ -674,16 +678,18 @@ class _NativePerformanceState extends State<NativePerformance> {
 
   @override
   void initState() {
+    super.initState();
     videoController =
         VideoPlayerController.asset("assets/videos/NativePerformance.mp4");
     videoController.setVolume(0);
     videoController.setLooping(true);
     initializeVideoPlayerFuture = videoController.initialize().then((_) {
-      // Display the first frame of the video before playback.
-      setState(() {});
-      videoPlay();
+      if (this.mounted) {
+        // Display the first frame of the video before playback.
+        setState(() {});
+        videoPlay();
+      }
     });
-    super.initState();
   }
 
   @override
