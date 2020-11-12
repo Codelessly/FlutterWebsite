@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_website/ui/block_wrapper.dart';
 import 'package:flutter_website/ui/carousel/carousel.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -28,62 +29,40 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size(double.infinity, 66), child: MenuBar()),
-        body: buildBody(),
+        body: ListView.builder(
+            itemCount: blocks.length,
+            itemBuilder: (context, index) {
+              return blocks[index];
+            }),
       ),
       debugShowCheckedModeBanner: false,
     );
   }
+}
 
-  Widget buildBody() {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        switch(index) {
-          case 0: return ResponsiveWrapper(
-            maxWidth: 1200,
-            minWidth: 1200,
-            defaultScale: true,
-            mediaQueryData: MediaQueryData(size: Size(1200, 640)),
-            child: RepaintBoundary(child: Carousel()));
-          case 1: return ResponsiveConstraints(
-              constraintsWhen: blockWidthConstraints, child: GetStarted());
-          case 2: return ResponsiveConstraints(
-            constraintsWhen: blockWidthConstraints, child: Features());
+List<Widget> blocks = [
+  ResponsiveWrapper(
+      maxWidth: 1200,
+      minWidth: 1200,
+      defaultScale: true,
+      mediaQueryData: MediaQueryData(size: Size(1200, 640)),
+      child: RepaintBoundary(child: Carousel())),
+  BlockWrapper(GetStarted()),
+  BlockWrapper(Features()),
+  BlockWrapper(FastDevelopment()),
+  BlockWrapper(BeautifulUI()),
+  BlockWrapper(NativePerformance()),
+  BlockWrapper(LearnFromDevelopers()),
+  BlockWrapper(WhoUsesFlutter()),
+  BlockWrapper(FlutterNewsRow()),
+  BlockWrapper(InstallFlutter()),
+  Footer(),
+];
+
+// Disabled codelab block for performance.
 //              ResponsiveVisibility(
 //                hiddenWhen: [Condition.smallerThan(name: DESKTOP)],
 //                child: ResponsiveConstraints(
 //                    constraintsWhen: blockWidthConstraints,
 //                    child: FlutterCodelab()),
 //              ),
-          case 3: return ResponsiveConstraints(
-              constraintsWhen: blockWidthConstraints,
-              child: FastDevelopment());
-          case 4: return ResponsiveConstraints(
-              constraintsWhen: blockWidthConstraints, child: BeautifulUI());
-          case 5:
-            return ResponsiveConstraints(constraintsWhen: blockWidthConstraints,
-              child: NativePerformance());
-          case 6:
-            return ResponsiveConstraints(
-                constraintsWhen: blockWidthConstraints,
-              child: LearnFromDevelopers());
-          case 7:
-            return ResponsiveConstraints(
-              constraintsWhen: blockWidthConstraints,
-              child: WhoUsesFlutter());
-          case 8:
-            return ResponsiveConstraints(constraintsWhen: blockWidthConstraints,
-              child: FlutterNewsRow());
-          case 9:
-            return ResponsiveConstraints(
-              constraintsWhen: blockWidthConstraints,
-              child: InstallFlutter());
-          case 10:
-            return Footer();
-          default:
-            return Text('');
-        }
-      },
-      itemCount: 11,
-    );
-  }
-}
