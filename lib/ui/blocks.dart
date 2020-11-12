@@ -27,95 +27,144 @@ class MenuBar extends StatelessWidget {
           Padding(
               padding: EdgeInsets.only(right: 16),
               child: Icon(Icons.menu, color: textPrimary, size: 28)),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 5, 16, 5),
-            child: Image.asset("assets/images/flutter_logo_text.png",
-                height: 37, fit: BoxFit.contain),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () =>
+                  Navigator.of(context).popUntil((route) => route.isFirst),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 5, 16, 5),
+                child: Image.asset("assets/images/flutter_logo_text.png",
+                    height: 37, fit: BoxFit.contain),
+              ),
+            ),
           ),
           Spacer(),
           ResponsiveVisibility(
             visible: false,
             visibleWhen: [Condition.largerThan(name: MOBILE)],
-            child: GestureDetector(
-              onTap: () => openUrl("https://flutter.dev/docs"),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text("Docs",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: navLinkColor,
-                        fontFamily: fontFamily)),
-              ),
-            ),
-          ),
-          ResponsiveVisibility(
-            visible: false,
-            visibleWhen: [Condition.largerThan(name: MOBILE)],
-            child: GestureDetector(
-              onTap: () => openUrl("https://flutter.dev/showcase"),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text("Showcase",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: navLinkColor,
-                        fontFamily: fontFamily)),
-              ),
-            ),
-          ),
-          ResponsiveVisibility(
-            visible: false,
-            visibleWhen: [Condition.largerThan(name: MOBILE)],
-            child: GestureDetector(
-              onTap: () => openUrl("https://flutter.dev/community"),
-              child: Padding(
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => openUrl("https://flutter.dev/docs"),
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text("Community",
+                  child: Text("Docs",
                       style: TextStyle(
                           fontSize: 16,
                           color: navLinkColor,
-                          fontFamily: fontFamily))),
+                          fontFamily: fontFamily)),
+                ),
+              ),
+            ),
+          ),
+          ResponsiveVisibility(
+            visible: false,
+            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => openUrl("https://flutter.dev/showcase"),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text("Showcase",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: navLinkColor,
+                          fontFamily: fontFamily)),
+                ),
+              ),
+            ),
+          ),
+          ResponsiveVisibility(
+            visible: false,
+            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => openUrl("https://flutter.dev/community"),
+                child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text("Community",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: navLinkColor,
+                            fontFamily: fontFamily))),
+              ),
+            ),
+          ),
+          ResponsiveVisibility(
+            visible: false,
+            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 18),
+                child: ImageIcon(
+                    AssetImage("assets/images/icon_search_64x.png"),
+                    color: navLinkColor,
+                    size: 24),
+              ),
+            ),
+          ),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => openUrl('https://twitter.com/flutterdev'),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: ImageIcon(
+                    AssetImage("assets/images/icon_twitter_64x.png"),
+                    color: navLinkColor,
+                    size: 24),
+              ),
+            ),
+          ),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => openUrl('https://www.youtube.com/flutterdev'),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: ImageIcon(
+                    AssetImage("assets/images/icon_youtube_64x.png"),
+                    color: navLinkColor,
+                    size: 24),
+              ),
+            ),
+          ),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => openUrl('https://github.com/flutter'),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: ImageIcon(
+                    AssetImage("assets/images/icon_github_64x.png"),
+                    color: navLinkColor,
+                    size: 24),
+              ),
             ),
           ),
           ResponsiveVisibility(
             visible: false,
             visibleWhen: [Condition.largerThan(name: MOBILE)],
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18),
-              child: ImageIcon(AssetImage("assets/images/icon_search_64x.png"),
-                  color: navLinkColor, size: 24),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: ImageIcon(AssetImage("assets/images/icon_twitter_64x.png"),
-                color: navLinkColor, size: 24),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: ImageIcon(AssetImage("assets/images/icon_youtube_64x.png"),
-                color: navLinkColor, size: 24),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: ImageIcon(AssetImage("assets/images/icon_github_64x.png"),
-                color: navLinkColor, size: 24),
-          ),
-          ResponsiveVisibility(
-            visible: false,
-            visibleWhen: [Condition.largerThan(name: MOBILE)],
-            child: Padding(
-              padding: EdgeInsets.only(left: 8, right: 16),
-              child: FlatButton(
+              padding: EdgeInsets.only(left: 8, right: 0),
+              child: TextButton(
                 onPressed: () =>
                     openUrl("https://flutter.dev/docs/get-started/install"),
-                color: primary,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(0))),
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                style: TextButton.styleFrom(
+                  primary: primary,
+                  backgroundColor: primary,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(0))),
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 26),
+                ),
                 child: Text(
                   "Get started",
-                  style: buttonTextStyle.copyWith(fontSize: 16),
+                  style: buttonTextStyle.copyWith(
+                      fontSize: 16, fontWeight: ui.FontWeight.bold),
                 ),
               ),
             ),
