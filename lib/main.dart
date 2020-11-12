@@ -28,52 +28,62 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size(double.infinity, 66), child: MenuBar()),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: <Widget>[
-              ResponsiveWrapper(
-                  maxWidth: 1200,
-                  minWidth: 1200,
-                  defaultScale: true,
-                  mediaQueryData: MediaQueryData(size: Size(1200, 640)),
-                  child: RepaintBoundary(child: Carousel())),
-              ResponsiveConstraints(
-                  constraintsWhen: blockWidthConstraints, child: GetStarted()),
-              ResponsiveConstraints(
-                  constraintsWhen: blockWidthConstraints, child: Features()),
+        body: buildBody(),
+      ),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+
+  Widget buildBody() {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        switch(index) {
+          case 0: return ResponsiveWrapper(
+            maxWidth: 1200,
+            minWidth: 1200,
+            defaultScale: true,
+            mediaQueryData: MediaQueryData(size: Size(1200, 640)),
+            child: RepaintBoundary(child: Carousel()));
+          case 1: return ResponsiveConstraints(
+              constraintsWhen: blockWidthConstraints, child: GetStarted());
+          case 2: return ResponsiveConstraints(
+            constraintsWhen: blockWidthConstraints, child: Features());
 //              ResponsiveVisibility(
 //                hiddenWhen: [Condition.smallerThan(name: DESKTOP)],
 //                child: ResponsiveConstraints(
 //                    constraintsWhen: blockWidthConstraints,
 //                    child: FlutterCodelab()),
 //              ),
-              ResponsiveConstraints(
-                  constraintsWhen: blockWidthConstraints,
-                  child: FastDevelopment()),
-              ResponsiveConstraints(
-                  constraintsWhen: blockWidthConstraints, child: BeautifulUI()),
-              ResponsiveConstraints(
-                  constraintsWhen: blockWidthConstraints,
-                  child: NativePerformance()),
-              ResponsiveConstraints(
-                  constraintsWhen: blockWidthConstraints,
-                  child: LearnFromDevelopers()),
-              ResponsiveConstraints(
-                  constraintsWhen: blockWidthConstraints,
-                  child: WhoUsesFlutter()),
-              ResponsiveConstraints(
-                  constraintsWhen: blockWidthConstraints,
-                  child: FlutterNewsRow()),
-              ResponsiveConstraints(
-                  constraintsWhen: blockWidthConstraints,
-                  child: InstallFlutter()),
-              Footer(),
-            ],
-          ),
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
+          case 3: return ResponsiveConstraints(
+              constraintsWhen: blockWidthConstraints,
+              child: FastDevelopment());
+          case 4: return ResponsiveConstraints(
+              constraintsWhen: blockWidthConstraints, child: BeautifulUI());
+          case 5:
+            return ResponsiveConstraints(constraintsWhen: blockWidthConstraints,
+              child: NativePerformance());
+          case 6:
+            return ResponsiveConstraints(
+                constraintsWhen: blockWidthConstraints,
+              child: LearnFromDevelopers());
+          case 7:
+            return ResponsiveConstraints(
+              constraintsWhen: blockWidthConstraints,
+              child: WhoUsesFlutter());
+          case 8:
+            return ResponsiveConstraints(constraintsWhen: blockWidthConstraints,
+              child: FlutterNewsRow());
+          case 9:
+            return ResponsiveConstraints(
+              constraintsWhen: blockWidthConstraints,
+              child: InstallFlutter());
+          case 10:
+            return Footer();
+          default:
+            return Text('');
+        }
+      },
+      itemCount: 11,
     );
   }
 }
