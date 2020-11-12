@@ -486,7 +486,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
                   // the data it provides to limit the aspect ratio of the VideoPlayer.
                   return AspectRatio(
                     aspectRatio: videoController.value.aspectRatio,
-                    child: VideoPlayer(videoController),
+                    child: RepaintBoundary(child: VideoPlayer(videoController)),
                   );
                 } else {
                   // If the VideoPlayerController is still initializing, show a
@@ -720,7 +720,7 @@ class _NativePerformanceState extends State<NativePerformance> {
                   // the data it provides to limit the aspect ratio of the VideoPlayer.
                   return AspectRatio(
                     aspectRatio: videoController.value.aspectRatio,
-                    child: VideoPlayer(videoController),
+                    child: RepaintBoundary(child: VideoPlayer(videoController)),
                   );
                 } else {
                   // If the VideoPlayerController is still initializing, show a
