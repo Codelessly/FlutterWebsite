@@ -336,8 +336,7 @@ class GetStarted extends StatelessWidget {
                             })),
                         child: Text(
                           "Get started",
-                          style: buttonTextStyle.copyWith(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                          style: buttonTextStyle.copyWith(fontSize: 18),
                         ),
                       ),
                     ),
@@ -1351,16 +1350,51 @@ class InstallFlutter extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(top: 32),
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () =>
                       openUrl("https://flutter.dev/docs/get-started/install"),
-                  color: primary,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(0))),
-                  padding: EdgeInsets.symmetric(vertical: 22, horizontal: 80),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(primary),
+                      overlayColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.hovered))
+                            return buttonPrimaryDark;
+                          if (states.contains(MaterialState.focused) ||
+                              states.contains(MaterialState.pressed))
+                            return buttonPrimaryDarkPressed;
+                          return primary;
+                        },
+                      ),
+                      // Shape sets the border radius from default 3 to 0.
+                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.focused) ||
+                              states.contains(MaterialState.pressed))
+                            return RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(0)));
+                          return RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0)));
+                        },
+                      ),
+                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                          EdgeInsets.symmetric(vertical: 32, horizontal: 90)),
+                      // Side adds pressed highlight outline.
+                      side: MaterialStateProperty.resolveWith<BorderSide>(
+                          (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.focused) ||
+                            states.contains(MaterialState.pressed))
+                          return BorderSide(
+                              width: 3, color: buttonPrimaryPressedOutline);
+                        // Transparent border placeholder as Flutter does not allow
+                        // negative margins.
+                        return BorderSide(width: 3, color: Colors.white);
+                      })),
                   child: Text(
                     "Get started",
-                    style: buttonTextStyle,
+                    style: buttonTextStyle.copyWith(fontSize: 18),
                   ),
                 ),
               ),
