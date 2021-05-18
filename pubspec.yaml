@@ -1,19 +1,21 @@
 name: flutter_website
+publish_to: none
 description: The flutter.dev website rebuilt in Flutter.
 version: 1.0.0
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.0
-  animations: ^1.1.2
-  url_launcher: ^5.7.10
-  video_player: ^1.0.0
-  webview_flutter: ^1.0.7
-  universal_html: ^1.2.3
+  cupertino_icons: ^1.0.3
+  animations: ^2.0.0
+  url_launcher: ^6.0.2
+  video_player: ^2.1.1
+  webview_flutter: ^2.0.6
+  universal_html: ^2.0.8
+  google_fonts: ^2.1.0
   responsive_framework:
     path: responsive_framework/
 

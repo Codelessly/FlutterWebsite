@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       builder: (context, widget) => ResponsiveWrapper.builder(
-          ClampingScrollWrapper.builder(context, widget),
+          ClampingScrollWrapper.builder(context, widget!),
           defaultScale: true,
           minWidth: 480,
           defaultName: MOBILE,

@@ -19,8 +19,8 @@ class Carousel extends StatefulWidget {
 
 class _CarouselState extends State<Carousel>
     with SingleTickerProviderStateMixin {
-  Animation<double> animation;
-  AnimationController animationController;
+  late Animation<double> animation;
+  late AnimationController animationController;
   int currentSlide = 0;
 
   @override

@@ -7,7 +7,7 @@ import 'animation_slide_up_down_fade.dart';
 class CarouselSlide2 extends StatefulWidget {
   final int slideDuration;
 
-  const CarouselSlide2({Key key, @required this.slideDuration})
+  const CarouselSlide2({Key? key, required this.slideDuration})
       : super(key: key);
 
   @override
@@ -16,8 +16,8 @@ class CarouselSlide2 extends StatefulWidget {
 
 class _CarouselSlide2State extends State<CarouselSlide2>
     with SingleTickerProviderStateMixin {
-  Animation<double> animation;
-  AnimationController animationController;
+  late Animation<double> animation;
+  late AnimationController animationController;
 
   List<SlideItemAnimationModel> slideItems = [
     SlideItemAnimationModel(

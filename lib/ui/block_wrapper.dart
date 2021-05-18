@@ -8,7 +8,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 class BlockWrapper extends StatelessWidget {
   final Widget widget;
 
-  const BlockWrapper(this.widget, {Key key}) : super(key: key);
+  const BlockWrapper(this.widget, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

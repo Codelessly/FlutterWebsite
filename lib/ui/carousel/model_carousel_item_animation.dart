@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class SlideItemAnimationModel {
   final String id;
   final int entryDuration;
@@ -9,16 +7,16 @@ class SlideItemAnimationModel {
   bool visible;
 
   SlideItemAnimationModel(
-      {@required this.id,
-      @required this.entryDuration,
-      @required this.exitDuration,
-      @required this.entry,
-      @required this.exit,
+      {required this.id,
+      required this.entryDuration,
+      required this.exitDuration,
+      required this.entry,
+      required this.exit,
       this.visible = false});
 
   @override
   bool operator ==(other) {
-    if (this.id == other.id) {
+    if (this.id == (other as SlideItemAnimationModel).id) {
       return true;
     }
 

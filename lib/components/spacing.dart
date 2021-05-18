@@ -23,6 +23,6 @@ EdgeInsets blockPadding(BuildContext context) => ResponsiveValue(context,
           Condition.smallerThan(
               name: TABLET,
               value: EdgeInsets.symmetric(horizontal: 15, vertical: 45))
-        ]).value;
+        ]).value!;
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(10, 0, 10, 32);

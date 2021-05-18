@@ -554,8 +554,8 @@ class FastDevelopment extends StatefulWidget {
 }
 
 class _FastDevelopmentState extends State<FastDevelopment> {
-  VideoPlayerController videoController;
-  Future<void> initializeVideoPlayerFuture;
+  late VideoPlayerController videoController;
+  late Future<void> initializeVideoPlayerFuture;
 
   @override
   void initState() {
@@ -673,8 +673,8 @@ class BeautifulUI extends StatefulWidget {
 }
 
 class _BeautifulUIState extends State<BeautifulUI> {
-  VideoPlayerController videoController;
-  Future<void> initializeVideoPlayerFuture;
+  late VideoPlayerController videoController;
+  late Future<void> initializeVideoPlayerFuture;
 
   @override
   void initState() {
@@ -791,8 +791,8 @@ class NativePerformance extends StatefulWidget {
 }
 
 class _NativePerformanceState extends State<NativePerformance> {
-  VideoPlayerController videoController;
-  Future<void> initializeVideoPlayerFuture;
+  late VideoPlayerController videoController;
+  late Future<void> initializeVideoPlayerFuture;
 
   @override
   void initState() {
@@ -1133,10 +1133,10 @@ class FlutterNewsCard extends StatelessWidget {
   final String linkUrl;
 
   const FlutterNewsCard(
-      {Key key,
-      @required this.title,
-      @required this.imagePath,
-      @required this.linkUrl})
+      {Key? key,
+      required this.title,
+      required this.imagePath,
+      required this.linkUrl})
       : super(key: key);
 
   @override
@@ -1198,9 +1198,9 @@ class _FlutterCodelabState extends State<FlutterCodelab>
   String codelabUrlSelected = codelabUrls[0];
   final double videoAspectRatio = 1.75;
 
-  Map<String, Widget> codelabExamples;
+  late Map<String, Widget> codelabExamples;
   // TODO: Breaks mobile builds. Official Flutter WebView plugin is working on Web support.
-  HtmlElementView codelabHtmlElementView;
+  HtmlElementView? codelabHtmlElementView;
   UniqueKey webViewKey = UniqueKey();
 
   @override
@@ -1237,7 +1237,7 @@ class _FlutterCodelabState extends State<FlutterCodelab>
               ),
               CupertinoSlidingSegmentedControl(
                 groupValue: codelabSelected,
-                onValueChanged: (value) => setCodelabSelected(value),
+                onValueChanged: (dynamic value) => setCodelabSelected(value),
                 children: codelabExamples,
               ),
               RepaintBoundary(
