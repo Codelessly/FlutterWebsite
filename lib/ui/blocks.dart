@@ -281,8 +281,9 @@ class GetStarted extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: 32),
                 child: ResponsiveRowColumn(
-                  rowColumn:
-                      !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+                  layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+                      ? ResponsiveRowColumnType.COLUMN
+                      : ResponsiveRowColumnType.ROW,
                   rowMainAxisAlignment: MainAxisAlignment.center,
                   rowCrossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -449,7 +450,9 @@ class Features extends StatelessWidget {
           border: Border.all(color: border)),
       margin: blockMargin,
       child: ResponsiveRowColumn(
-        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         columnCrossAxisAlignment: CrossAxisAlignment.center,
         columnMainAxisSize: MainAxisSize.min,
@@ -593,7 +596,9 @@ class _FastDevelopmentState extends State<FastDevelopment> {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ResponsiveRowColumnItem(
@@ -713,7 +718,9 @@ class _BeautifulUIState extends State<BeautifulUI> {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ResponsiveRowColumnItem(
@@ -831,7 +838,9 @@ class _NativePerformanceState extends State<NativePerformance> {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ResponsiveRowColumnItem(
@@ -960,7 +969,9 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ResponsiveRowColumnItem(
@@ -1040,7 +1051,9 @@ class WhoUsesFlutter extends StatelessWidget {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ResponsiveRowColumnItem(
@@ -1096,7 +1109,9 @@ class FlutterNewsRow extends StatelessWidget {
     return Container(
       margin: blockMargin,
       child: ResponsiveRowColumn(
-        rowColumn: !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         rowSpacing: 25,
         columnSpacing: 32,
@@ -1414,7 +1429,9 @@ class Footer extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: ResponsiveRowColumn(
-        rowColumn: !ResponsiveWrapper.of(context).isMobile,
+        layout: ResponsiveWrapper.of(context).isMobile
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
         columnMainAxisSize: MainAxisSize.min,
         children: [
           ResponsiveRowColumnItem(
