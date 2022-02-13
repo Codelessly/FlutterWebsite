@@ -8,7 +8,7 @@
 
 [View Flutter Website](https://gallery.codelessly.com/flutterwebsites/flutterwebsite)
 
-[Skia Version](https://gallery.codelessly.com/flutterwebsites/flutterwebsite/skia)
+[Canvas Version](https://gallery.codelessly.com/flutterwebsites/flutterwebsite-canvas)
 
 ## Screenshots
 
