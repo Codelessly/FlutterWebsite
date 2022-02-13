@@ -7,10 +7,12 @@ import 'components/components.dart';
 import 'ui/blocks.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,14 +22,14 @@ class MyApp extends StatelessWidget {
           minWidth: 480,
           defaultName: MOBILE,
           breakpoints: [
-            ResponsiveBreakpoint.autoScale(480, name: MOBILE),
-            ResponsiveBreakpoint.resize(600, name: MOBILE),
-            ResponsiveBreakpoint.resize(850, name: TABLET),
-            ResponsiveBreakpoint.resize(1080, name: DESKTOP),
+            const ResponsiveBreakpoint.autoScale(480, name: MOBILE),
+            const ResponsiveBreakpoint.resize(600, name: MOBILE),
+            const ResponsiveBreakpoint.resize(850, name: TABLET),
+            const ResponsiveBreakpoint.resize(1080, name: DESKTOP),
           ],
           background: Container(color: background)),
       home: Scaffold(
-        appBar: PreferredSize(
+        appBar: const PreferredSize(
             preferredSize: Size(double.infinity, 66), child: MenuBar()),
         body: ListView.builder(
             itemCount: blocks.length,
@@ -45,18 +47,18 @@ List<Widget> blocks = [
       maxWidth: 1200,
       minWidth: 1200,
       defaultScale: true,
-      mediaQueryData: MediaQueryData(size: Size(1200, 640)),
+      mediaQueryData: const MediaQueryData(size: Size(1200, 640)),
       child: RepaintBoundary(child: Carousel())),
-  BlockWrapper(GetStarted()),
-  BlockWrapper(Features()),
-  BlockWrapper(FastDevelopment()),
-  BlockWrapper(BeautifulUI()),
-  BlockWrapper(NativePerformance()),
-  BlockWrapper(LearnFromDevelopers()),
-  BlockWrapper(WhoUsesFlutter()),
-  BlockWrapper(FlutterNewsRow()),
-  BlockWrapper(InstallFlutter()),
-  Footer(),
+  const BlockWrapper(GetStarted()),
+  const BlockWrapper(Features()),
+  const BlockWrapper(FastDevelopment()),
+  const BlockWrapper(BeautifulUI()),
+  const BlockWrapper(NativePerformance()),
+  const BlockWrapper(LearnFromDevelopers()),
+  const BlockWrapper(WhoUsesFlutter()),
+  const BlockWrapper(FlutterNewsRow()),
+  const BlockWrapper(InstallFlutter()),
+  const Footer(),
 ];
 
 // Disabled codelab block for performance.

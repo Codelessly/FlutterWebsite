@@ -16,7 +16,7 @@ class SlideItemAnimationModel {
 
   @override
   bool operator ==(other) {
-    if (this.id == (other as SlideItemAnimationModel).id) {
+    if (id == (other as SlideItemAnimationModel).id) {
       return true;
     }
 
@@ -24,7 +24,7 @@ class SlideItemAnimationModel {
   }
 
   @override
-  int get hashCode => this.id.hashCode;
+  int get hashCode => id.hashCode;
 }
 
 Duration getSlideItemAnimationDuration(

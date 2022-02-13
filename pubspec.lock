@@ -260,7 +260,7 @@ packages:
       path: responsive_framework
       relative: true
     source: path
-    version: "0.1.2"
+    version: "0.1.6"
   sky_engine:
     dependency: transitive
     description: flutter

@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_website/components/components.dart';
 import 'package:flutter_website/utils/utils.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -13,18 +12,20 @@ import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MenuBar extends StatelessWidget {
+  const MenuBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     const Color navLinkColor = Color(0xFF6E7274);
     return Container(
       height: 66,
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+      decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(color: Color(0x1A000000), offset: Offset(0, 2), blurRadius: 4)
       ]),
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: <Widget>[
-          Padding(
+          const Padding(
               padding: EdgeInsets.only(right: 16),
               child: Icon(Icons.menu, color: textPrimary, size: 28)),
           MouseRegion(
@@ -33,21 +34,21 @@ class MenuBar extends StatelessWidget {
               onTap: () =>
                   Navigator.of(context).popUntil((route) => route.isFirst),
               child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 5, 16, 5),
+                padding: const EdgeInsets.fromLTRB(0, 5, 16, 5),
                 child: Image.asset("assets/images/flutter_logo_text.png",
                     height: 37, fit: BoxFit.contain),
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           ResponsiveVisibility(
             visible: false,
-            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            visibleWhen: const [Condition.largerThan(name: MOBILE)],
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () => openUrl("https://flutter.dev/docs"),
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Text("Docs",
                       style: TextStyle(
@@ -60,12 +61,12 @@ class MenuBar extends StatelessWidget {
           ),
           ResponsiveVisibility(
             visible: false,
-            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            visibleWhen: const [Condition.largerThan(name: MOBILE)],
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () => openUrl("https://flutter.dev/showcase"),
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Text("Showcase",
                       style: TextStyle(
@@ -78,12 +79,12 @@ class MenuBar extends StatelessWidget {
           ),
           ResponsiveVisibility(
             visible: false,
-            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            visibleWhen: const [Condition.largerThan(name: MOBILE)],
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () => openUrl("https://flutter.dev/community"),
-                child: Padding(
+                child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: Text("Community",
                         style: TextStyle(
@@ -93,7 +94,7 @@ class MenuBar extends StatelessWidget {
               ),
             ),
           ),
-          ResponsiveVisibility(
+          const ResponsiveVisibility(
             visible: false,
             visibleWhen: [Condition.largerThan(name: MOBILE)],
             child: MouseRegion(
@@ -111,7 +112,7 @@ class MenuBar extends StatelessWidget {
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               onTap: () => openUrl('https://twitter.com/flutterdev'),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: ImageIcon(
                     AssetImage("assets/images/icon_twitter_64x.png"),
@@ -124,7 +125,7 @@ class MenuBar extends StatelessWidget {
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               onTap: () => openUrl('https://www.youtube.com/flutterdev'),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: ImageIcon(
                     AssetImage("assets/images/icon_youtube_64x.png"),
@@ -137,7 +138,7 @@ class MenuBar extends StatelessWidget {
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               onTap: () => openUrl('https://github.com/flutter'),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: ImageIcon(
                     AssetImage("assets/images/icon_github_64x.png"),
@@ -148,9 +149,9 @@ class MenuBar extends StatelessWidget {
           ),
           ResponsiveVisibility(
             visible: false,
-            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            visibleWhen: const [Condition.largerThan(name: MOBILE)],
             child: Padding(
-              padding: EdgeInsets.only(left: 8, right: 0),
+              padding: const EdgeInsets.only(left: 8, right: 0),
               child: TextButton(
                 onPressed: () =>
                     openUrl("https://flutter.dev/docs/get-started/install"),
@@ -158,11 +159,13 @@ class MenuBar extends StatelessWidget {
                     backgroundColor: MaterialStateProperty.all<Color>(primary),
                     overlayColor: MaterialStateProperty.resolveWith<Color>(
                       (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.hovered))
+                        if (states.contains(MaterialState.hovered)) {
                           return buttonPrimaryDark;
+                        }
                         if (states.contains(MaterialState.focused) ||
-                            states.contains(MaterialState.pressed))
+                            states.contains(MaterialState.pressed)) {
                           return buttonPrimaryDarkPressed;
+                        }
                         return primary;
                       },
                     ),
@@ -170,26 +173,29 @@ class MenuBar extends StatelessWidget {
                     shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
                       (Set<MaterialState> states) {
                         if (states.contains(MaterialState.focused) ||
-                            states.contains(MaterialState.pressed))
-                          return RoundedRectangleBorder(
+                            states.contains(MaterialState.pressed)) {
+                          return const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(0)));
-                        return RoundedRectangleBorder(
+                        }
+                        return const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(0)));
                       },
                     ),
                     padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                        EdgeInsets.symmetric(vertical: 22, horizontal: 28)),
+                        const EdgeInsets.symmetric(
+                            vertical: 22, horizontal: 28)),
                     // Side adds pressed highlight outline.
                     side: MaterialStateProperty.resolveWith<BorderSide>(
                         (Set<MaterialState> states) {
                       if (states.contains(MaterialState.focused) ||
-                          states.contains(MaterialState.pressed))
-                        return BorderSide(
+                          states.contains(MaterialState.pressed)) {
+                        return const BorderSide(
                             width: 3, color: buttonPrimaryPressedOutline);
+                      }
                       // Transparent border placeholder as Flutter does not allow
                       // negative margins.
-                      return BorderSide(width: 3, color: Colors.white);
+                      return const BorderSide(width: 3, color: Colors.white);
                     })),
                 child: Text(
                   "Get started",
@@ -206,6 +212,8 @@ class MenuBar extends StatelessWidget {
 }
 
 class GetStarted extends StatelessWidget {
+  const GetStarted({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -214,11 +222,11 @@ class GetStarted extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: border)),
       margin: blockMargin,
-      padding: EdgeInsets.all(40),
+      padding: const EdgeInsets.all(40),
       child: Align(
         alignment: Alignment.center,
         child: Container(
-          constraints: BoxConstraints(maxWidth: 780),
+          constraints: const BoxConstraints(maxWidth: 780),
           child: Column(
             children: [
               Row(
@@ -228,18 +236,18 @@ class GetStarted extends StatelessWidget {
                   Text("Made by ",
                       style: headlineSecondaryTextStyle.copyWith(fontSize: 24)),
                   Padding(
-                    padding: EdgeInsets.only(top: 5),
+                    padding: const EdgeInsets.only(top: 5),
                     child: Image.asset("assets/images/google_logo.png",
                         width: 75, height: 24, fit: BoxFit.fill),
                   ),
                 ],
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 32),
+                padding: const EdgeInsets.symmetric(vertical: 32),
                 child: RichText(
                   text: TextSpan(
                     children: [
-                      TextSpan(
+                      const TextSpan(
                           text:
                               "Flutter is Google’s UI toolkit for building beautiful, natively compiled applications for ",
                           style: headlineSecondaryTextStyle),
@@ -251,7 +259,8 @@ class GetStarted extends StatelessWidget {
                           text: "mobile",
                           style: headlineSecondaryTextStyle.copyWith(
                               color: primary)),
-                      TextSpan(text: ", ", style: headlineSecondaryTextStyle),
+                      const TextSpan(
+                          text: ", ", style: headlineSecondaryTextStyle),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
@@ -260,7 +269,7 @@ class GetStarted extends StatelessWidget {
                           text: "web",
                           style: headlineSecondaryTextStyle.copyWith(
                               color: primary)),
-                      TextSpan(
+                      const TextSpan(
                           text: ", and ", style: headlineSecondaryTextStyle),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
@@ -270,7 +279,7 @@ class GetStarted extends StatelessWidget {
                           text: "desktop",
                           style: headlineSecondaryTextStyle.copyWith(
                               color: primary)),
-                      TextSpan(
+                      const TextSpan(
                           text: " from a single codebase.",
                           style: headlineSecondaryTextStyle),
                     ],
@@ -279,7 +288,7 @@ class GetStarted extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 32),
+                padding: const EdgeInsets.only(bottom: 32),
                 child: ResponsiveRowColumn(
                   layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
                       ? ResponsiveRowColumnType.COLUMN
@@ -297,11 +306,13 @@ class GetStarted extends StatelessWidget {
                             overlayColor:
                                 MaterialStateProperty.resolveWith<Color>(
                               (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.hovered))
+                                if (states.contains(MaterialState.hovered)) {
                                   return buttonPrimaryDark;
+                                }
                                 if (states.contains(MaterialState.focused) ||
-                                    states.contains(MaterialState.pressed))
+                                    states.contains(MaterialState.pressed)) {
                                   return buttonPrimaryDarkPressed;
+                                }
                                 return primary;
                               },
                             ),
@@ -310,30 +321,33 @@ class GetStarted extends StatelessWidget {
                                 OutlinedBorder>(
                               (Set<MaterialState> states) {
                                 if (states.contains(MaterialState.focused) ||
-                                    states.contains(MaterialState.pressed))
-                                  return RoundedRectangleBorder(
+                                    states.contains(MaterialState.pressed)) {
+                                  return const RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(0)));
-                                return RoundedRectangleBorder(
+                                }
+                                return const RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(0)));
                               },
                             ),
                             padding:
                                 MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                    EdgeInsets.symmetric(
+                                    const EdgeInsets.symmetric(
                                         vertical: 32, horizontal: 84)),
                             // Side adds pressed highlight outline.
                             side: MaterialStateProperty.resolveWith<BorderSide>(
                                 (Set<MaterialState> states) {
                               if (states.contains(MaterialState.focused) ||
-                                  states.contains(MaterialState.pressed))
-                                return BorderSide(
+                                  states.contains(MaterialState.pressed)) {
+                                return const BorderSide(
                                     width: 3,
                                     color: buttonPrimaryPressedOutline);
+                              }
                               // Transparent border placeholder as Flutter does not allow
                               // negative margins.
-                              return BorderSide(width: 3, color: Colors.white);
+                              return const BorderSide(
+                                  width: 3, color: Colors.white);
                             })),
                         child: Text(
                           "Get started",
@@ -343,18 +357,20 @@ class GetStarted extends StatelessWidget {
                     ),
                     ResponsiveRowColumnItem(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
-                        child: FlatButton(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: TextButton(
                           onPressed: () => {},
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(0))),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 20),
+                          style: TextButton.styleFrom(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(0))),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 20, horizontal: 20),
+                          ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsets.only(right: 8),
                                 child: Icon(
                                   Icons.play_circle_filled,
@@ -376,10 +392,10 @@ class GetStarted extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.only(bottom: 16),
                 child: RichText(
                   text: TextSpan(children: [
-                    TextSpan(
+                    const TextSpan(
                         text: "Coming from another platform? Docs: ",
                         style: bodyTextStyle),
                     TextSpan(
@@ -390,7 +406,7 @@ class GetStarted extends StatelessWidget {
                           },
                         text: "iOS",
                         style: bodyLinkTextStyle),
-                    TextSpan(text: ", ", style: bodyTextStyle),
+                    const TextSpan(text: ", ", style: bodyTextStyle),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
@@ -399,7 +415,7 @@ class GetStarted extends StatelessWidget {
                           },
                         text: "Android",
                         style: bodyLinkTextStyle),
-                    TextSpan(text: ", ", style: bodyTextStyle),
+                    const TextSpan(text: ", ", style: bodyTextStyle),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
@@ -408,7 +424,7 @@ class GetStarted extends StatelessWidget {
                           },
                         text: "Web",
                         style: bodyLinkTextStyle),
-                    TextSpan(text: ", ", style: bodyTextStyle),
+                    const TextSpan(text: ", ", style: bodyTextStyle),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
@@ -417,7 +433,7 @@ class GetStarted extends StatelessWidget {
                           },
                         text: "React Native",
                         style: bodyLinkTextStyle),
-                    TextSpan(text: ", ", style: bodyTextStyle),
+                    const TextSpan(text: ", ", style: bodyTextStyle),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
@@ -426,7 +442,7 @@ class GetStarted extends StatelessWidget {
                           },
                         text: "Xamarin",
                         style: bodyLinkTextStyle),
-                    TextSpan(text: ".", style: bodyTextStyle),
+                    const TextSpan(text: ".", style: bodyTextStyle),
                   ]),
                   textAlign: TextAlign.center,
                 ),
@@ -440,6 +456,8 @@ class GetStarted extends StatelessWidget {
 }
 
 class Features extends StatelessWidget {
+  const Features({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -456,8 +474,8 @@ class Features extends StatelessWidget {
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         columnCrossAxisAlignment: CrossAxisAlignment.center,
         columnMainAxisSize: MainAxisSize.min,
-        rowPadding: EdgeInsets.symmetric(horizontal: 80, vertical: 80),
-        columnPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+        rowPadding: const EdgeInsets.symmetric(horizontal: 80, vertical: 80),
+        columnPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
         columnSpacing: 50,
         rowSpacing: 50,
         children: [
@@ -467,17 +485,17 @@ class Features extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 32),
+                  padding: const EdgeInsets.only(bottom: 32),
                   child: buildMaterialIconCircle(
                       "assets/images/icon_development.png", 68),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(bottom: 16),
                   child: Text("Fast Development",
                       style: headlineSecondaryTextStyle,
                       textAlign: TextAlign.center),
                 ),
-                Text(
+                const Text(
                     "Paint your app to life in milliseconds with Stateful Hot Reload. Use a rich set of fully-customizable widgets to build native interfaces in minutes.",
                     style: bodyTextStyle,
                     textAlign: TextAlign.center),
@@ -490,17 +508,17 @@ class Features extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 32),
+                  padding: const EdgeInsets.only(bottom: 32),
                   child:
                       buildMaterialIconCircle("assets/images/icon_ui.png", 68),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(bottom: 16),
                   child: Text("Expressive and Flexible UI",
                       style: headlineSecondaryTextStyle,
                       textAlign: TextAlign.center),
                 ),
-                Text(
+                const Text(
                     "Quickly ship features with a focus on native end-user experiences. Layered architecture allows for full customization, which results in incredibly fast rendering and expressive and flexible designs.",
                     style: bodyTextStyle,
                     textAlign: TextAlign.center),
@@ -513,11 +531,11 @@ class Features extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 32),
+                  padding: const EdgeInsets.only(bottom: 32),
                   child: buildMaterialIconCircle(
                       "assets/images/icon_performance.png", 68),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(bottom: 16),
                   child: Text("Native Performance",
                       style: headlineSecondaryTextStyle,
@@ -527,7 +545,7 @@ class Features extends StatelessWidget {
                   text: TextSpan(
                     style: bodyTextStyle,
                     children: [
-                      TextSpan(
+                      const TextSpan(
                           text:
                               "Flutter’s widgets incorporate all critical platform differences such as scrolling, navigation, icons and fonts, and your Flutter code is compiled to native ARM machine code using "),
                       TextSpan(
@@ -537,7 +555,7 @@ class Features extends StatelessWidget {
                             },
                           text: "Dart's native compilers",
                           style: bodyLinkTextStyle),
-                      TextSpan(text: "."),
+                      const TextSpan(text: "."),
                     ],
                   ),
                   textAlign: TextAlign.center,
@@ -552,6 +570,8 @@ class Features extends StatelessWidget {
 }
 
 class FastDevelopment extends StatefulWidget {
+  const FastDevelopment({Key? key}) : super(key: key);
+
   @override
   _FastDevelopmentState createState() => _FastDevelopmentState();
 }
@@ -567,7 +587,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
     videoController.setVolume(0);
     videoController.setLooping(true);
     initializeVideoPlayerFuture = videoController.initialize().then((_) {
-      if (this.mounted) {
+      if (mounted) {
         // Display the first frame of the video before playback.
         setState(() {});
         videoPlay();
@@ -624,17 +644,17 @@ class _FastDevelopmentState extends State<FastDevelopment> {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
+              padding: const EdgeInsets.fromLTRB(25, 32, 25, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(bottom: 16),
+                    padding: const EdgeInsets.only(bottom: 16),
                     child: buildMaterialIconCircle(
                         "assets/images/icon_development.png", 68),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 32),
                     child: Text("Fast Development", style: headlineTextStyle),
                   ),
@@ -642,15 +662,15 @@ class _FastDevelopmentState extends State<FastDevelopment> {
                     text: TextSpan(
                       style: bodyTextStyle,
                       children: [
-                        TextSpan(text: "Flutter's "),
+                        const TextSpan(text: "Flutter's "),
                         TextSpan(
                             text: "hot reload",
                             style: bodyTextStyle.copyWith(
                                 fontStyle: FontStyle.italic)),
-                        TextSpan(
+                        const TextSpan(
                             text:
                                 " helps you quickly and easily experiment, build UIs, add features, and fix bugs faster. Experience sub-second reload times, without losing state, on emulators, simulators, and hardware for iOS and Android."),
-                        TextSpan(text: "\n\n"),
+                        const TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
@@ -673,6 +693,8 @@ class _FastDevelopmentState extends State<FastDevelopment> {
 }
 
 class BeautifulUI extends StatefulWidget {
+  const BeautifulUI({Key? key}) : super(key: key);
+
   @override
   _BeautifulUIState createState() => _BeautifulUIState();
 }
@@ -689,7 +711,7 @@ class _BeautifulUIState extends State<BeautifulUI> {
     videoController.setVolume(0);
     videoController.setLooping(true);
     initializeVideoPlayerFuture = videoController.initialize().then((_) {
-      if (this.mounted) {
+      if (mounted) {
         // Display the first frame of the video before playback.
         setState(() {});
         videoPlay();
@@ -727,17 +749,17 @@ class _BeautifulUIState extends State<BeautifulUI> {
             rowFlex: 1,
             columnOrder: 2,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
+              padding: const EdgeInsets.fromLTRB(25, 32, 25, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(bottom: 16),
+                    padding: const EdgeInsets.only(bottom: 16),
                     child: buildMaterialIconCircle(
                         "assets/images/icon_ui.png", 68),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 32),
                     child: Text("Expressive, beautiful UIs",
                         style: headlineTextStyle),
@@ -746,10 +768,10 @@ class _BeautifulUIState extends State<BeautifulUI> {
                     text: TextSpan(
                       style: bodyTextStyle,
                       children: [
-                        TextSpan(
+                        const TextSpan(
                             text:
                                 "Delight your users with Flutter's built-in beautiful Material Design and Cupertino (iOS-flavor) widgets, rich motion APIs, smooth natural scrolling, and platform awareness."),
-                        TextSpan(text: "\n\n"),
+                        const TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
@@ -793,6 +815,8 @@ class _BeautifulUIState extends State<BeautifulUI> {
 }
 
 class NativePerformance extends StatefulWidget {
+  const NativePerformance({Key? key}) : super(key: key);
+
   @override
   _NativePerformanceState createState() => _NativePerformanceState();
 }
@@ -809,7 +833,7 @@ class _NativePerformanceState extends State<NativePerformance> {
     videoController.setVolume(0);
     videoController.setLooping(true);
     initializeVideoPlayerFuture = videoController.initialize().then((_) {
-      if (this.mounted) {
+      if (mounted) {
         // Display the first frame of the video before playback.
         setState(() {});
         videoPlay();
@@ -866,17 +890,17 @@ class _NativePerformanceState extends State<NativePerformance> {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
+              padding: const EdgeInsets.fromLTRB(25, 32, 25, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(bottom: 16),
+                    padding: const EdgeInsets.only(bottom: 16),
                     child: buildMaterialIconCircle(
                         "assets/images/icon_performance.png", 68),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 32),
                     child: Text("Native Performance", style: headlineTextStyle),
                   ),
@@ -884,10 +908,10 @@ class _NativePerformanceState extends State<NativePerformance> {
                     text: TextSpan(
                       style: bodyTextStyle,
                       children: [
-                        TextSpan(
+                        const TextSpan(
                             text:
                                 "Flutter’s widgets incorporate all critical platform differences such as scrolling, navigation, icons and fonts to provide full native performance on both iOS and Android."),
-                        TextSpan(text: "\n\n"),
+                        const TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
@@ -895,7 +919,7 @@ class _NativePerformanceState extends State<NativePerformance> {
                               },
                             text: "Examples of apps built with Flutter",
                             style: bodyLinkTextStyle),
-                        TextSpan(text: "\n\n"),
+                        const TextSpan(text: "\n\n"),
                         TextSpan(
                             text: "Demo design inspired by ",
                             style: bodyTextStyle.copyWith(fontSize: 12)),
@@ -933,6 +957,8 @@ class _NativePerformanceState extends State<NativePerformance> {
 }
 
 class LearnFromDevelopers extends StatefulWidget {
+  const LearnFromDevelopers({Key? key}) : super(key: key);
+
   @override
   _LearnFromDevelopersState createState() => _LearnFromDevelopersState();
 }
@@ -978,12 +1004,12 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
             rowFlex: 1,
             columnOrder: 2,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(25, 32, 25, 0),
+              padding: const EdgeInsets.fromLTRB(25, 32, 25, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 32),
                     child:
                         Text("Learn from developers", style: headlineTextStyle),
@@ -992,10 +1018,10 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
                     text: TextSpan(
                       style: bodyTextStyle,
                       children: [
-                        TextSpan(
+                        const TextSpan(
                             text:
                                 "Watch these videos to learn from Google and developers as you build with Flutter."),
-                        TextSpan(text: "\n\n"),
+                        const TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
@@ -1014,7 +1040,7 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
             rowFlex: 2,
             columnOrder: 1,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: AspectRatio(
                 aspectRatio: videoAspectRatio,
                 child: (kIsWeb)
@@ -1040,6 +1066,8 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
 }
 
 class WhoUsesFlutter extends StatelessWidget {
+  const WhoUsesFlutter({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -1060,12 +1088,12 @@ class WhoUsesFlutter extends StatelessWidget {
             rowFlex: 5,
             columnOrder: 2,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(25, 24, 25, 0),
+              padding: const EdgeInsets.fromLTRB(25, 24, 25, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 16),
                     child:
                         Text("Who's using Flutter?", style: headlineTextStyle),
@@ -1074,10 +1102,10 @@ class WhoUsesFlutter extends StatelessWidget {
                     text: TextSpan(
                       style: bodyTextStyle,
                       children: [
-                        TextSpan(
+                        const TextSpan(
                             text:
                                 "Organizations around the world are building apps with Flutter."),
-                        TextSpan(text: "\n\n"),
+                        const TextSpan(text: "\n\n"),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
@@ -1104,6 +1132,8 @@ class WhoUsesFlutter extends StatelessWidget {
 }
 
 class FlutterNewsRow extends StatelessWidget {
+  const FlutterNewsRow({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -1115,7 +1145,7 @@ class FlutterNewsRow extends StatelessWidget {
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         rowSpacing: 25,
         columnSpacing: 32,
-        children: [
+        children: const [
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
@@ -1165,22 +1195,22 @@ class FlutterNewsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            constraints: BoxConstraints(maxHeight: 400),
+            constraints: const BoxConstraints(maxHeight: 400),
             child: Image.asset(imagePath, fit: BoxFit.fitWidth),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(40, 40, 40, 40),
+            padding: const EdgeInsets.fromLTRB(40, 40, 40, 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 16),
                   child: Text("News",
                       style: bodyTextStyle.copyWith(
-                          fontSize: 12, color: Color(0xFF6C757D))),
+                          fontSize: 12, color: const Color(0xFF6C757D))),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 16),
                   child: Text(title, style: headlineSecondaryTextStyle),
                 ),
                 GestureDetector(
@@ -1197,6 +1227,8 @@ class FlutterNewsCard extends StatelessWidget {
 }
 
 class FlutterCodelab extends StatefulWidget {
+  const FlutterCodelab({Key? key}) : super(key: key);
+
   @override
   _FlutterCodelabState createState() => _FlutterCodelabState();
 }
@@ -1231,6 +1263,8 @@ class _FlutterCodelabState extends State<FlutterCodelab>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -1242,10 +1276,10 @@ class _FlutterCodelabState extends State<FlutterCodelab>
       child: Align(
         alignment: Alignment.center,
         child: Container(
-          constraints: BoxConstraints(maxWidth: 1000),
+          constraints: const BoxConstraints(maxWidth: 1000),
           child: Column(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16),
                 child: Text("Try Flutter in your browser",
                     style: headlineTextStyle),
@@ -1258,16 +1292,16 @@ class _FlutterCodelabState extends State<FlutterCodelab>
               RepaintBoundary(
                 key: webViewKey,
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(25, 16, 25, 16),
+                  padding: const EdgeInsets.fromLTRB(25, 16, 25, 16),
                   child: AspectRatio(
                     aspectRatio: videoAspectRatio,
                     child: (kIsWeb)
                         ? Container(
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Color(0xFFD3D3D3), width: 1),
+                                  color: const Color(0xFFD3D3D3), width: 1),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(0)),
+                                  const BorderRadius.all(Radius.circular(0)),
                             ),
                             child: HtmlElementView(
                               key: webViewKey,
@@ -1282,12 +1316,12 @@ class _FlutterCodelabState extends State<FlutterCodelab>
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 16, bottom: 16),
+                padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: RichText(
                   text: TextSpan(
                     style: headlineSecondaryTextStyle,
                     children: [
-                      TextSpan(text: "Want more practice? "),
+                      const TextSpan(text: "Want more practice? "),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
@@ -1296,7 +1330,7 @@ class _FlutterCodelabState extends State<FlutterCodelab>
                           text: "Try a codelab",
                           style: headlineSecondaryTextStyle.copyWith(
                               color: primary)),
-                      TextSpan(text: ".")
+                      const TextSpan(text: ".")
                     ],
                   ),
                 ),
@@ -1331,13 +1365,15 @@ class _FlutterCodelabState extends State<FlutterCodelab>
 
   Widget getCupertinoSelectionWidget(String text) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Text(text, style: bodyTextStyle),
     );
   }
 }
 
 class InstallFlutter extends StatelessWidget {
+  const InstallFlutter({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -1351,20 +1387,20 @@ class InstallFlutter extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: Container(
-          constraints: BoxConstraints(maxWidth: 800),
+          constraints: const BoxConstraints(maxWidth: 800),
           child: Column(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16),
                 child: Text("Install Flutter today.", style: headlineTextStyle),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.only(bottom: 16),
                 child: Text("It’s free and open source.",
                     style: bodyTextStyle.copyWith(fontSize: 24)),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 32),
+                padding: const EdgeInsets.only(top: 32),
                 child: TextButton(
                   onPressed: () =>
                       openUrl("https://flutter.dev/docs/get-started/install"),
@@ -1373,11 +1409,13 @@ class InstallFlutter extends StatelessWidget {
                           MaterialStateProperty.all<Color>(primary),
                       overlayColor: MaterialStateProperty.resolveWith<Color>(
                         (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
+                          if (states.contains(MaterialState.hovered)) {
                             return buttonPrimaryDark;
+                          }
                           if (states.contains(MaterialState.focused) ||
-                              states.contains(MaterialState.pressed))
+                              states.contains(MaterialState.pressed)) {
                             return buttonPrimaryDarkPressed;
+                          }
                           return primary;
                         },
                       ),
@@ -1385,27 +1423,30 @@ class InstallFlutter extends StatelessWidget {
                       shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
                         (Set<MaterialState> states) {
                           if (states.contains(MaterialState.focused) ||
-                              states.contains(MaterialState.pressed))
-                            return RoundedRectangleBorder(
+                              states.contains(MaterialState.pressed)) {
+                            return const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(0)));
-                          return RoundedRectangleBorder(
+                          }
+                          return const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(0)));
                         },
                       ),
                       padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                          EdgeInsets.symmetric(vertical: 32, horizontal: 90)),
+                          const EdgeInsets.symmetric(
+                              vertical: 32, horizontal: 90)),
                       // Side adds pressed highlight outline.
                       side: MaterialStateProperty.resolveWith<BorderSide>(
                           (Set<MaterialState> states) {
                         if (states.contains(MaterialState.focused) ||
-                            states.contains(MaterialState.pressed))
-                          return BorderSide(
+                            states.contains(MaterialState.pressed)) {
+                          return const BorderSide(
                               width: 3, color: buttonPrimaryPressedOutline);
+                        }
                         // Transparent border placeholder as Flutter does not allow
                         // negative margins.
-                        return BorderSide(width: 3, color: Colors.white);
+                        return const BorderSide(width: 3, color: Colors.white);
                       })),
                   child: Text(
                     "Get started",
@@ -1422,12 +1463,14 @@ class InstallFlutter extends StatelessWidget {
 }
 
 class Footer extends StatelessWidget {
+  const Footer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: backgroundDark,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: ResponsiveRowColumn(
         layout: ResponsiveWrapper.of(context).isMobile
             ? ResponsiveRowColumnType.COLUMN
@@ -1436,7 +1479,7 @@ class Footer extends StatelessWidget {
         children: [
           ResponsiveRowColumnItem(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+              padding: const EdgeInsets.fromLTRB(0, 20, 20, 20),
               child: Image.asset("assets/images/flutter_logo_mono.png",
                   height: 100, fit: BoxFit.contain),
             ),
@@ -1460,21 +1503,21 @@ class Footer extends StatelessWidget {
                                   "https://groups.google.com/forum/#!forum/flutter-dev");
                             },
                           text: "flutter-dev@"),
-                      TextSpan(text: "  •  "),
+                      const TextSpan(text: "  •  "),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               openUrl("https://flutter.dev/tos");
                             },
                           text: "terms"),
-                      TextSpan(text: "  •  "),
+                      const TextSpan(text: "  •  "),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               openUrl("https://flutter.dev/security");
                             },
                           text: "security"),
-                      TextSpan(text: "  •  "),
+                      const TextSpan(text: "  •  "),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
@@ -1482,14 +1525,14 @@ class Footer extends StatelessWidget {
                                   "https://www.google.com/intl/en/policies/privacy");
                             },
                           text: "privacy"),
-                      TextSpan(text: "  •  "),
+                      const TextSpan(text: "  •  "),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               openUrl("https://flutter-es.io/");
                             },
                           text: "español"),
-                      TextSpan(text: "  •  "),
+                      const TextSpan(text: "  •  "),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
@@ -1505,15 +1548,15 @@ class Footer extends StatelessWidget {
                       style: bodyTextStyle.copyWith(
                           fontSize: 14, color: Colors.white, height: 1),
                       children: [
-                        TextSpan(text: '\n'),
+                        const TextSpan(text: '\n'),
                         TextSpan(
                             text:
                                 "Except as otherwise noted, this work is licensed under a Creative Commons Attribution 4.0 International License, and code samples are licensed under the BSD License.",
                             style: bodyTextStyle.copyWith(
                                 fontSize: 10, color: Colors.white)),
-                        TextSpan(text: '\n'),
-                        TextSpan(text: '\n'),
-                        TextSpan(text: '\n'),
+                        const TextSpan(text: '\n'),
+                        const TextSpan(text: '\n'),
+                        const TextSpan(text: '\n'),
                       ]),
                 )
               ],

@@ -45,7 +45,7 @@ class _CarouselSlide1State extends State<CarouselSlide1>
         entry: 36,
         exit: 219),
   ];
-  final slideItemOffset = Offset(0, 60);
+  final slideItemOffset = const Offset(0, 60);
 
   @override
   void dispose() {
@@ -61,8 +61,8 @@ class _CarouselSlide1State extends State<CarouselSlide1>
     animation = Tween<double>(begin: 0, end: 252).animate(animationController)
       ..addListener(() {
         setState(() {
-          this.slideItems =
-              getSlideItemAnimationUpdate(animation.value, this.slideItems);
+          slideItems =
+              getSlideItemAnimationUpdate(animation.value, slideItems);
         });
       });
     animationController.forward();
@@ -70,7 +70,7 @@ class _CarouselSlide1State extends State<CarouselSlide1>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 1200,
       height: 1200,
       child: Stack(

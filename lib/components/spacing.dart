@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 // Margin
@@ -18,9 +17,9 @@ const List<Condition> blockWidthConstraints = [
 ];
 
 EdgeInsets blockPadding(BuildContext context) => ResponsiveValue(context,
-        defaultValue: EdgeInsets.symmetric(horizontal: 55, vertical: 80),
+        defaultValue: const EdgeInsets.symmetric(horizontal: 55, vertical: 80),
         valueWhen: [
-          Condition.smallerThan(
+          const Condition.smallerThan(
               name: TABLET,
               value: EdgeInsets.symmetric(horizontal: 15, vertical: 45))
         ]).value!;

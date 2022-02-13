@@ -7,12 +7,15 @@ import 'package:flutter_website/ui/carousel/carousel_slide_4.dart';
 class Carousel extends StatefulWidget {
   static int slideDuration = 6400;
   static int slideCount = 4;
-  List<Widget> slides = [
+  final List<Widget> slides = [
     CarouselSlide1(slideDuration: slideDuration),
     CarouselSlide2(slideDuration: slideDuration),
     CarouselSlide3(slideDuration: slideDuration),
     CarouselSlide4(slideDuration: slideDuration),
   ];
+
+  Carousel({Key? key}) : super(key: key);
+
   @override
   _CarouselState createState() => _CarouselState();
 }
@@ -39,18 +42,18 @@ class _CarouselState extends State<Carousel>
         vsync: this);
     animation = Tween<double>(begin: 0, end: Carousel.slideCount.toDouble())
         .animate(animationController)
-          ..addListener(() {
-            if (animation.value.floor() != currentSlide &&
-                animation.value.floor() < Carousel.slideCount) {
-              currentSlide = animation.value.floor();
-              setState(() {});
-            }
-          })
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              restart();
-            }
-          });
+      ..addListener(() {
+        if (animation.value.floor() != currentSlide &&
+            animation.value.floor() < Carousel.slideCount) {
+          currentSlide = animation.value.floor();
+          setState(() {});
+        }
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          restart();
+        }
+      });
     animationController.forward();
   }
 

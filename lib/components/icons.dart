@@ -6,7 +6,7 @@ Widget buildMaterialIconCircle(String imagePath, double size) {
   return Container(
     width: size,
     height: size,
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       shape: BoxShape.circle,
       color: primaryLight,
     ),

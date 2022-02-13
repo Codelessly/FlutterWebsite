@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<bool> openUrl(String url, {bool newWindow = false}) async {
@@ -6,7 +7,7 @@ Future<bool> openUrl(String url, {bool newWindow = false}) async {
       url,
     );
   } else {
-    print("Could not launch $url");
+    debugPrint("Could not launch $url");
     return false;
   }
 }
