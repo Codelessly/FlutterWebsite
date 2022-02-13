@@ -9,13 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.3
-  animations: ^2.0.0
-  url_launcher: ^6.0.2
-  video_player: ^2.1.1
-  webview_flutter: ^2.0.6
+  cupertino_icons: ^1.0.4
+  animations: ^2.0.2
+  url_launcher: ^6.0.20
+  video_player: ^2.2.18
+  webview_flutter: ^3.0.0
   universal_html: ^2.0.8
-  google_fonts: ^2.1.0
+  google_fonts: ^2.3.1
   responsive_framework:
     path: responsive_framework/
 
