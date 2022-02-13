@@ -8,6 +8,8 @@
 
 [View Flutter Website](https://gallery.codelessly.com/flutterwebsites/flutterwebsite)
 
+[HTML Version](https://gallery.codelessly.com/flutterwebsites/flutterwebsite-html)
+
 [Canvas Version](https://gallery.codelessly.com/flutterwebsites/flutterwebsite-canvas)
 
 ## Screenshots
