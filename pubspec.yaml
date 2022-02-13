@@ -4,7 +4,7 @@ description: The flutter.dev website rebuilt in Flutter.
 version: 1.0.0
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.16.1 <3.0.0"
 
 dependencies:
   flutter:
@@ -22,12 +22,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^1.0.4
 
 flutter:
   uses-material-design: true
   assets:
-   - assets/images/
-   - assets/videos/
+    - assets/images/
+    - assets/videos/
   fonts:
     - family: Google Sans
       fonts:
@@ -38,8 +39,8 @@ flutter:
           style: italic
     - family: Roboto
       fonts:
-          - asset: assets/fonts/roboto_regular.ttf
-          - asset: assets/fonts/roboto_bold.ttf
-            weight: 700
-          - asset: assets/fonts/roboto_italic.ttf
-            style: italic
+        - asset: assets/fonts/roboto_regular.ttf
+        - asset: assets/fonts/roboto_bold.ttf
+          weight: 700
+        - asset: assets/fonts/roboto_italic.ttf
+          style: italic
