@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           background: Container(color: background)),
       home: Scaffold(
         appBar: const PreferredSize(
-            preferredSize: Size(double.infinity, 66), child: MenuBar()),
+            preferredSize: Size(double.infinity, 66), child: WebsiteMenuBar()),
         body: ListView.builder(
             itemCount: blocks.length,
             itemBuilder: (context, index) {

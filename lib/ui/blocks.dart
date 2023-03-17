@@ -11,8 +11,8 @@ import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class MenuBar extends StatelessWidget {
-  const MenuBar({Key? key}) : super(key: key);
+class WebsiteMenuBar extends StatelessWidget {
+  const WebsiteMenuBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -573,7 +573,7 @@ class FastDevelopment extends StatefulWidget {
   const FastDevelopment({Key? key}) : super(key: key);
 
   @override
-  _FastDevelopmentState createState() => _FastDevelopmentState();
+  State<FastDevelopment> createState() => _FastDevelopmentState();
 }
 
 class _FastDevelopmentState extends State<FastDevelopment> {
@@ -696,7 +696,7 @@ class BeautifulUI extends StatefulWidget {
   const BeautifulUI({Key? key}) : super(key: key);
 
   @override
-  _BeautifulUIState createState() => _BeautifulUIState();
+  State<BeautifulUI> createState() => _BeautifulUIState();
 }
 
 class _BeautifulUIState extends State<BeautifulUI> {
@@ -818,7 +818,7 @@ class NativePerformance extends StatefulWidget {
   const NativePerformance({Key? key}) : super(key: key);
 
   @override
-  _NativePerformanceState createState() => _NativePerformanceState();
+  State<NativePerformance> createState() => _NativePerformanceState();
 }
 
 class _NativePerformanceState extends State<NativePerformance> {
@@ -960,7 +960,7 @@ class LearnFromDevelopers extends StatefulWidget {
   const LearnFromDevelopers({Key? key}) : super(key: key);
 
   @override
-  _LearnFromDevelopersState createState() => _LearnFromDevelopersState();
+  State<LearnFromDevelopers> createState() => _LearnFromDevelopersState();
 }
 
 class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
@@ -1052,9 +1052,10 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
 //                        key: webViewKey,
 //                        viewType: webViewKey.toString(),
 //                      )
-                    : WebView(
+                    : WebViewWidget(
                         key: webViewKey,
-                        initialUrl: videoUrl,
+                        controller: WebViewController()
+                          ..loadRequest(Uri.parse(videoUrl)),
                       ),
               ),
             ),
@@ -1230,7 +1231,7 @@ class FlutterCodelab extends StatefulWidget {
   const FlutterCodelab({Key? key}) : super(key: key);
 
   @override
-  _FlutterCodelabState createState() => _FlutterCodelabState();
+  State<FlutterCodelab> createState() => _FlutterCodelabState();
 }
 
 class _FlutterCodelabState extends State<FlutterCodelab>
@@ -1308,9 +1309,10 @@ class _FlutterCodelabState extends State<FlutterCodelab>
                               viewType: codelabSelected,
                             ),
                           )
-                        : WebView(
+                        : WebViewWidget(
                             key: webViewKey,
-                            initialUrl: codelabUrlSelected,
+                            controller: WebViewController()
+                              ..loadRequest(Uri.parse(codelabUrlSelected)),
                           ),
                   ),
                 ),
