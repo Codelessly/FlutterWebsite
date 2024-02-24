@@ -1,11 +1,11 @@
 {
-    "name": "flutter_website",
-    "short_name": "flutter_website",
+    "name": "Flutter.dev",
+    "short_name": "Flutter.dev",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "The flutter.dev website rebuilt in Flutter.",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
