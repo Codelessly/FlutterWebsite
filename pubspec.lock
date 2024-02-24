@@ -302,7 +302,7 @@ packages:
       path: responsive_framework
       relative: true
     source: path
-    version: "0.1.7"
+    version: "1.2.0"
   sky_engine:
     dependency: transitive
     description: flutter

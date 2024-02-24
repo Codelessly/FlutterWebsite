@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_website/components/colors.dart';
 import 'package:flutter_website/ui/block_wrapper.dart';
 import 'package:flutter_website/ui/carousel/carousel.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         ],
       ),
       home: Scaffold(
+        backgroundColor: background,
         appBar: const PreferredSize(
             preferredSize: Size(double.infinity, 66), child: WebsiteMenuBar()),
         body: ListView.builder(
