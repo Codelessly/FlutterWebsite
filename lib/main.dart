@@ -68,15 +68,12 @@ List<Widget> blocks = [
   const BlockWrapper(NativePerformance()),
   const BlockWrapper(LearnFromDevelopers()),
   const BlockWrapper(WhoUsesFlutter()),
+  // Disabled codelab block for performance.
+  const ResponsiveVisibility(
+    hiddenConditions: [Condition.smallerThan(name: DESKTOP)],
+    child: BlockWrapper(FlutterCodelab()),
+  ),
   const BlockWrapper(FlutterNewsRow()),
   const BlockWrapper(InstallFlutter()),
   const Footer(),
 ];
-
-// Disabled codelab block for performance.
-//              ResponsiveVisibility(
-//                hiddenWhen: [Condition.smallerThan(name: DESKTOP)],
-//                child: ResponsiveConstraints(
-//                    constraintsWhen: blockWidthConstraints,
-//                    child: FlutterCodelab()),
-//              ),

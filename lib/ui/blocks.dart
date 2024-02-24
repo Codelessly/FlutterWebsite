@@ -1,7 +1,6 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_website/components/components.dart';
@@ -1043,20 +1042,21 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: AspectRatio(
                 aspectRatio: videoAspectRatio,
-                child: (kIsWeb)
-                    ? Image.asset(
-                        "assets/images/video_thumbnail_learn_from_developers.png",
-                        fit: BoxFit.contain)
-                    // TODO: Disable multiple embedded iframes to prevent flicker.
+                child: WebViewWidget(
+                  key: webViewKey,
+                  controller: WebViewController()
+                    ..loadRequest(Uri.parse(videoUrl)),
+                )
+                // TODO: Legacy WebView on Web workarounds.
+                // (kIsWeb)
+                //     ? Image.asset(
+                //         "assets/images/video_thumbnail_learn_from_developers.png",
+                //         fit: BoxFit.contain)
 //                HtmlElementView(
 //                        key: webViewKey,
 //                        viewType: webViewKey.toString(),
 //                      )
-                    : WebViewWidget(
-                        key: webViewKey,
-                        controller: WebViewController()
-                          ..loadRequest(Uri.parse(videoUrl)),
-                      ),
+                ,
               ),
             ),
           ),
@@ -1246,8 +1246,6 @@ class _FlutterCodelabState extends State<FlutterCodelab>
   final double videoAspectRatio = 1.75;
 
   late Map<String, Widget> codelabExamples;
-  // TODO: Breaks mobile builds. Official Flutter WebView plugin is working on Web support.
-  HtmlElementView? codelabHtmlElementView;
   UniqueKey webViewKey = UniqueKey();
 
   @override
@@ -1295,24 +1293,19 @@ class _FlutterCodelabState extends State<FlutterCodelab>
                   padding: const EdgeInsets.fromLTRB(25, 16, 25, 16),
                   child: AspectRatio(
                     aspectRatio: videoAspectRatio,
-                    child: (kIsWeb)
-                        ? Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: const Color(0xFFD3D3D3), width: 1),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(0)),
-                            ),
-                            child: HtmlElementView(
-                              key: webViewKey,
-                              viewType: codelabSelected,
-                            ),
-                          )
-                        : WebViewWidget(
-                            key: webViewKey,
-                            controller: WebViewController()
-                              ..loadRequest(Uri.parse(codelabUrlSelected)),
-                          ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: const Color(0xFFD3D3D3), width: 1),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(0)),
+                      ),
+                      child: WebViewWidget(
+                        key: webViewKey,
+                        controller: WebViewController()
+                          ..loadRequest(Uri.parse(codelabUrlSelected)),
+                      ),
+                    ),
                   ),
                 ),
               ),
