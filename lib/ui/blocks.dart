@@ -43,7 +43,7 @@ class WebsiteMenuBar extends StatelessWidget {
           const Spacer(),
           ResponsiveVisibility(
             visible: false,
-            visibleWhen: const [Condition.largerThan(name: MOBILE)],
+            visibleConditions: const [Condition.largerThan(name: MOBILE)],
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
@@ -61,7 +61,7 @@ class WebsiteMenuBar extends StatelessWidget {
           ),
           ResponsiveVisibility(
             visible: false,
-            visibleWhen: const [Condition.largerThan(name: MOBILE)],
+            visibleConditions: const [Condition.largerThan(name: MOBILE)],
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
@@ -79,7 +79,7 @@ class WebsiteMenuBar extends StatelessWidget {
           ),
           ResponsiveVisibility(
             visible: false,
-            visibleWhen: const [Condition.largerThan(name: MOBILE)],
+            visibleConditions: const [Condition.largerThan(name: MOBILE)],
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
@@ -96,7 +96,7 @@ class WebsiteMenuBar extends StatelessWidget {
           ),
           const ResponsiveVisibility(
             visible: false,
-            visibleWhen: [Condition.largerThan(name: MOBILE)],
+            visibleConditions: [Condition.largerThan(name: MOBILE)],
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: Padding(
@@ -149,7 +149,7 @@ class WebsiteMenuBar extends StatelessWidget {
           ),
           ResponsiveVisibility(
             visible: false,
-            visibleWhen: const [Condition.largerThan(name: MOBILE)],
+            visibleConditions: const [Condition.largerThan(name: MOBILE)],
             child: Padding(
               padding: const EdgeInsets.only(left: 8, right: 0),
               child: TextButton(
@@ -290,7 +290,7 @@ class GetStarted extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 32),
                 child: ResponsiveRowColumn(
-                  layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+                  layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
                       ? ResponsiveRowColumnType.COLUMN
                       : ResponsiveRowColumnType.ROW,
                   rowMainAxisAlignment: MainAxisAlignment.center,
@@ -468,7 +468,7 @@ class Features extends StatelessWidget {
           border: Border.all(color: border)),
       margin: blockMargin,
       child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+        layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
@@ -616,7 +616,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+        layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
@@ -740,7 +740,7 @@ class _BeautifulUIState extends State<BeautifulUI> {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+        layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
@@ -862,7 +862,7 @@ class _NativePerformanceState extends State<NativePerformance> {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+        layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
@@ -995,7 +995,7 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+        layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
@@ -1080,7 +1080,7 @@ class WhoUsesFlutter extends StatelessWidget {
       margin: blockMargin,
       padding: blockPadding(context),
       child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+        layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.center,
@@ -1140,7 +1140,7 @@ class FlutterNewsRow extends StatelessWidget {
     return Container(
       margin: blockMargin,
       child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+        layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
@@ -1473,7 +1473,7 @@ class Footer extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isMobile
+        layout: ResponsiveBreakpoints.of(context).isMobile
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         columnMainAxisSize: MainAxisSize.min,

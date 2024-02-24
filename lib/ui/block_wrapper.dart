@@ -14,7 +14,7 @@ class BlockWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ResponsiveConstraints(
-          constraintsWhen: blockWidthConstraints, child: widget),
+          conditionalConstraints: blockWidthConstraints, child: widget),
     );
   }
 }

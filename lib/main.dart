@@ -3,7 +3,6 @@ import 'package:flutter_website/ui/block_wrapper.dart';
 import 'package:flutter_website/ui/carousel/carousel.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'components/components.dart';
 import 'ui/blocks.dart';
 
 void main() {
@@ -16,18 +15,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      builder: (context, widget) => ResponsiveWrapper.builder(
-          ClampingScrollWrapper.builder(context, widget!),
-          defaultScale: true,
-          minWidth: 480,
-          defaultName: MOBILE,
-          breakpoints: [
-            const ResponsiveBreakpoint.autoScale(480, name: MOBILE),
-            const ResponsiveBreakpoint.resize(600, name: MOBILE),
-            const ResponsiveBreakpoint.resize(850, name: TABLET),
-            const ResponsiveBreakpoint.resize(1080, name: DESKTOP),
-          ],
-          background: Container(color: background)),
+      builder: (context, widget) => ResponsiveBreakpoints.builder(
+        child: Builder(builder: (context) {
+          return ResponsiveScaledBox(
+              width: ResponsiveValue<double?>(context,
+                  defaultValue: null,
+                  conditionalValues: [
+                    const Condition.equals(name: 'MOBILE_SMALL', value: 480),
+                  ]).value,
+              child: ClampingScrollWrapper.builder(context, widget!));
+        }),
+        breakpoints: [
+          const Breakpoint(start: 0, end: 480, name: 'MOBILE_SMALL'),
+          const Breakpoint(start: 481, end: 850, name: MOBILE),
+          const Breakpoint(start: 850, end: 1080, name: TABLET),
+          const Breakpoint(start: 1081, end: double.infinity, name: DESKTOP),
+        ],
+      ),
       home: Scaffold(
         appBar: const PreferredSize(
             preferredSize: Size(double.infinity, 66), child: WebsiteMenuBar()),
@@ -43,12 +47,18 @@ class MyApp extends StatelessWidget {
 }
 
 List<Widget> blocks = [
-  ResponsiveWrapper(
-      maxWidth: 1200,
-      minWidth: 1200,
-      defaultScale: true,
-      mediaQueryData: const MediaQueryData(size: Size(1200, 640)),
-      child: RepaintBoundary(child: Carousel())),
+  MaxWidthBox(
+    maxWidth: 1200,
+    child: FittedBox(
+      fit: BoxFit.fitWidth,
+      alignment: Alignment.topCenter,
+      child: Container(
+          width: 1200,
+          height: 640,
+          alignment: Alignment.center,
+          child: RepaintBoundary(child: Carousel())),
+    ),
+  ),
   const BlockWrapper(GetStarted()),
   const BlockWrapper(Features()),
   const BlockWrapper(FastDevelopment()),
