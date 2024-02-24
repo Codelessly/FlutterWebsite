@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_website/components/components.dart';
 import 'package:flutter_website/utils/utils.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:universal_io/io.dart';
 import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -1028,16 +1030,16 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: AspectRatio(
                 aspectRatio: videoAspectRatio,
-                child: WebViewWidget(
-                  key: webViewKey,
-                  controller: WebViewController()
-                    ..loadRequest(Uri.parse(videoUrl)),
-                )
+                child: (kIsWeb || Platform.isAndroid || Platform.isIOS)
+                    ? WebViewWidget(
+                        key: webViewKey,
+                        controller: WebViewController()
+                          ..loadRequest(Uri.parse(videoUrl)),
+                      )
+                    : Image.asset(
+                        "assets/images/video_thumbnail_learn_from_developers.png",
+                        fit: BoxFit.contain)
                 // TODO: Legacy WebView on Web workarounds.
-                // (kIsWeb)
-                //     ? Image.asset(
-                //         "assets/images/video_thumbnail_learn_from_developers.png",
-                //         fit: BoxFit.contain)
 //                HtmlElementView(
 //                        key: webViewKey,
 //                        viewType: webViewKey.toString(),

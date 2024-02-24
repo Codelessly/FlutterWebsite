@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_website/components/colors.dart';
 import 'package:flutter_website/ui/block_wrapper.dart';
 import 'package:flutter_website/ui/carousel/carousel.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:universal_io/io.dart';
 
 import 'ui/blocks.dart';
 
@@ -69,10 +71,11 @@ List<Widget> blocks = [
   const BlockWrapper(LearnFromDevelopers()),
   const BlockWrapper(WhoUsesFlutter()),
   // Disabled codelab block for performance.
-  const ResponsiveVisibility(
-    hiddenConditions: [Condition.smallerThan(name: DESKTOP)],
-    child: BlockWrapper(FlutterCodelab()),
-  ),
+  if (kIsWeb || Platform.isAndroid || Platform.isIOS)
+    const ResponsiveVisibility(
+      hiddenConditions: [Condition.smallerThan(name: DESKTOP)],
+      child: BlockWrapper(FlutterCodelab()),
+    ),
   const BlockWrapper(FlutterNewsRow()),
   const BlockWrapper(InstallFlutter()),
   const Footer(),
