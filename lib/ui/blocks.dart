@@ -1,12 +1,9 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_website/components/components.dart';
 import 'package:flutter_website/utils/utils.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -970,17 +967,6 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
   @override
   void initState() {
     super.initState();
-    webViewKey = UniqueKey();
-    // TODO: Breaks mobile builds. Official Flutter WebView plugin is working on Web support.
-    // TODO: Resets iframe on scroll. Wait for official Flutter fix.
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
-        webViewKey.toString(),
-        (viewId) => html.IFrameElement()
-          ..width = "1080"
-          ..height = "606"
-          ..src = videoUrl
-          ..style.border = "none");
   }
 
   @override
@@ -1256,7 +1242,6 @@ class _FlutterCodelabState extends State<FlutterCodelab>
       codelabIds[1]: getCupertinoSelectionWidget(codelabIds[1]),
       codelabIds[2]: getCupertinoSelectionWidget(codelabIds[2]),
     };
-    setCodelabHtmlElementView();
   }
 
   @override
@@ -1342,19 +1327,7 @@ class _FlutterCodelabState extends State<FlutterCodelab>
   void setCodelabSelected(String codelab) {
     codelabSelected = codelab;
     codelabUrlSelected = codelabUrls[codelabIds.indexOf(codelab)];
-    setCodelabHtmlElementView();
     setState(() {});
-  }
-
-  void setCodelabHtmlElementView() {
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
-        codelabSelected,
-        (viewId) => html.IFrameElement()
-          ..width = "1080"
-          ..height = "617"
-          ..src = codelabUrlSelected
-          ..style.border = "none");
   }
 
   Widget getCupertinoSelectionWidget(String text) {
