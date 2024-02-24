@@ -24,7 +24,7 @@ class WebsiteMenuBar extends StatelessWidget {
       ]),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
-        children: <Widget>[
+        children: [
           const Padding(
               padding: EdgeInsets.only(right: 16),
               child: Icon(Icons.menu, color: textPrimary, size: 28)),
@@ -483,7 +483,7 @@ class Features extends StatelessWidget {
             rowFlex: 1,
             rowFit: FlexFit.tight,
             child: Column(
-              children: <Widget>[
+              children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 32),
                   child: buildMaterialIconCircle(
@@ -506,7 +506,7 @@ class Features extends StatelessWidget {
             rowFlex: 1,
             rowFit: FlexFit.tight,
             child: Column(
-              children: <Widget>[
+              children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 32),
                   child:
@@ -529,7 +529,7 @@ class Features extends StatelessWidget {
             rowFlex: 1,
             rowFit: FlexFit.tight,
             child: Column(
-              children: <Widget>[
+              children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 32),
                   child: buildMaterialIconCircle(
@@ -648,7 +648,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
                     child: buildMaterialIconCircle(
@@ -753,7 +753,7 @@ class _BeautifulUIState extends State<BeautifulUI> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
                     child: buildMaterialIconCircle(
@@ -894,7 +894,7 @@ class _NativePerformanceState extends State<NativePerformance> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
                     child: buildMaterialIconCircle(
@@ -1008,7 +1008,7 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   const Padding(
                     padding: EdgeInsets.only(bottom: 32),
                     child:
@@ -1093,7 +1093,7 @@ class WhoUsesFlutter extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   const Padding(
                     padding: EdgeInsets.only(bottom: 16),
                     child:
@@ -1193,7 +1193,7 @@ class FlutterNewsCard extends StatelessWidget {
           border: Border.all(color: border)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           Container(
             constraints: const BoxConstraints(maxHeight: 400),
             child: Image.asset(imagePath, fit: BoxFit.fitWidth),
@@ -1202,7 +1202,7 @@ class FlutterNewsCard extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(40, 40, 40, 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
                   child: Text("News",
@@ -1490,7 +1490,7 @@ class Footer extends StatelessWidget {
             columnFit: FlexFit.loose,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 RichText(
                   textAlign: TextAlign.left,
                   text: TextSpan(

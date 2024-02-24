@@ -17,7 +17,7 @@ class Carousel extends StatefulWidget {
   Carousel({super.key});
 
   @override
-  _CarouselState createState() => _CarouselState();
+  State<Carousel> createState() => _CarouselState();
 }
 
 class _CarouselState extends State<Carousel>

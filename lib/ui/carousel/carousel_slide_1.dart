@@ -10,7 +10,7 @@ class CarouselSlide1 extends StatefulWidget {
   const CarouselSlide1({super.key, required this.slideDuration});
 
   @override
-  _CarouselSlide1State createState() => _CarouselSlide1State();
+  State<CarouselSlide1> createState() => _CarouselSlide1State();
 }
 
 class _CarouselSlide1State extends State<CarouselSlide1>
@@ -60,8 +60,7 @@ class _CarouselSlide1State extends State<CarouselSlide1>
     animation = Tween<double>(begin: 0, end: 252).animate(animationController)
       ..addListener(() {
         setState(() {
-          slideItems =
-              getSlideItemAnimationUpdate(animation.value, slideItems);
+          slideItems = getSlideItemAnimationUpdate(animation.value, slideItems);
         });
       });
     animationController.forward();
@@ -73,7 +72,7 @@ class _CarouselSlide1State extends State<CarouselSlide1>
       width: 1200,
       height: 1200,
       child: Stack(
-        children: <Widget>[
+        children: [
           Positioned(
             left: 449,
             top: 116,
