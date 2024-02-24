@@ -9,20 +9,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.5
-  animations: ^2.0.7
-  url_launcher: ^6.1.10
-  video_player: ^2.6.0
-  webview_flutter: ^4.0.6
-  universal_html: ^2.2.1
-  google_fonts: ^4.0.3
+  cupertino_icons: ^1.0.6
+  animations: ^2.0.11
+  url_launcher: ^6.2.5
+  video_player: ^2.8.2
+  webview_flutter: ^4.7.0
+  universal_html: ^2.2.4
+  google_fonts: ^6.1.0
   responsive_framework:
     path: responsive_framework/
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true

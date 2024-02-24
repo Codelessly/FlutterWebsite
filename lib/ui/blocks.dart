@@ -12,7 +12,7 @@ import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebsiteMenuBar extends StatelessWidget {
-  const WebsiteMenuBar({Key? key}) : super(key: key);
+  const WebsiteMenuBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -212,7 +212,7 @@ class WebsiteMenuBar extends StatelessWidget {
 }
 
 class GetStarted extends StatelessWidget {
-  const GetStarted({Key? key}) : super(key: key);
+  const GetStarted({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -456,7 +456,7 @@ class GetStarted extends StatelessWidget {
 }
 
 class Features extends StatelessWidget {
-  const Features({Key? key}) : super(key: key);
+  const Features({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -570,7 +570,7 @@ class Features extends StatelessWidget {
 }
 
 class FastDevelopment extends StatefulWidget {
-  const FastDevelopment({Key? key}) : super(key: key);
+  const FastDevelopment({super.key});
 
   @override
   State<FastDevelopment> createState() => _FastDevelopmentState();
@@ -693,7 +693,7 @@ class _FastDevelopmentState extends State<FastDevelopment> {
 }
 
 class BeautifulUI extends StatefulWidget {
-  const BeautifulUI({Key? key}) : super(key: key);
+  const BeautifulUI({super.key});
 
   @override
   State<BeautifulUI> createState() => _BeautifulUIState();
@@ -815,7 +815,7 @@ class _BeautifulUIState extends State<BeautifulUI> {
 }
 
 class NativePerformance extends StatefulWidget {
-  const NativePerformance({Key? key}) : super(key: key);
+  const NativePerformance({super.key});
 
   @override
   State<NativePerformance> createState() => _NativePerformanceState();
@@ -957,7 +957,7 @@ class _NativePerformanceState extends State<NativePerformance> {
 }
 
 class LearnFromDevelopers extends StatefulWidget {
-  const LearnFromDevelopers({Key? key}) : super(key: key);
+  const LearnFromDevelopers({super.key});
 
   @override
   State<LearnFromDevelopers> createState() => _LearnFromDevelopersState();
@@ -1067,7 +1067,7 @@ class _LearnFromDevelopersState extends State<LearnFromDevelopers> {
 }
 
 class WhoUsesFlutter extends StatelessWidget {
-  const WhoUsesFlutter({Key? key}) : super(key: key);
+  const WhoUsesFlutter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -1133,7 +1133,7 @@ class WhoUsesFlutter extends StatelessWidget {
 }
 
 class FlutterNewsRow extends StatelessWidget {
-  const FlutterNewsRow({Key? key}) : super(key: key);
+  const FlutterNewsRow({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -1179,11 +1179,10 @@ class FlutterNewsCard extends StatelessWidget {
   final String linkUrl;
 
   const FlutterNewsCard(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.imagePath,
-      required this.linkUrl})
-      : super(key: key);
+      required this.linkUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -1228,7 +1227,7 @@ class FlutterNewsCard extends StatelessWidget {
 }
 
 class FlutterCodelab extends StatefulWidget {
-  const FlutterCodelab({Key? key}) : super(key: key);
+  const FlutterCodelab({super.key});
 
   @override
   State<FlutterCodelab> createState() => _FlutterCodelabState();
@@ -1374,7 +1373,7 @@ class _FlutterCodelabState extends State<FlutterCodelab>
 }
 
 class InstallFlutter extends StatelessWidget {
-  const InstallFlutter({Key? key}) : super(key: key);
+  const InstallFlutter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -1465,7 +1464,7 @@ class InstallFlutter extends StatelessWidget {
 }
 
 class Footer extends StatelessWidget {
-  const Footer({Key? key}) : super(key: key);
+  const Footer({super.key});
 
   @override
   Widget build(BuildContext context) {

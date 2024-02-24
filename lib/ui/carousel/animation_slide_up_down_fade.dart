@@ -7,8 +7,7 @@ class WidgetSlideUpDownFadeAnimation extends StatelessWidget {
   final Widget child;
 
   const WidgetSlideUpDownFadeAnimation(
-      {Key? key, required this.duration, required this.offset, required this.direction, required this.child})
-      : super(key: key);
+      {super.key, required this.duration, required this.offset, required this.direction, required this.child});
 
   @override
   Widget build(BuildContext context) {

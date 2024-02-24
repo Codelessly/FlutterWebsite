@@ -7,8 +7,7 @@ import 'model_carousel_item_animation.dart';
 class CarouselSlide1 extends StatefulWidget {
   final int slideDuration;
 
-  const CarouselSlide1({Key? key, required this.slideDuration})
-      : super(key: key);
+  const CarouselSlide1({super.key, required this.slideDuration});
 
   @override
   _CarouselSlide1State createState() => _CarouselSlide1State();

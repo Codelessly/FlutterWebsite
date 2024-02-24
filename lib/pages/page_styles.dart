@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_website/components/components.dart';
 
 class TypographyPage extends StatelessWidget {
-  const TypographyPage({Key? key}) : super(key: key);
+  const TypographyPage({super.key});
 
   @override
   Widget build(BuildContext context) {

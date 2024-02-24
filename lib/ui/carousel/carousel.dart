@@ -14,7 +14,7 @@ class Carousel extends StatefulWidget {
     CarouselSlide4(slideDuration: slideDuration),
   ];
 
-  Carousel({Key? key}) : super(key: key);
+  Carousel({super.key});
 
   @override
   _CarouselState createState() => _CarouselState();

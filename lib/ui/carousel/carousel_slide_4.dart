@@ -7,8 +7,7 @@ import 'animation_slide_up_down_fade.dart';
 class CarouselSlide4 extends StatefulWidget {
   final int slideDuration;
 
-  const CarouselSlide4({Key? key, required this.slideDuration})
-      : super(key: key);
+  const CarouselSlide4({super.key, required this.slideDuration});
 
   @override
   _CarouselSlide4State createState() => _CarouselSlide4State();
